@@ -10,8 +10,8 @@ import phd.collins.imls.model.MySQLDatabaseParams;
 import phd.collins.imls.model.Student;
 import phd.collins.imls.model.User;
 import phd.collins.imls.util.Info;
+import phd.collins.imls.util.UtilGeneral;
 
-import com.imls.sandbox.activeobject.ModelDefaults;
 import com.j256.ormlite.support.ConnectionSource;
 
 public class UseOrmlite {
@@ -33,7 +33,7 @@ public class UseOrmlite {
 	}
 
 	private Student createTestStudent(User user) throws SQLException {
-		Student student = new Student(ModelDefaults.getRandomString(), ModelDefaults.getRandomString());
+		Student student = new Student(UtilGeneral.getRandomString(), UtilGeneral.getRandomString());
 		student.setDate_registered(new Date());
 		student.setField_of_study(null);
 		student.setUser(user);
@@ -42,7 +42,7 @@ public class UseOrmlite {
 	}
 	
 	private Admin createTestAdministrator(User user) throws SQLException {
-		Admin admin = new Admin(ModelDefaults.getRandomString(), ModelDefaults.getRandomString());
+		Admin admin = new Admin(UtilGeneral.getRandomString(), UtilGeneral.getRandomString());
         admin.setUser(user);
         DAOManager.ADMIN_DAO.create(admin);
 		return admin;
@@ -50,8 +50,8 @@ public class UseOrmlite {
 
 	private User createTestUser() throws SQLException {
         User user = new User();
-        user.setUsername(ModelDefaults.getRandomString());
-        user.setPassword(ModelDefaults.getRandomString().toLowerCase());
+        user.setUsername(UtilGeneral.getRandomString());
+        user.setPassword(UtilGeneral.getRandomStringLowerCase());
         user.setIs_active(true);
         user.setLast_login_date( new Date() );
         
