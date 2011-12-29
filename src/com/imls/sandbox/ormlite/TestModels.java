@@ -14,11 +14,11 @@ import phd.collins.imls.util.UtilGeneral;
 
 import com.j256.ormlite.support.ConnectionSource;
 
-public class UseOrmlite {
+public class TestModels {
 	private ConnectionSource connectionSource = null;
 
 	public static void main(String args[]) throws Exception {
-		new UseOrmlite().runMe();
+		new TestModels().runMe();
 	}
 	
 	public void runMe() throws Exception {
