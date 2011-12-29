@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:second_MathFunctions">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:diff soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <firstElement xsi:type="xsd:float">8</firstElement>
+         <secondElement xsi:type="xsd:float">4</secondElement>
+      </urn:diff>
+   </soapenv:Body>
+</soapenv:Envelope>

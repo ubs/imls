@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:second_MathFunctions">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:multiplication soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <numbers xsi:type="urn:float_aggregate_sequence">
+            <!--2 or more repetitions:-->
+            <float xsi:type="xsd:float">4</float>
+            <float xsi:type="xsd:float">5</float>
+            <float xsi:type="xsd:float">2</float>
+         </numbers>
+      </urn:multiplication>
+   </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:MathFunctionsMapper">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:abs_String_String soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+         <real xsi:type="xsd:string">4</real>
+         <immaginary xsi:type="xsd:string">5</immaginary>
+      </urn:abs_String_String>
+   </soapenv:Body>
+</soapenv:Envelope>
