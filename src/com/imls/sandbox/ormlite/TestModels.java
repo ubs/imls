@@ -1,5 +1,6 @@
 package com.imls.sandbox.ormlite;
 
+import java.io.File;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -9,6 +10,7 @@ import phd.collins.imls.model.DAOManager;
 import phd.collins.imls.model.MySQLDatabaseParams;
 import phd.collins.imls.model.Student;
 import phd.collins.imls.model.User;
+import phd.collins.imls.util.IMLSConfiguration;
 import phd.collins.imls.util.Info;
 import phd.collins.imls.util.UtilGeneral;
 
@@ -24,12 +26,16 @@ public class TestModels {
 	public void runMe() throws Exception {
 		Info.sout("Hiya....welcome to ORM Lite Tester");
 		
-		connectToDatabase();
+		Info.sout(new File("").getAbsolutePath());
+		
+		runIMLSConfig();
+		
+		//connectToDatabase();
 		
 		//User user1 = createTestUser();
         //createTestAdministrator(user1);
         //createTestAdministrator(createTestUser());
-        createTestStudent(createTestUser());
+        //createTestStudent(createTestUser());
 	}
 
 	private Student createTestStudent(User user) throws SQLException {
@@ -51,7 +57,7 @@ public class TestModels {
 	private User createTestUser() throws SQLException {
         User user = new User();
         user.setUsername(UtilGeneral.getRandomString());
-        user.setPassword(UtilGeneral.getRandomStringLowerCase());
+        user.setPassword("password".toLowerCase());
         user.setIs_active(true);
         user.setLast_login_date( new Date() );
         
@@ -64,6 +70,13 @@ public class TestModels {
 	private void connectToDatabase() throws Exception {
 		connectionSource = ConnectionManager.getDatabaseConnection(new MySQLDatabaseParams());
 		Info.sout(connectionSource.toString());
+	}
+	
+	private void runIMLSConfig(){
+		IMLSConfiguration.init("D:\\PBSLiberty\\Project4Collins-2011\\Collins_PhD\\IMLS_V2\\WebContent\\conf\\imls.properties");
+		Info.sout("IMLS Config Loaded As: " +
+				IMLSConfiguration.getInstance().getDatabaseDriver() +
+				IMLSConfiguration.getInstance().getDatabasePassword());
 	}
 
 }

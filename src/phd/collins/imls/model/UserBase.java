@@ -2,6 +2,8 @@ package phd.collins.imls.model;
 
 import java.util.Date;
 
+import phd.collins.imls.util.UtilGeneral;
+
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 
@@ -48,7 +50,7 @@ public class UserBase extends ModelBase {
 	}
 	
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = digestPassword(password);
 	}
 
 	public String getPassword() {
@@ -77,5 +79,9 @@ public class UserBase extends ModelBase {
 
 	public boolean isIs_active() {
 		return is_active;
+	}
+	
+	public String digestPassword(String plainPassword){
+		return UtilGeneral.digestStringToMD5(plainPassword);
 	}
 }

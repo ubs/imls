@@ -2,8 +2,7 @@ package phd.collins.imls.util;
 
 import java.util.Random;
 
-import sun.security.provider.MD5;
-import sun.security.provider.SHA;
+import org.apache.commons.codec.digest.DigestUtils;
 
 public class UtilGeneral {
 	
@@ -29,9 +28,8 @@ public class UtilGeneral {
 		return sb.toString();
 	}
 	
-	public static String toMD5(String strPlain){
-		String strHashed = "";
+	public static String digestStringToMD5(String strPlain){
+		String strHashed = DigestUtils.md5Hex(strPlain);
 		return strHashed;
 	}
-
 }
