@@ -73,10 +73,9 @@ public class TestModels {
 	}
 	
 	private void runIMLSConfig(){
-		IMLSConfiguration.init("D:\\PBSLiberty\\Project4Collins-2011\\Collins_PhD\\IMLS_V2\\WebContent\\conf\\imls.properties");
-		Info.sout("IMLS Config Loaded As: " +
-				IMLSConfiguration.getInstance().getDatabaseDriver() +
-				IMLSConfiguration.getInstance().getDatabasePassword());
+		IMLSConfiguration.init(null);
+		//IMLSConfiguration.init(new File("WebContent\\conf\\imls.properties").getAbsolutePath());
+		IMLSConfiguration.dumpConfiguration();
 	}
 
 }

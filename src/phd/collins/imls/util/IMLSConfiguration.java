@@ -17,8 +17,10 @@ public class IMLSConfiguration extends Properties {
 	
 	private static Logger logger = Logger.getLogger(IMLSConfiguration.class.getName());
 
-	public static final String IMLS_DEFAULT_CONFIGURATION_FILE = "conf/imls.properties";
-	private static String imlsConfigPath;
+	public static final String IMLS_CONFIGURATION_FOLDER = "WebContent/conf/";
+	public static final String IMLS_DEFAULT_CONFIGURATION_FILE = "imls.properties";
+	
+	private static String imlsConfigPathArgument;
 
 	//DATABASE CONFIGURATION FOR IMLS	
 	public static final String KEY_IMLS_DATABASE_DRIVER = "imls.dbdriver";
@@ -42,7 +44,7 @@ public class IMLSConfiguration extends Properties {
 	}
 
    	public static void init(String _imlsConfPath){
-		imlsConfigPath = _imlsConfPath;
+   		imlsConfigPathArgument = _imlsConfPath;
    	}
 
 
@@ -93,35 +95,38 @@ public class IMLSConfiguration extends Properties {
 			imlsConfig.setDefaultProperties();
 			
 			InputStream input = null;
-			if (imlsConfigPath != null) {
-				try {
-					input = new FileInputStream(imlsConfigPath);
-				} catch (FileNotFoundException e) {
-					logger.error("IMLS configuration file <<" + imlsConfigPath + ">> not found, " +
-							"The default configuration will be used", e);
-					return;
-				}
+			
+			if (imlsConfigPathArgument == null) {
+				String filePath = IMLS_CONFIGURATION_FOLDER + IMLS_DEFAULT_CONFIGURATION_FILE;
+				imlsConfigPathArgument = new File(filePath).getAbsolutePath();
 			}
-			else {
-				input = ClassLoader.getSystemResourceAsStream(IMLS_DEFAULT_CONFIGURATION_FILE);
-				if (input == null) {
-					logger.error("IMLS configuration file <<" + IMLS_DEFAULT_CONFIGURATION_FILE + ">> not found, " +
-							"The default configuration will be used" + 
-							"Current Path is: " + new File("").getAbsolutePath());
-					return;
-				}
+			
+			try {
+				input = new FileInputStream(imlsConfigPathArgument);
+			} catch (FileNotFoundException e) {
+				logger.error("IMLS configuration file <<" + imlsConfigPathArgument + ">> not found, " +
+						"The default configuration will be used", e);
+				return;
 			}
 			
 			try {
 				inputStream = new BufferedInputStream(input);
 				imlsConfig.load(inputStream);
+				imlsConfig.elements();
 				inputStream.close();
-				logger.info("IMLS configuration file successfully loaded");
 				logger.debug("IMLS configuration file successfully loaded");
 
 			} catch (IOException e) {
 				logger.error("An error occurred while reading IMLS configuration file", e);
 			}
+		}
+	}
+	
+	public static void dumpConfiguration(){
+		Info.sout("IMLS Config Dump: " +  "\n");
+		for(String key : getInstance().stringPropertyNames()) {
+		  String value = getInstance().getProperty(key);
+		  Info.sout(key + " => " + value);
 		}
 	}
 }
