@@ -28,7 +28,7 @@ public class FrontController {
 	}
 	
 	public static String getLayout(){
-		return "layout.default" + JSP_MIME;
+		return getLayoutPath() + "layout.default" + JSP_MIME;
 	}
 	
 	public static String getLayoutPath(){

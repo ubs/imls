@@ -1,5 +1,5 @@
 /*
-* Master CSS Style sheet for Marrissa. Copyright 2011, TranXecure Inc.
+* Master CSS Style sheet for IMLS. Copyright 2012, TranXecure Inc.
 */
 
 @charset "utf-8";
@@ -22,9 +22,9 @@ body{
 	height:150px;
 }
 
-#appboxeswrapper{
-	width:600px;
-	margin:0 auto;
+#navbar{
+	background:#FF6805; height:31px;
+	border-bottom: 1px solid #EA5D00;
 }
 
 .footer{ background:#000; }
@@ -47,7 +47,7 @@ ul#footerlist li{float: left; line-height: 40px; padding:0 7px; }
 	line-height:40px;
 }
 
-.topbar .netlivesuite{
+.topbar .imls{
 	position:absolute;
 	bottom:5px;
 	padding-left:10px;
@@ -56,8 +56,13 @@ ul#footerlist li{float: left; line-height: 40px; padding:0 7px; }
 	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
-.topbar .netlivesuite sup{
+.topbar .imls sup{
 	font-size:18px;
+}
+
+#appboxeswrapper{
+	width:300px;
+	margin:0 auto;
 }
 
 .appbox{
