@@ -20,5 +20,17 @@
     
     <li>
         <a href="<%= LinksManager.TUTORIAL_ADMIN %>">Tutorial Admin</a>
+    </li>
+    
+    <li>
+        <a href="<%= LinksManager.WSIG_ADMIN_HOME %>">WSIG Admin</a>
+        <ul>
+            <li>
+                <a href="<%= LinksManager.WSIG_ADMIN_HOME %>">WSIG Home</a>
+			</li>
+            <li>
+                <a href="<%= LinksManager.WSIG_ADMIN_TEST %>">WSIG Test</a>
+			</li>
+        </ul>
     </li>	
 </ul>

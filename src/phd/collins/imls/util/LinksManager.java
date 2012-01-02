@@ -10,4 +10,7 @@ public class LinksManager {
 	public static String USERS_STUDENTS = "?page=students";
 	public static String USERS_ADMINS = "?page=admins";
 	public static String TUTORIAL_ADMIN = "?page=admins";
+	
+	public static String WSIG_ADMIN_HOME = "?page=wsig-index.jsp";
+	public static String WSIG_ADMIN_TEST = "?page=wsig-test.jsp";
 }
