@@ -1,0 +1,107 @@
+/*
+* Master CSS Style sheet for Marrissa. Copyright 2011, TranXecure Inc.
+*/
+
+@charset "utf-8";
+
+body{
+	background-color:#EEE;
+	margin:0;
+	padding:0;
+	font-family:Verdana, Geneva, sans-serif;
+	color:#000;
+}
+
+.pagewrapper{
+	border:1px solid #000;
+	width:950px;
+}
+
+.topbar{
+	background:#000;
+	height:150px;
+}
+
+#appboxeswrapper{
+	width:600px;
+	margin:0 auto;
+}
+
+.footer{ background:#000; }
+
+.footerbar{
+	background:#000;
+	height:35px;
+	color:#FFF;
+}
+
+.footerbar ul#footerlist{
+	list-style:none; 
+}
+
+ul#footerlist li{float: left; line-height: 40px; padding:0 7px; }
+
+#footerIbeat{
+	float:right;
+	padding-right:10px;
+	line-height:40px;
+}
+
+.topbar .netlivesuite{
+	position:absolute;
+	bottom:5px;
+	padding-left:10px;
+	color:#FFF;
+	font-size:36px;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+.topbar .netlivesuite sup{
+	font-size:18px;
+}
+
+.appbox{
+	height:100px;
+	width:100%;
+	border:1px solid #000;
+}
+
+.appbox p.info{
+	margin-top:10px;
+	margin-bottom:0;
+	line-height:20px;
+	font-size:12px;
+	text-align:center;
+}
+
+.appclickbox{
+	position:absolute;
+	bottom:0;
+	background:#000;
+	width:100%;
+	padding:10px 0;
+	color:#FFF;
+	font-size:16px;
+	font-weight:bold;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+.appclickbox a:link{
+	float:right;
+	padding-right:10px;
+	color: #026CB1;
+	text-decoration: none;
+}
+
+.appclickbox a:visited {
+	color: #026CB1;
+	text-decoration: none;
+}
+
+.appclickbox a:hover, .appclickbox a:active {
+	color: #026CB1;
+	text-decoration: underline;
+}
+
+.bordered { border:1px solid #000; }
+.bold{font-weight:bold;}

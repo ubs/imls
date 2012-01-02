@@ -1,3 +1,15 @@
+<%@page import="phd.collins.imls.util.Info"%>
+<%@page import="phd.collins.imls.util.FrontController" %>
+
+<% 
+	String currentPage = FrontController.getCurrentPage(request);
+	String layout = FrontController.getLayout(request);
+	Info.sout("Main Page on Layout test 1 = " + currentPage); 
+%>
+
+<%@ include file="view/layout/testinclude1.jsp" %>
+<% //@ include file="view/layout/testinclude1.jsp" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

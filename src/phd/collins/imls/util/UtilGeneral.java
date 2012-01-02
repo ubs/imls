@@ -32,4 +32,9 @@ public class UtilGeneral {
 		String strHashed = DigestUtils.md5Hex(strPlain);
 		return strHashed;
 	}
+	
+	public static boolean isNull(Object obj){
+		return (obj == null);
+	}
+	
 }

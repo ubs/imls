@@ -1,0 +1,57 @@
+a img { border: none; }
+
+div{
+	font-size:11px;
+	font-weight:normal;
+	line-height:100%;
+}
+
+blockquote { margin:1em; }
+
+h1,h2,h3,h4,h5,h6,strong { font-weight:700; }
+
+h1,h2,h3,h4,h5,h6 {
+	color:#333;
+	font-size:1em;
+}
+
+h1{ font-size:2.0em; }
+h2{ font-size:1.8em; }
+h3{ font-size:1.6em; }
+h4{ font-size:1.4em; }
+h5{ font-size:1.2em; }
+h6{ font-size:1.0em; }
+
+abbr,acronym {
+	border-bottom:1px dotted #000;
+	cursor:help;
+}
+
+em { font-style:italic; }
+
+p,fieldset { margin-bottom:1em; }
+
+p,li,dt,dd,.bp input { font-size:1.1em; }
+
+table {
+	margin-bottom:1em;
+	border-collapse: collapse;
+	border-spacing: .3em;
+	clear: both;
+}
+
+th,td { margin:3px; font-size:1.1em; }
+
+sup {
+	vertical-align:super;
+	font-size:0.8em;
+	font-weight:400;
+}
+
+li li { font-size:1em; }
+
+.clearfix { display:block; }
+
+/* Hides from IE-mac \*/
+* html .clearfix { height:1%; }
+/* End hide from IE-mac */

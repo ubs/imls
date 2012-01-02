@@ -1,0 +1,14 @@
+COLOUR PROFILE:
+-Black  : 000000
+-Orange : FF6805
+-SkyBlue : 049DCD
+
+
+DESIGN IN MIND
+* User: Extended as Admin, Student
+* NULL class: IsNull, 
+
+
+
+God does not have the capacity for anxiety
+Activity is not always equal to productivity

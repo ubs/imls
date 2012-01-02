@@ -109,6 +109,7 @@ public class WSIGServlet extends HttpServlet {
 		
 		// Init configuration
 		WSIGConfiguration.init(wsigPropertyPath);
+		//@PBS: But remember that getInstance, loads!
 		servletContext.setAttribute("WSIGConfiguration", WSIGConfiguration.getInstance());
 		
 		// Init Jade Gateway
@@ -131,7 +132,7 @@ public class WSIGServlet extends HttpServlet {
 		shutdownWSIGAgent();
 
 		super.destroy();
-		log.info("WSIG Servlet destroied");
+		log.info("WSIG Servlet destroyed");
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
