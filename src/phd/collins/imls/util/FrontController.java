@@ -32,6 +32,10 @@ public class FrontController {
 	}
 	
 	public static String getLayoutPath(){
-		return "view/layout/"; //For Now
+		return getViewsPath()+ "layout/"; //For Now
+	}
+	
+	public static String getViewsPath(){
+		return "views/"; //For Now
 	}
 }
