@@ -1,8 +1,17 @@
-<%@page import="phd.collins.imls.util.FrontController" %>
+<%@page import="phd.collins.imls.util.SessionManager"%>
+<%@page import="phd.collins.imls.util.FrontController"%>
 
-<% 
-	String currentPage = FrontController.getCurrentPage(request);
-	String pageLayout = FrontController.getLayout(request); 
+<%
+	String currentPage=""; String pageLayout="";
+	
+	if (!SessionManager.isAuthenticated()){
+		currentPage = "auth";
+	}
+	else{
+		currentPage = FrontController.getCurrentPage(request);
+	}
+	
+	pageLayout = FrontController.getLayout(request); 
 %>
 
 <jsp:include page="<%= pageLayout %>">

@@ -5,6 +5,8 @@ public class LinksManager {
 	public static String LINK_BASE = "";
 	
 	public static String HASH = "#";
+	public static String AUTH_PAGE = "?page=auth";
+	
 	public static String DASHBOARD = "?page=dashboard";
 	public static String USERS = "?page=users";
 	public static String USERS_STUDENTS = "?page=students";
