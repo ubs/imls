@@ -32,15 +32,13 @@ public class AuthenticationAgent extends Agent {
 		// Prepare a DFAgentDescription
 		DFAgentDescription dfAgentDesc = new DFAgentDescription();
 		dfAgentDesc.setName(this.getAID());
-		//dfad.addLanguages(codec.getName());
 		dfAgentDesc.addProtocols(FIPANames.InteractionProtocol.FIPA_REQUEST);
 		
 		ServiceDescription serviceDesc = new ServiceDescription();
-		//sd.addLanguages(codec.getName());
-		//sd.addProtocols(FIPANames.InteractionProtocol.FIPA_REQUEST);
+		serviceDesc.addProtocols(FIPANames.InteractionProtocol.FIPA_REQUEST);
 		serviceDesc.setType("AuthenticationAgent");
-		//sd.setOwnership("MathOwner");
-		//sd.addOntologies(MathOntology.getInstance().getName());
+		serviceDesc.setOwnership("AuthenticationAgentOwner");
+		//serviceDesc.addOntologies(MathOntology.getInstance().getName());
 
 		// WSIG properties
 		serviceDesc.addProperties(new Property(WSIGPropertyConstants.WSIG_FLAG, "true"));

@@ -83,7 +83,7 @@ public class MathAgent extends Agent {
 		sd.addProtocols(FIPANames.InteractionProtocol.FIPA_REQUEST);
 		sd.setType("MathAgent");
 		sd.setOwnership("MathOwner");
-		sd.addOntologies(MathOntology.getInstance().getName());
+		//sd.addOntologies(MathOntology.getInstance().getName());
 
 		// WSIG properties
 		sd.addProperties(new Property(WSIG_FLAG, "true"));
@@ -136,6 +136,8 @@ public class MathAgent extends Agent {
 			private MessageTemplate template = MessageTemplate.MatchOntology(MathOntology.getInstance().getName());
 
 			public void action() {
+				System.out.println("As of Blessing own: " + template.toString());
+				
 				ACLMessage msg = myAgent.receive(template);
 				if (msg != null) {
 					Action actExpr;
