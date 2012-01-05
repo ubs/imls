@@ -53,9 +53,9 @@
             <p>&nbsp;</p>
             
             <div class="grid_16 alpha_omega pagebody">
-           	  <jsp:include page="<%= requestController %>" flush="true"></jsp:include>
+           	  <jsp:include page="<%= requestController %>" ></jsp:include>
             </div>
-            <div class="clear">&nbsp;</div>
+            <div class="clearfix">&nbsp;</div>
             
             <p>&nbsp;</p>
             <p>&nbsp;</p>

@@ -1,3 +1,4 @@
+<%@page import="phd.collins.imls.util.Info"%>
 <%@page import="phd.collins.imls.util.SessionManager"%>
 <%@page import="phd.collins.imls.util.FrontController"%>
 
@@ -8,11 +9,14 @@
 	pageLayout = FrontController.getLayout(request);
 	
 	if (!SessionManager.isAuthenticated()){
-		requestController = FrontController.getAuthenticationController();
+		requestController = FrontController.getAuthenticationController(request);
 	}
 	else{
 		requestController = FrontController.getRequestController(request);
 	}
+	
+	Info.sout("Context Path: " + request.getContextPath() +  
+			"  Layout: " + pageLayout + "  requestController: " + requestController);
 %>
 
 <jsp:include page="<%= pageLayout %>">

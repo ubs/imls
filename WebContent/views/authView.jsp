@@ -1,4 +1,11 @@
-<%@ page contentType="text/html; charset=ISO-8859-1" %>
+<%@page import="phd.collins.imls.model.User"%>
+<%@page import="phd.collins.imls.util.ViewParameters"%>
+<%@page import="phd.collins.imls.util.Info"%>
+<% 
+	//ViewParameters viewParams = (ViewParameters)session.getAttribute("viewParameters");
+	ViewParameters viewParams = (ViewParameters)request.getAttribute("viewParameters");
+	Info.sout("In authView.jspView Params Keys: " + viewParams.getAllParameterKeys());
+%>
 
 <div id="authbox">
 	<div id="authcap">
