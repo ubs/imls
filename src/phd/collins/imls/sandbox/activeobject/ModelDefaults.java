@@ -1,4 +1,4 @@
-package com.imls.sandbox.activeobject;
+package phd.collins.imls.sandbox.activeobject;
 
 import java.util.Random;
 

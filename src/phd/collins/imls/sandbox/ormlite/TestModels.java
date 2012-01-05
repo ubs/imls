@@ -1,4 +1,4 @@
-package com.imls.sandbox.ormlite;
+package phd.collins.imls.sandbox.ormlite;
 
 import java.io.File;
 import java.sql.SQLException;
