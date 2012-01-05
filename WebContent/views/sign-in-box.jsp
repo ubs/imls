@@ -1,30 +1,33 @@
 <%@ page contentType="text/html; charset=ISO-8859-1" %>
-<!-- <link href="../assets/css/960gs.css" rel="stylesheet" type="text/css" /> -->
 
-<div id="appboxeswrapper">
-  <div class="grid_5">
-    <div class="appbox">
-        <p class="info">Sign into IMLS Platform</p>
-        <div>
-        <form name="frmAuth" id="frmAuth">
-        	<div class="grid_2 alpha"><span style="float: right; vertical-align: baseline;">Username</span></div>
-            <div class="grid_3 omega"><input name="username" type="text" /></div>
-            <div class="clear">&nbsp;</div>
+<div id="authbox">
+	<div id="authcap">
+    	<h2 class="authcaption" title="IMLS Authentication">&raquo; IMLS Authentication</h2>
+	</div>
+	
+	<h2 id="info">Please enter your login details to access the IMLS Platform</h2>
+    
+	<div style="margin-bottom: 10px;">
+		<form name="frmAuth" id="frmAuth" method="post">
+            <ul class="formrow clearfix">
+            	<li class="grid_1a formlabel">Username</li>
+            	<li class="grid_3 formcontrol"><input class="textbox" name="username" type="text" /></li>
+            </ul>
             
-            <div class="grid_2 alpha">Password</div>
-            <div class="grid_3 omega"><input name="password" type="password" /></div>
-            <div class="clear">&nbsp;</div>
+            <ul class="formrow clearfix">
+            	<li class="grid_1a formlabel">Password</li>
+            	<li class="grid_3 formcontrol"><input class="textbox" name="password" type="password" /></li>
+            </ul>
             
-            <div>
-            	<input name="btnSignIn" type="submit" id="btnSignIn" value="Sign In" />
-            </div>
-            <p>&nbsp;</p>
-        </form>
-        </div>
-      <div class="appclickbox">
-            <a href="#" title="IMLS Authentication">&raquo; IMLS Authentication</a>
-        </div>
-    </div>
-  </div>
-  <div class="clear">&nbsp;</div>
+            <ul class="formrow formButtons clearfix">
+            	<li class="grid_1a formlabel">&nbsp;</li>
+            	<li class="grid_3 formcontrol">
+            		<input class="button" name="btnSignIn" type="submit" id="btnSignIn" value="Sign In" />
+            		<input class="button" name="btnReset" type="reset" id="btnReset" value="Reset Fields" />
+				</li>
+            </ul>
+		</form>
+	</div>
+
 </div>
+<div class="clearfix">&nbsp;</div>

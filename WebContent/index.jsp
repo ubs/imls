@@ -2,18 +2,19 @@
 <%@page import="phd.collins.imls.util.FrontController"%>
 
 <%
-	String currentPage=""; String pageLayout="";
+	String pageLayout="";
+	String requestController="";
+	
+	pageLayout = FrontController.getLayout(request);
 	
 	if (!SessionManager.isAuthenticated()){
-		currentPage = "auth";
+		requestController = FrontController.getAuthenticationController();
 	}
 	else{
-		currentPage = FrontController.getCurrentPage(request);
+		requestController = FrontController.getRequestController(request);
 	}
-	
-	pageLayout = FrontController.getLayout(request); 
 %>
 
 <jsp:include page="<%= pageLayout %>">
-	<jsp:param name="currentPage" value="<%= currentPage %>" />
+	<jsp:param name="requestController" value="<%= requestController %>" />
 </jsp:include>

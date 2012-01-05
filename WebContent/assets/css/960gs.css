@@ -9,8 +9,8 @@
 
 /* Grid >> Global
 ----------------------------------------------------------------------------------------------------*/
-.grid_1,
-.grid_2, .grid_2b,
+.grid_1, .grid_1a,
+.grid_2, .grid_2a,
 .grid_3,
 .grid_4,
 .grid_5,
@@ -102,8 +102,12 @@
 /* Some Modifications & customizations by Prince Blessing Sunday (libertylivingstone@yahoo.com)
 ----------------------------------------------------------------------------------------------------*/
 
-.container_16 .grid_2b {
+.container_16 .grid_2a {
 	width:120px;
+}
+
+.container_16 .grid_1a {
+	width:80px;
 }
 
 /* Prefix Extra Space >> 2 Columns

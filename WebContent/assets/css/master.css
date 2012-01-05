@@ -6,106 +6,67 @@
 
 body{
 	background-color:#EEE;
-	margin:0;
-	padding:0;
+	margin:0; padding:0;
 	font-family:Verdana, Geneva, sans-serif;
 	color:#000;
 }
 
+/* BEGIN >>> PAGE STRUCTURE */
 .pagewrapper{
 	border:1px solid #000;
 	width:950px;
 }
 
-.topbar{
-	background:#000;
-	height:150px;
+.topbar{ background:#000; height:150px; }
+
+.topbar .imls{
+	position:absolute;
+	bottom:5px; padding-left:10px;
+	color:#FFF; font-size:36px; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
 }
+
+.topbar .imls sup{ font-size:18px; }
 
 #navbar{
 	background:#FF6805; height:31px;
 	border-bottom: 1px solid #EA5D00;
 }
 
-.footer{ background:#000; }
+.footer{ background:#000; color:#FFF;}
 
-.footerbar{
-	background:#000;
-	height:35px;
-	color:#FFF;
+.footerbar{ background:#000; height:35px; }
+
+.footerbar ul#footerlist{ list-style:none; }
+
+.footerbar ul#footerlist li{float: left; line-height: 40px; padding:0 7px; }
+
+.footerbar #footerright{ float:right; padding-right:10px; line-height:40px; }
+
+/* END <<< PAGE STRUCTURE */
+
+/* BEGIN >>> AUTHENTICATION BOX */
+#authbox{
+	margin-left: auto; margin-right: auto;
+	width:350px; color: #000; border: 1px solid #000;
+	font-family:Verdana, Geneva, sans-serif;
 }
 
-.footerbar ul#footerlist{
-	list-style:none; 
+#authcap{
+	height:40px; width:100%;
+	background:#000; color: #049DCD;
 }
 
-ul#footerlist li{float: left; line-height: 40px; padding:0 7px; }
-
-#footerIbeat{
-	float:right;
-	padding-right:10px;
-	line-height:40px;
+#authcap .authcaption{
+	float:right; padding:15px 5px 0 0; line-height:20px;
+	font-weight:bold; font-size:18px; color: #049DCD;
 }
 
-.topbar .imls{
-	position:absolute;
-	bottom:5px;
-	padding-left:10px;
-	color:#FFF;
-	font-size:36px;
-	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+#authbox #info{
+	margin:10px; line-height:20px;
+	font-size:12px; font-style:normal; font-weight:normal; text-align:center;
 }
 
-.topbar .imls sup{
-	font-size:18px;
-}
-
-#appboxeswrapper{
-	width:300px;
-	margin:0 auto;
-}
-
-.appbox{
-	width:100%;
-	border:1px solid #000;
-}
-
-.appbox p.info{
-	margin-top:10px;
-	margin-bottom:0;
-	line-height:20px;
-	font-size:12px;
-	text-align:center;
-}
-
-.appclickbox{
-	position:absolute;
-	bottom:0;
-	background:#000;
-	width:100%;
-	padding:10px 0;
-	color:#FFF;
-	font-size:16px;
-	font-weight:bold;
-	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
-}
-
-.appclickbox a:link{
-	float:right;
-	padding-right:10px;
-	color: #026CB1;
-	text-decoration: none;
-}
-
-.appclickbox a:visited {
-	color: #026CB1;
-	text-decoration: none;
-}
-
-.appclickbox a:hover, .appclickbox a:active {
-	color: #026CB1;
-	text-decoration: underline;
-}
+/* END <<< AUTHENTICATION BOX */
 
 .bordered { border:1px solid #000; }
 .bold{font-weight:bold;}
