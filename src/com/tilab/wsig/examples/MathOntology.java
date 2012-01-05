@@ -34,6 +34,8 @@ import jade.content.schema.TermSchema;
 
 public class MathOntology extends Ontology implements MathVocabulary{
 
+	private static final long serialVersionUID = 686191291023775583L;
+	
 	private final static Ontology theInstance = new MathOntology();
 
 	public final static Ontology getInstance() {

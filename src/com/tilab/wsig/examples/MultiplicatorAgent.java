@@ -21,9 +21,15 @@ public class MultiplicatorAgent extends Agent {
 	public static final String WSIG_MAPPER = "wsig-mapper";
 	public static final String WSIG_PREFIX = "wsig-prefix";
 	
+	@SuppressWarnings("unused")
 	private Logger log = Logger.getLogger(FacAgent.class.getName());
+	
 	public static AID myAID = null;
+	
+	@SuppressWarnings("unused")
 	private SLCodec codec = new SLCodec();
+	
+	@SuppressWarnings("unused")
 	private Date startDate;
 
 	protected void setup() {

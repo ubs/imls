@@ -30,6 +30,8 @@ import jade.util.leap.List;
 
 public class Multiplication implements AgentAction {
 
+	private static final long serialVersionUID = -4207470777127999599L;
+	
 	private List numbers;
 
 	public List getNumbers() {
@@ -43,6 +45,8 @@ public class Multiplication implements AgentAction {
 	@Override
 	public String toString() {
 		String s = "Multiplication (";
+		
+		@SuppressWarnings("rawtypes")
 		Iterator it = numbers.iterator();
 		boolean first = true;
 		while(it.hasNext()) {

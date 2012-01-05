@@ -26,6 +26,8 @@ package com.tilab.wsig.examples;
 import jade.content.AgentAction;
 
 public class Sum implements AgentAction {
+
+	private static final long serialVersionUID = 5338155060592444971L;
 	
 	private float firstElement;
 	private float secondElement;

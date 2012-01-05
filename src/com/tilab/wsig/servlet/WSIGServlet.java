@@ -261,7 +261,7 @@ public class WSIGServlet extends HttpServlet {
 			return;
 		}
 		
-		log.info("WSIG SOAP response sended, stop elaboration.");
+		log.info("WSIG SOAP response sent, stop elaboration.");
 	}
 
 	private AbsTerm executeOperation(AgentAction agentAction, WSIGService wsigService) throws Exception{

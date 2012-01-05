@@ -27,6 +27,8 @@ import jade.content.AgentAction;
 
 public class Fac implements AgentAction {
 	
+	private static final long serialVersionUID = 5972117113627160538L;
+	
 	private int number;	
 	
 	public int getNumber() {

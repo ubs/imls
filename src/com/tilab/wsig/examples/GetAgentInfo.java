@@ -27,4 +27,6 @@ import jade.content.AgentAction;
 
 public class GetAgentInfo implements AgentAction {
 
+	private static final long serialVersionUID = 8162078511160883339L;
+
 }

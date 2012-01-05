@@ -27,6 +27,8 @@ import jade.content.AgentAction;
 
 public class SumComplex implements AgentAction {
 
+	private static final long serialVersionUID = -5635140835223993102L;
+	
 	private Complex firstComplexElement;
 	private Complex secondComplexElement;
 	

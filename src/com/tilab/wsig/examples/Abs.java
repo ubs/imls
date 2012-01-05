@@ -27,6 +27,8 @@ import jade.content.AgentAction;
 
 public class Abs implements AgentAction {
 
+	private static final long serialVersionUID = 8305628792305511872L;
+	
 	private Complex complex;
 
 	public Abs() {

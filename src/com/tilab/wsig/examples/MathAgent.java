@@ -61,12 +61,12 @@ public class MathAgent extends Agent {
 
 	protected void setup() {
 		log.info("A MathAgent is starting...");
-		log.info("Agent name: "+getLocalName());
+		log.info("Agent name: " + getLocalName());
 
 		// Get agent arguments
 		Object[] args = getArguments();
 
-		// Register codec/onto
+		// Register codec/ontology(ies)
 		getContentManager().registerLanguage(codec);
 		getContentManager().registerOntology(FIPAManagementOntology.getInstance());
 		getContentManager().registerOntology(MathOntology.getInstance());
@@ -76,6 +76,7 @@ public class MathAgent extends Agent {
 		dfad.setName(this.getAID());
 		dfad.addLanguages(codec.getName());
 		dfad.addProtocols(FIPANames.InteractionProtocol.FIPA_REQUEST);
+		
 		ServiceDescription sd;
 		sd = new ServiceDescription();
 		sd.addLanguages(codec.getName());
@@ -100,7 +101,7 @@ public class MathAgent extends Agent {
 		if (args.length >= 2) {
 			isMapperPresent = Boolean.parseBoolean((String)args[1]);
 		}
-		log.info("Mapper present: "+isMapperPresent);
+		log.info("Mapper present: " + isMapperPresent);
 		if (isMapperPresent) {
 			sd.addProperties(new Property(WSIG_MAPPER, "com.tilab.wsig.examples.MathOntologyMapper"));
 		}
@@ -130,6 +131,8 @@ public class MathAgent extends Agent {
 		
 		// Add math behaviour
 		this.addBehaviour(new CyclicBehaviour(this) {
+			private static final long serialVersionUID = -4200046648464542449L;
+			
 			private MessageTemplate template = MessageTemplate.MatchOntology(MathOntology.getInstance().getName());
 
 			public void action() {
@@ -139,6 +142,7 @@ public class MathAgent extends Agent {
 					try {
 						actExpr = (Action) myAgent.getContentManager().extractContent(msg);
 						AgentAction action = (AgentAction) actExpr.getAction();
+						
 						if (action instanceof Sum) {
 							serveSumAction((Sum) action, actExpr, msg);
 						} else if (action instanceof Diff) {

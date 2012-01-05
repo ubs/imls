@@ -27,6 +27,8 @@ import jade.content.Concept;
 
 public class Complex implements Concept {
 	
+	private static final long serialVersionUID = -7704296544754219210L;
+	
 	private float real;
 	private float immaginary;
 

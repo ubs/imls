@@ -27,6 +27,8 @@ import jade.content.AgentAction;
 
 public class Diff implements AgentAction {
 
+	private static final long serialVersionUID = -7019179095600689052L;
+
 	private float firstElement;
 
 	private float secondElement;

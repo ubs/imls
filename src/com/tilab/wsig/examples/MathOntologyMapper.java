@@ -43,7 +43,7 @@ public class MathOntologyMapper {
 		return abs;
 	}
 	
-	public Abs toAbs(String real,String immaginary){
+	public Abs toAbs(String real, String immaginary){
 		Abs abs = new Abs();
 		Complex complex = new Complex();
 		complex.setImmaginary(Float.parseFloat(immaginary));

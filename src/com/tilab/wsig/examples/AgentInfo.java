@@ -29,6 +29,8 @@ import jade.content.Concept;
 import jade.core.AID;
 
 public class AgentInfo implements Concept {
+
+	private static final long serialVersionUID = -1878112252093683931L;
 	
 	private AID agentAid;
 	private Date startDate;

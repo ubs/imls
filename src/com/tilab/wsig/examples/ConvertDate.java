@@ -29,6 +29,8 @@ import jade.content.AgentAction;
 
 public class ConvertDate implements AgentAction {
 
+	private static final long serialVersionUID = 1307924349517544766L;
+	
 	private Date date;
 
 	public Date getDate() {

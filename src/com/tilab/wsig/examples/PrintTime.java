@@ -27,6 +27,8 @@ import jade.content.AgentAction;
 
 public class PrintTime implements AgentAction {
 
+	private static final long serialVersionUID = 8185465025973607050L;
+
 	@Override
 	public String toString() {
 		return "PrintTime";

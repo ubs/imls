@@ -51,6 +51,8 @@ import org.apache.log4j.Logger;
 
 public class FacAgent extends Agent {
 
+	private static final long serialVersionUID = 7272963421726923087L;
+	
 	public static final String WSIG_FLAG = "wsig";
 	public static final String WSIG_MAPPER = "wsig-mapper";
 	public static final String WSIG_PREFIX = "wsig-prefix";
@@ -138,6 +140,8 @@ public class FacAgent extends Agent {
 				
 			// Add math behaviour
 			this.addBehaviour(new CyclicBehaviour(this) {
+				
+				private static final long serialVersionUID = 9009237819349277693L;
 				
 				private MessageTemplate template; 
 				private Action actExpr;

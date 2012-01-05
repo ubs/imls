@@ -26,7 +26,9 @@ package com.tilab.wsig.examples;
 import jade.content.AgentAction;
 
 public class PrintComplex implements AgentAction {
-
+	
+	private static final long serialVersionUID = -7832936501695862290L;
+	
 	private Complex complex;
 
 	public Complex getComplex() {

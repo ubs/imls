@@ -26,5 +26,7 @@ package com.tilab.wsig.examples;
 import jade.content.AgentAction;
 
 public class GetRandom implements AgentAction {
+	
+	private static final long serialVersionUID = 2736139503289418924L;
 
 }
