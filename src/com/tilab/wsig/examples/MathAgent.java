@@ -83,7 +83,7 @@ public class MathAgent extends Agent {
 		sd.addProtocols(FIPANames.InteractionProtocol.FIPA_REQUEST);
 		sd.setType("MathAgent");
 		sd.setOwnership("MathOwner");
-		//sd.addOntologies(MathOntology.getInstance().getName());
+		sd.addOntologies(MathOntology.getInstance().getName());
 
 		// WSIG properties
 		sd.addProperties(new Property(WSIG_FLAG, "true"));

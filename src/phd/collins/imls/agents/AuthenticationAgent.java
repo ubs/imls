@@ -1,8 +1,5 @@
 package phd.collins.imls.agents;
 
-import com.tilab.wsig.examples.MathOntology;
-
-import phd.collins.imls.util.Info;
 import jade.content.ContentElement;
 import jade.content.onto.basic.Action;
 import jade.content.onto.basic.Done;
@@ -12,10 +9,14 @@ import jade.core.Agent;
 import jade.domain.DFService;
 import jade.domain.FIPANames;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
+import jade.domain.FIPAAgentManagement.FIPAManagementOntology;
 import jade.domain.FIPAAgentManagement.Property;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.util.leap.ArrayList;
+import phd.collins.imls.agents.behaviours.OneShotAuthenticationBehaviour;
+import phd.collins.imls.agents.ontologies.AuthenticationOntology;
+import phd.collins.imls.util.Info;
 
 public class AuthenticationAgent extends Agent {
 
@@ -29,6 +30,10 @@ public class AuthenticationAgent extends Agent {
 		// Get agent arguments
 		Object[] args = getArguments();
 		
+		// Register codec/ontology(ies)
+		getContentManager().registerOntology(FIPAManagementOntology.getInstance());
+		getContentManager().registerOntology(AuthenticationOntology.getInstance());
+		
 		// Prepare a DFAgentDescription
 		DFAgentDescription dfAgentDesc = new DFAgentDescription();
 		dfAgentDesc.setName(this.getAID());
@@ -38,7 +43,7 @@ public class AuthenticationAgent extends Agent {
 		serviceDesc.addProtocols(FIPANames.InteractionProtocol.FIPA_REQUEST);
 		serviceDesc.setType("AuthenticationAgent");
 		serviceDesc.setOwnership("AuthenticationAgentOwner");
-		//serviceDesc.addOntologies(MathOntology.getInstance().getName());
+		serviceDesc.addOntologies(AuthenticationOntology.getInstance().getName());
 
 		// WSIG properties
 		serviceDesc.addProperties(new Property(WSIGPropertyConstants.WSIG_FLAG, "true"));
@@ -57,6 +62,9 @@ public class AuthenticationAgent extends Agent {
 					" <Agent name: " + getLocalName() + "> Error Message: " + e.getMessage());
 			doDelete();
 		}
+		
+		//Add Behaviour
+		this.addBehaviour(new OneShotAuthenticationBehaviour());
 	}
 	
 	protected void takeDown() {

@@ -23,10 +23,10 @@ Boston, MA  02111-1307, USA.
 
 package com.tilab.wsig.examples;
 
-import java.util.Date;
-
 import jade.content.Concept;
 import jade.core.AID;
+
+import java.util.Date;
 
 public class AgentInfo implements Concept {
 

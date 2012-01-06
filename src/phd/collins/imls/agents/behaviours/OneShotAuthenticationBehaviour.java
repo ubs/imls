@@ -1,21 +1,14 @@
 package phd.collins.imls.agents.behaviours;
 
-import jade.core.behaviours.Behaviour;
+import jade.core.behaviours.OneShotBehaviour;
+import phd.collins.imls.util.Info;
 
-public class OneShotAuthenticationBehaviour extends Behaviour {
+public class OneShotAuthenticationBehaviour extends OneShotBehaviour {
 
 	private static final long serialVersionUID = 758895961070498074L;
 
 	@Override
 	public void action() {
-		// TODO Auto-generated method stub
-
+		Info.sout("Hey bootie bootie...!");
 	}
-
-	@Override
-	public boolean done() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }
