@@ -26,7 +26,7 @@
         <a href="<%= LinksManager.WSIG_ADMIN_HOME %>">WSIG Admin</a>
         <ul>
             <li>
-                <a href="<%= LinksManager.WSIG_ADMIN_HOME %>">WSIG Home</a>
+                <a href="wsig-index.jsp">WSIG Home</a>
 			</li>
             <li>
                 <a href="<%= LinksManager.WSIG_ADMIN_TEST %>">WSIG Test</a>

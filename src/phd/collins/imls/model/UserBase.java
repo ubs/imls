@@ -32,6 +32,10 @@ public class UserBase extends ModelBase {
 		this.username = _username;
 		this.password = _password;
 	}
+	
+	public String toString(){
+		return username + password + is_active + last_login_date;
+	}
 
 	public void setId(long id) {
 		this.id = id;

@@ -1,6 +1,7 @@
 package phd.collins.imls.agents;
 
 import jade.content.ContentElement;
+import jade.content.lang.sl.SLCodec;
 import jade.content.onto.basic.Action;
 import jade.content.onto.basic.Done;
 import jade.content.onto.basic.Result;
@@ -14,6 +15,7 @@ import jade.domain.FIPAAgentManagement.Property;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.util.leap.ArrayList;
+import phd.collins.imls.agents.behaviours.CyclicAuthenticationBehaviour;
 import phd.collins.imls.agents.behaviours.OneShotAuthenticationBehaviour;
 import phd.collins.imls.agents.ontologies.AuthenticationOntology;
 import phd.collins.imls.util.Info;
@@ -23,23 +25,29 @@ public class AuthenticationAgent extends Agent {
 	private static final long serialVersionUID = -5255344699286504500L;
 	
 	public static AID myAID = null;
+	private SLCodec codec = new SLCodec();
+	
+	private Object[] args;
 	
 	protected void setup() {
 		Info.sout("Starting Agent: " + this.getClass().getName() + " <Agent name: " + getLocalName() + ">");
 
 		// Get agent arguments
-		Object[] args = getArguments();
+		args = getArguments();
 		
 		// Register codec/ontology(ies)
+		getContentManager().registerLanguage(codec);
 		getContentManager().registerOntology(FIPAManagementOntology.getInstance());
 		getContentManager().registerOntology(AuthenticationOntology.getInstance());
 		
 		// Prepare a DFAgentDescription
 		DFAgentDescription dfAgentDesc = new DFAgentDescription();
 		dfAgentDesc.setName(this.getAID());
+		dfAgentDesc.addLanguages(codec.getName());
 		dfAgentDesc.addProtocols(FIPANames.InteractionProtocol.FIPA_REQUEST);
 		
 		ServiceDescription serviceDesc = new ServiceDescription();
+		serviceDesc.addLanguages(codec.getName());
 		serviceDesc.addProtocols(FIPANames.InteractionProtocol.FIPA_REQUEST);
 		serviceDesc.setType("AuthenticationAgent");
 		serviceDesc.setOwnership("AuthenticationAgentOwner");
@@ -49,8 +57,13 @@ public class AuthenticationAgent extends Agent {
 		serviceDesc.addProperties(new Property(WSIGPropertyConstants.WSIG_FLAG, "true"));
 		
 		// Service name
-		String wsigServiceName = "IMLS_Authentication";
+		String wsigServiceName = "IMLS_Authentication" + Math.random();
+		String argServiceName = getArgument(1);
+		if ( argServiceName != null){ wsigServiceName = argServiceName; }
 		serviceDesc.setName(wsigServiceName);
+		
+		Info.sout("Agent Service name: " + wsigServiceName);
+		Info.sout("Agent Service name from SD Object: " + serviceDesc.getName());
 		
 		dfAgentDesc.addServices(serviceDesc);
 		
@@ -64,7 +77,8 @@ public class AuthenticationAgent extends Agent {
 		}
 		
 		//Add Behaviour
-		this.addBehaviour(new OneShotAuthenticationBehaviour());
+		//this.addBehaviour(new OneShotAuthenticationBehaviour());
+		this.addBehaviour(new CyclicAuthenticationBehaviour());
 	}
 	
 	protected void takeDown() {
@@ -108,6 +122,20 @@ public class AuthenticationAgent extends Agent {
 		
 		reply.addUserDefinedParameter(ACLMessage.IGNORE_FAILURE, "true");
 		send(reply);
+	}
+	
+	private String getArgument(int argNumber){
+		String argument = null; 
+		if (args.length >= argNumber) { argument = (String)args[argNumber-1]; }
+		return argument;
+	}
+	
+	@SuppressWarnings("unused")
+	private boolean useOntologyMapper(){
+		boolean useOntologyMapper = false;
+		String argument = getArgument(2);
+		if (argument != null){ useOntologyMapper = Boolean.valueOf(argument); }
+		return useOntologyMapper;
 	}
 
 }

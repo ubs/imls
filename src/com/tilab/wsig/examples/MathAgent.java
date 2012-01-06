@@ -136,7 +136,6 @@ public class MathAgent extends Agent {
 			private MessageTemplate template = MessageTemplate.MatchOntology(MathOntology.getInstance().getName());
 
 			public void action() {
-				System.out.println("As of Blessing own: " + template.toString());
 				
 				ACLMessage msg = myAgent.receive(template);
 				if (msg != null) {

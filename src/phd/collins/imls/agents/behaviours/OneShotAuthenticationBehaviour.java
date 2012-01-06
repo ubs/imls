@@ -9,6 +9,6 @@ public class OneShotAuthenticationBehaviour extends OneShotBehaviour {
 
 	@Override
 	public void action() {
-		Info.sout("Hey bootie bootie...!");
+		Info.sout("Action called for Behaviour: " + this.getClass().getName());
 	}
 }
