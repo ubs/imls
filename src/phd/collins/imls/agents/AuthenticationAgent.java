@@ -16,8 +16,7 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.lang.acl.ACLMessage;
 import jade.util.leap.ArrayList;
 import phd.collins.imls.agents.behaviours.CyclicAuthenticationBehaviour;
-import phd.collins.imls.agents.behaviours.OneShotAuthenticationBehaviour;
-import phd.collins.imls.agents.ontologies.AuthenticationOntology;
+import phd.collins.imls.agents.ontologies.IMLSOntology;
 import phd.collins.imls.util.Info;
 
 public class AuthenticationAgent extends Agent {
@@ -38,7 +37,8 @@ public class AuthenticationAgent extends Agent {
 		// Register codec/ontology(ies)
 		getContentManager().registerLanguage(codec);
 		getContentManager().registerOntology(FIPAManagementOntology.getInstance());
-		getContentManager().registerOntology(AuthenticationOntology.getInstance());
+		//getContentManager().registerOntology(AuthenticationOntology.getInstance());
+		getContentManager().registerOntology(IMLSOntology.getInstance());
 		
 		// Prepare a DFAgentDescription
 		DFAgentDescription dfAgentDesc = new DFAgentDescription();
@@ -51,7 +51,8 @@ public class AuthenticationAgent extends Agent {
 		serviceDesc.addProtocols(FIPANames.InteractionProtocol.FIPA_REQUEST);
 		serviceDesc.setType("AuthenticationAgent");
 		serviceDesc.setOwnership("AuthenticationAgentOwner");
-		serviceDesc.addOntologies(AuthenticationOntology.getInstance().getName());
+		//serviceDesc.addOntologies(AuthenticationOntology.getInstance().getName());
+		serviceDesc.addOntologies(IMLSOntology.getInstance().getName());
 
 		// WSIG properties
 		serviceDesc.addProperties(new Property(WSIGPropertyConstants.WSIG_FLAG, "true"));
@@ -59,7 +60,7 @@ public class AuthenticationAgent extends Agent {
 		// Service name
 		String wsigServiceName = "IMLS_Authentication" + Math.random();
 		String argServiceName = getArgument(1);
-		if ( argServiceName != null){ wsigServiceName = argServiceName; }
+		if ( (argServiceName != null) && (!argServiceName.isEmpty()) ){ wsigServiceName = argServiceName; }
 		serviceDesc.setName(wsigServiceName);
 		
 		Info.sout("Agent Service name: " + wsigServiceName);
@@ -90,6 +91,7 @@ public class AuthenticationAgent extends Agent {
 		Info.sout("Agent is being taken down: " + this.getClass().getName());
 	}
 	
+	@SuppressWarnings("unused")
 	private void sendNotification(Action actExpr, ACLMessage request, int performative, Object result) {
 		// Send back a proper reply to the requester
 		ACLMessage reply = request.createReply();

@@ -1,3 +1,4 @@
+<%@page import="phd.collins.imls.util.SessionManager"%>
 <%@page import="phd.collins.imls.util.Info"%>
 <%
 	String assetsBase = "assets";
@@ -44,10 +45,12 @@
             </div>
             <div class="clear">&nbsp;</div>
             
+            <% if (!SessionManager.isAuthenticated()){ %>
             <div id="navbar" class="alpha_omega">
             	<jsp:include page="../menu.default.jsp"></jsp:include>
             </div>
             <div class="clear">&nbsp;</div>
+            <% } %>
             
             <p>&nbsp;</p>
             <p>&nbsp;</p>
