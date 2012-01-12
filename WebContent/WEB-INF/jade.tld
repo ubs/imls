@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib
+  PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+  "http://java.sun.com/j2ee/dtds/web-jsptaglib_1_1.dtd">
+
+<!-- a tag library descriptor -->
+
+<taglib>
+  <tlibversion>1.0</tlibversion>
+  <jspversion>1.1</jspversion>
+  <shortname>jade</shortname>
+
+  <!-- General information about this tag library -->
+  <info>
+        A tag library for jade
+  </info>
+
+  <!-- ******************** Defined Custom Tags *************************** -->
+
+  <!-- useAgent tag -->
+  <tag>
+    <name>useAgent</name>
+    <tagclass>jade.wrapper.taglib.UseAgentTag</tagclass>
+    <teiclass>jade.wrapper.taglib.UseAgentTEI</teiclass>
+    <info>
+	tag for inserting a new agent in a given JADE container.
+    </info>
+    <attribute>
+	<name>id</name>
+	<required>true</required>
+        <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+	<name>container</name>
+	<required>true</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+	<name>scope</name>
+	<required>false</required>
+    </attribute>
+    <attribute>
+	<name>classname</name>
+	<required>true</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+	<name>type</name>
+	<required>false</required>
+    </attribute>
+  </tag>
+
+  <!-- container tag -->
+  <tag>
+    <name>container</name>
+    <tagclass>jade.wrapper.taglib.ContainerTag</tagclass>
+    <bodycontent>empty</bodycontent>
+    <info>
+	tag for creating a new JADE container.
+    </info>
+    <attribute>
+	<name>id</name>
+	<required>true</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+	<name>host</name>
+	<required>false</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+	<name>port</name>
+	<required>false</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+	<name>params</name>
+	<required>false</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <!-- sendObject tag -->
+  <tag>
+    <name>sendObject</name>
+    <tagclass>jade.wrapper.taglib.SendObjectTag</tagclass>
+    <bodycontent>JSP</bodycontent>
+    <info>
+	tag for sending an object to an agent.
+    </info>
+    <attribute>
+	<name>id</name>
+	<required>true</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
+	<name>blocking</name>
+	<required>false</required>
+    </attribute>
+  </tag>
+
+ 
+</taglib>
