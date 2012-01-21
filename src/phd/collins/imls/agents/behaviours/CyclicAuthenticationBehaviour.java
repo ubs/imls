@@ -2,6 +2,7 @@ package phd.collins.imls.agents.behaviours;
 
 import jade.content.AgentAction;
 import jade.content.onto.basic.Action;
+import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
@@ -19,6 +20,8 @@ public class CyclicAuthenticationBehaviour extends CyclicBehaviour {
 
 	private static final long serialVersionUID = 758895961070498074L;
 	
+	AuthenticateResponse authResult;
+	
 	private MessageTemplate msgTemplate = MessageTemplate.MatchOntology(
 			IMLSOntology.getInstance().getName());
 
@@ -28,6 +31,8 @@ public class CyclicAuthenticationBehaviour extends CyclicBehaviour {
 		Info.sout("Message Template in Use: " + msgTemplate.toString());
 		
 		ACLMessage msg = myAgent.receive(msgTemplate);
+		Info.sout("Is ACL Message NULL? : " + (msg == null));
+		
 		if (msg != null) {
 			Action actExpression;
 			try {
@@ -54,15 +59,15 @@ public class CyclicAuthenticationBehaviour extends CyclicBehaviour {
 	private void perfromAuthenticateAction(Authenticate authenticate, Action actExpression, ACLMessage msg) {
 		Info.sout(myAgent.getName() + ".perfromAuthenticateAction");
 		
-		AuthenticateResponse result = new AuthenticateResponse();
-		result.setUsername(authenticate.getUsername());
-		result.setPassword(authenticate.getPassword());
-		result.setAuthenticated(false);
-		result.setIsActive(false);
-		result.setUserType("ADMIN");
-		result.setLastLoginDate(new Date());
+		authResult = new AuthenticateResponse();
+		authResult.setUsername(authenticate.getUsername());
+		authResult.setPassword(authenticate.getPassword());
+		authResult.setAuthenticated(false);
+		authResult.setIsActive(false);
+		authResult.setUserType("ADMIN");
+		authResult.setLastLoginDate(new Date());
 		
-		BehaviourHelper.getInstance(myAgent).sendNotification(actExpression, msg, ACLMessage.INFORM, result);
+		BehaviourHelper.getInstance(myAgent).sendNotification(actExpression, msg, ACLMessage.INFORM, authResult);
 	}
 	
 	private void perfromTestAction(TestAction testAction, Action actExpression, ACLMessage msg) {
@@ -78,7 +83,15 @@ public class CyclicAuthenticationBehaviour extends CyclicBehaviour {
 		BehaviourHelper.getInstance(myAgent).sendNotification(actExpression, msg, ACLMessage.INFORM, result);
 	}
 	
-	private String getClassName(){
+	public AuthenticateResponse getResult(){
+		return authResult;
+	}
+	
+	public Agent getMyAgent(){
+		return myAgent;
+	}
+	
+	public String getClassName(){
 		return this.getClass().getName();
 	}
 }

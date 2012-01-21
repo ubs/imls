@@ -2,7 +2,6 @@ package phd.collins.imls.agents.ontologies.authentication;
 
 import jade.content.AgentAction;
 import jade.content.onto.annotations.Result;
-import jade.content.schema.AgentActionSchema;
 
 @Result(type=AuthenticateResponse.class)
 public class Authenticate implements AgentAction {
@@ -36,9 +35,5 @@ public class Authenticate implements AgentAction {
 	public String toString() {
 		return new StringBuffer().append("Authenticate (").append(username)
 			.append(",").append(password).append(")").toString();
-	}
-	
-	public AgentActionSchema getResult(){
-		return null;
 	}
 }

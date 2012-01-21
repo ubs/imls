@@ -24,7 +24,8 @@ public class AuthenticationAgent extends Agent implements IMLSAgentsVocabulary {
 	private Object[] args;
 	
 	protected void setup() {
-		Info.sout("Starting Agent: " + this.getClass().getName() + " <Agent name: " + getLocalName() + ">");
+		Info.sout("Starting Agent: " + this.getClass().getName() 
+				+ " <Agent name: " + getLocalName() + ">" + " AID()" + this.getAID());
 
 		// Get agent arguments
 		args = getArguments();
@@ -51,7 +52,7 @@ public class AuthenticationAgent extends Agent implements IMLSAgentsVocabulary {
 		serviceDesc.addProperties(new Property(WSIGPropertyConstants.WSIG_FLAG, TRUE));
 		
 		// Service name
-		String wsigServiceName = AUTHENTICATION_AGENT_BASENAME + ((int)Math.random() * 100 + 1);
+		String wsigServiceName = AUTHENTICATION_AGENT_BASENAME + ((int)(Math.random() * 100) + 1);
 		String argServiceName = getArgument(1);
 		if ( (argServiceName != null) && (!argServiceName.isEmpty()) ){ wsigServiceName = argServiceName; }
 		serviceDesc.setName(wsigServiceName);

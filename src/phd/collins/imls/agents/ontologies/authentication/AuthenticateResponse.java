@@ -75,4 +75,21 @@ public class AuthenticateResponse implements Concept {
 	public void setLastLoginDate(Date lastLoginDate) {
 		this.lastLoginDate = lastLoginDate;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		
+		sb.append(getClass().getName())
+		.append("(")
+		.append("username: ").append(getUsername())
+		.append("password: ").append(getPassword())
+		.append("userType: ").append(getUserType())
+		.append("isActive: ").append(getIsActive())
+		.append("lastLoginDate: ").append(getLastLoginDate())
+		.append("authenticated: ").append(getAuthenticated())
+		.append(")");
+		
+		return sb.toString();
+	}
 }

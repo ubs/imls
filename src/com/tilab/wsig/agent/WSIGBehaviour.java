@@ -93,7 +93,6 @@ public class WSIGBehaviour extends AchieveREInitiator {
 		try {
 			request.addReceiver(agentReceiver);
 			myAgent.getContentManager().fillContent(request, new Action(agentReceiver, agentAction));
-			
 		} catch (Exception e) {
 			status = FAILURE_STATUS;
 			request = null;

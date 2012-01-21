@@ -1,6 +1,5 @@
 package phd.collins.imls.util;
 
-
 public class LinksManager {
 	public static String LINK_BASE = "";
 	
