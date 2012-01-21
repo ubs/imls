@@ -1,10 +1,6 @@
 package phd.collins.imls.agents;
 
-import jade.content.ContentElement;
 import jade.content.lang.sl.SLCodec;
-import jade.content.onto.basic.Action;
-import jade.content.onto.basic.Done;
-import jade.content.onto.basic.Result;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.domain.DFService;
@@ -13,13 +9,12 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.FIPAManagementOntology;
 import jade.domain.FIPAAgentManagement.Property;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
-import jade.lang.acl.ACLMessage;
-import jade.util.leap.ArrayList;
 import phd.collins.imls.agents.behaviours.CyclicAuthenticationBehaviour;
 import phd.collins.imls.agents.ontologies.IMLSOntology;
+import phd.collins.imls.agents.vocabularies.IMLSAgentsVocabulary;
 import phd.collins.imls.util.Info;
 
-public class AuthenticationAgent extends Agent {
+public class AuthenticationAgent extends Agent implements IMLSAgentsVocabulary {
 
 	private static final long serialVersionUID = -5255344699286504500L;
 	
@@ -37,7 +32,6 @@ public class AuthenticationAgent extends Agent {
 		// Register codec/ontology(ies)
 		getContentManager().registerLanguage(codec);
 		getContentManager().registerOntology(FIPAManagementOntology.getInstance());
-		//getContentManager().registerOntology(AuthenticationOntology.getInstance());
 		getContentManager().registerOntology(IMLSOntology.getInstance());
 		
 		// Prepare a DFAgentDescription
@@ -49,16 +43,15 @@ public class AuthenticationAgent extends Agent {
 		ServiceDescription serviceDesc = new ServiceDescription();
 		serviceDesc.addLanguages(codec.getName());
 		serviceDesc.addProtocols(FIPANames.InteractionProtocol.FIPA_REQUEST);
-		serviceDesc.setType("AuthenticationAgent");
-		serviceDesc.setOwnership("AuthenticationAgentOwner");
-		//serviceDesc.addOntologies(AuthenticationOntology.getInstance().getName());
+		serviceDesc.setType(AUTHENTICATION_AGENT);
+		serviceDesc.setOwnership(AUTHENTICATION_AGENT_OWNER);
 		serviceDesc.addOntologies(IMLSOntology.getInstance().getName());
 
 		// WSIG properties
-		serviceDesc.addProperties(new Property(WSIGPropertyConstants.WSIG_FLAG, "true"));
+		serviceDesc.addProperties(new Property(WSIGPropertyConstants.WSIG_FLAG, TRUE));
 		
 		// Service name
-		String wsigServiceName = "IMLS_Authentication" + Math.random();
+		String wsigServiceName = AUTHENTICATION_AGENT_BASENAME + ((int)Math.random() * 100 + 1);
 		String argServiceName = getArgument(1);
 		if ( (argServiceName != null) && (!argServiceName.isEmpty()) ){ wsigServiceName = argServiceName; }
 		serviceDesc.setName(wsigServiceName);
@@ -89,41 +82,6 @@ public class AuthenticationAgent extends Agent {
 		} catch (Exception e) { Info.serr(e.getMessage()); }
 
 		Info.sout("Agent is being taken down: " + this.getClass().getName());
-	}
-	
-	@SuppressWarnings("unused")
-	private void sendNotification(Action actExpr, ACLMessage request, int performative, Object result) {
-		// Send back a proper reply to the requester
-		ACLMessage reply = request.createReply();
-		if (performative == ACLMessage.INFORM) {
-			reply.setPerformative(ACLMessage.INFORM);
-			
-			try {
-				ContentElement ce = null;
-				
-				if (result != null) {
-					// If the result is a java.util.List, convert it into a jade.util.leap.List to make the ontology "happy"
-					if (result instanceof java.util.List) {
-						ArrayList l = new ArrayList();
-						l.fromList((java.util.List<?>) result);
-						result = l;
-					}
-					ce = new Result(actExpr, result);
-				} else {
-					ce = new Done(actExpr);
-				}
-				getContentManager().fillContent(reply, ce);
-			}
-			catch (Exception e) {
-				Info.serr("Error: Agent " + getName() + ", Unable to send notification" + e.getMessage());
-				e.printStackTrace();
-			}
-		} else {
-			reply.setPerformative(performative);
-		}
-		
-		reply.addUserDefinedParameter(ACLMessage.IGNORE_FAILURE, "true");
-		send(reply);
 	}
 	
 	private String getArgument(int argNumber){

@@ -4,6 +4,7 @@ import jade.content.onto.BeanOntology;
 import jade.content.onto.BeanOntologyException;
 import jade.content.onto.Ontology;
 import phd.collins.imls.agents.ontologies.authentication.AuthInfo;
+import phd.collins.imls.agents.ontologies.authentication.Authenticate;
 import phd.collins.imls.agents.vocabularies.IMLSVocabulary;
 import phd.collins.imls.util.Info;
 
@@ -44,7 +45,11 @@ public class IMLSOntology extends BeanOntology implements IMLSVocabulary {
 		packageName = packageName.substring(0, packageName.lastIndexOf("."));
 		
 		add(packageName);
+		Info.sout("Ontology successfully added via BeanOntology from: " + packageName);
 		
+		packageName = Authenticate.class.getName();
+		packageName = packageName.substring(0, packageName.lastIndexOf("."));
+		add(packageName);
 		Info.sout("Ontology successfully added via BeanOntology from: " + packageName);
 	}
 	

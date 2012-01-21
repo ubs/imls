@@ -2,9 +2,9 @@
 <soapenv:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:IMLS_Authentication">
    <soapenv:Header/>
    <soapenv:Body>
-      <urn:authenticate soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+      <urn:Authenticate soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
          <username xsi:type="xsd:string">pascalina</username>
          <password xsi:type="xsd:string">umohlina</password>
-      </urn:authenticate>
+      </urn:Authenticate>
    </soapenv:Body>
 </soapenv:Envelope>

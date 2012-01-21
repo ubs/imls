@@ -37,6 +37,7 @@ import="jade.content.onto.Ontology,
 	
 	AID aid = service.getAid();
 	String agentName = aid.getName();
+	System.out.println("Agent Name, Blessing: " + agentName);
 	
 	Class mapperClass = service.getMapperClass();
 	String mapperClassName = "-";
@@ -103,12 +104,12 @@ import="jade.content.onto.Ontology,
 			
 <%		
 			String operationName;
-			Iterator itOperations = service.getOperations().iterator();
+			Iterator<?> itOperations = service.getOperations().iterator();
 			while(itOperations.hasNext()) {
 				operationName = (String)itOperations.next();
 %>				
 				<% out.print(operationName); %><br/>
-<%				
+<%	
 			}
 %>		
 			
