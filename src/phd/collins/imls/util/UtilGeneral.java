@@ -1,5 +1,7 @@
 package phd.collins.imls.util;
 
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.Random;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -35,6 +37,17 @@ public class UtilGeneral {
 	
 	public static boolean isNull(Object obj){
 		return (obj == null);
+	}
+	
+	public static void dumpHashTable(Hashtable<?, ?> hashTable){
+		Info.sout("UtilGeneral Dump HashTable, Size: " + hashTable.size());
+		
+		Enumeration<?> hashKeys = hashTable.keys();
+		while( hashKeys.hasMoreElements() ) {
+		  Object hKey = hashKeys.nextElement();
+		  Object hValue = hashTable.get(hKey);
+		  Info.sout("Key [Value] : " + hKey + " [" + hValue + "]");
+		}
 	}
 	
 }
