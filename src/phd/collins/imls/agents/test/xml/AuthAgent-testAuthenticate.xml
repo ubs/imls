@@ -4,7 +4,7 @@
    <soapenv:Body>
       <urn:Authenticate soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
          <username xsi:type="xsd:string">pascalina</username>
-         <password xsi:type="xsd:string">umohlina</password>
+         <password xsi:type="xsd:string">p@$$w0rd</password>
       </urn:Authenticate>
    </soapenv:Body>
 </soapenv:Envelope>

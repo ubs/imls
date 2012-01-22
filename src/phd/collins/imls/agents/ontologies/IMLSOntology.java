@@ -5,10 +5,10 @@ import jade.content.onto.BeanOntologyException;
 import jade.content.onto.Ontology;
 import phd.collins.imls.agents.ontologies.authentication.AuthInfo;
 import phd.collins.imls.agents.ontologies.authentication.Authenticate;
-import phd.collins.imls.agents.vocabularies.IMLSVocabulary;
+import phd.collins.imls.agents.vocabularies.IMLSOntoVocabulary;
 import phd.collins.imls.util.Info;
 
-public class IMLSOntology extends BeanOntology implements IMLSVocabulary {
+public class IMLSOntology extends BeanOntology implements IMLSOntoVocabulary {
 
 	private static final long serialVersionUID = -6052189373483758586L;
 	

@@ -1,6 +1,6 @@
 package phd.collins.imls.agents.vocabularies;
 
-public interface IMLSVocabulary {
+public interface IMLSOntoVocabulary {
 	
 	public static final String ONTOLOGY_NAME = "imls-ontology";
 	

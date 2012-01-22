@@ -8,7 +8,7 @@
 	
 	pageLayout = FrontController.getLayout(request);
 	
-	if (!SessionManager.isAuthenticated()){
+	if (!SessionManager.isAuthenticated(session)){
 		requestController = FrontController.getAuthenticationController(request);
 	}
 	else{

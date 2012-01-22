@@ -31,7 +31,6 @@ public class CyclicAuthenticationBehaviour extends CyclicBehaviour {
 		Info.sout("Message Template in Use: " + msgTemplate.toString());
 		
 		ACLMessage msg = myAgent.receive(msgTemplate);
-		Info.sout("Is ACL Message NULL? : " + (msg == null));
 		
 		if (msg != null) {
 			Action actExpression;
@@ -61,7 +60,6 @@ public class CyclicAuthenticationBehaviour extends CyclicBehaviour {
 		
 		authResult = new AuthenticateResponse();
 		authResult.setUsername(authenticate.getUsername());
-		authResult.setPassword(authenticate.getPassword());
 		authResult.setAuthenticated(false);
 		authResult.setIsActive(false);
 		authResult.setUserType("ADMIN");

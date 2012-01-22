@@ -45,7 +45,7 @@
             </div>
             <div class="clear">&nbsp;</div>
             
-            <% if (!SessionManager.isAuthenticated()){ %>
+            <% if (SessionManager.isAuthenticated(session)){ %>
             <div id="navbar" class="alpha_omega">
             	<jsp:include page="../menu.default.jsp"></jsp:include>
             </div>

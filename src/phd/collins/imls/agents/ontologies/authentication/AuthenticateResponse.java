@@ -4,19 +4,31 @@ import jade.content.Concept;
 import jade.content.onto.annotations.Slot;
 
 import java.util.Date;
+import java.util.Hashtable;
+
+import phd.collins.imls.util.DateTime;
 
 public class AuthenticateResponse implements Concept {
 	
 	private static final long serialVersionUID = 966867779503077827L;
 	
 	private String username;
-	private String password;
 	private String userType;
 	private boolean isActive;
 	private Date lastLoginDate=null;
 	private boolean authenticated;
 	
 	public AuthenticateResponse(){}
+	
+	public AuthenticateResponse(Hashtable<String, String> attrHash){
+		this();
+		setUsername(attrHash.get("username"));
+		setUserType(attrHash.get("userType"));
+		setIsActive(Boolean.valueOf(attrHash.get("isActive")));
+		String strDate = attrHash.get("lastLoginDate");
+		setLastLoginDate( DateTime.getDateFromISO8601String(strDate) );
+		setAuthenticated(Boolean.valueOf(attrHash.get("authenticated")));
+	}
 	
 	public boolean isAuthenticated() {
 		return authenticated;
@@ -37,15 +49,6 @@ public class AuthenticateResponse implements Concept {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-	
-	@Slot(mandatory = false)
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	@Slot(mandatory = false)
@@ -82,12 +85,11 @@ public class AuthenticateResponse implements Concept {
 		
 		sb.append(getClass().getName())
 		.append("(")
-		.append("username: ").append(getUsername())
-		.append("password: ").append(getPassword())
-		.append("userType: ").append(getUserType())
-		.append("isActive: ").append(getIsActive())
-		.append("lastLoginDate: ").append(getLastLoginDate())
-		.append("authenticated: ").append(getAuthenticated())
+		.append(" username: ").append(getUsername())
+		.append(" userType: ").append(getUserType())
+		.append(" isActive: ").append(getIsActive())
+		.append(" lastLoginDate: ").append(getLastLoginDate())
+		.append(" authenticated: ").append(getAuthenticated())
 		.append(")");
 		
 		return sb.toString();
