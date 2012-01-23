@@ -18,6 +18,18 @@ public abstract class ModelBase {
 		return count;
 	}
 	
+	public ModelBase findByID(long id){
+		ModelBase objModel = null;
+		try {
+			objModel = DAOManager.getDAO(this.getClass()).queryForId(id);
+		} catch (SQLException e) {
+			objModel = null;
+			e.printStackTrace();
+		}
+		System.out.println("Interestingly, the type of ObjModel Retrived is: " + objModel.getClass() + " as " + objModel);
+		return objModel;
+	}
+	
 	public void truncateTable(){
 		//Object xx = DAOManager.getDAO(this.getClass()).
 	}

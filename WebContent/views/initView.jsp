@@ -1,35 +1,21 @@
-<%@page import="phd.collins.imls.util.AppInits"%>
+<%@page import="phd.collins.imls.model.User"%>
 <%@page import="phd.collins.imls.model.Admin"%>
-<%@page import="java.util.Hashtable"%>
 <%@page import="phd.collins.imls.util.ParameterNames"%>
 <%@page import="phd.collins.imls.util.SessionManager"%>
-<%@page import="phd.collins.imls.model.User"%>
 <%@page import="phd.collins.imls.util.ViewParameters"%>
 <%@page import="phd.collins.imls.util.Info"%>
 <%
-	Object objParameter = null;
-	boolean initAlreadyDone = false;
-	Hashtable<String, Object> appInitsResponse = new Hashtable<String, Object>();
-	Admin admin = null;
-	
+	Object objParameter = null;	
 	ViewParameters viewParams = SessionManager.getViewParameters(request);
-	if (viewParams != null){
-		objParameter = viewParams.getParameter(ParameterNames.PN_APP_INIT_ALREADY_DONE);
-		initAlreadyDone = (objParameter != null) ? (Boolean)objParameter : false;
-		
-		if (initAlreadyDone){
-			objParameter = viewParams.getParameter(ParameterNames.PN_APP_INIT_RESPONSE);
-
-			if (objParameter != null){
-				appInitsResponse = (Hashtable<String, Object>)objParameter;
-				String item = String.valueOf(appInitsResponse.get(AppInits.INIT_USER_ID));
-				long adminID = Long.valueOf(item);
-				admin = Admin.get(adminID);
-			}
-		}
-	}
+	objParameter = viewParams.getParameter(ParameterNames.PN_APP_INIT_ALREADY_DONE);
+	//boolean initAlreadyDone = (objParameter != null) ? (Boolean)objParameter : false;
+	Admin adminUser = (Admin)viewParams.getParameter(ParameterNames.PN_APP_INIT_ADMIN_USER);
+	
+	Boolean initAlreadyDone = (Boolean)viewParams.getParameter(ParameterNames.PN_APP_INIT_ALREADY_DONE);
 	
 	Info.sout("In authView.jspView Params Keys: " + viewParams.getAllParameterKeys());
+	Info.sout("In authView.jspView Params values are : " 
+			+ initAlreadyDone + ", " + adminUser + ", " + initAlreadyDone.booleanValue());
 %>
 
 <div id="inituser" class="grid_16">
@@ -40,7 +26,7 @@
     
 	<div id="initalreadydone" class="grid_15 warninginfo">Application Initializations already performed</div>
 	
-	<% } else { %>
+	<% } else if (9 > 25) { %>
     
     <div class="borderedgray" style="width:350px;">
     	<ul class="ultrow clearfix">
@@ -49,17 +35,17 @@
         
     	<ul class="ultrow ulborder1 clearfix">
             <li class="grid_1a ultdata">Fullname</li>
-            <li class="grid_3 ultdata"><%= admin.getFullname() %></li>
+            <li class="grid_3 ultdata"><%= adminUser.getFullname() %></li>
         </ul>
         
     	<ul class="ultrow ulborder1 clearfix">
             <li class="grid_1a ultdata">Contact</li>
-            <li class="grid_3 ultdata"><%= admin.getContact() %></li>
+            <li class="grid_3 ultdata"><%= adminUser.getContact() %></li>
         </ul>
         
     	<ul class="ultrow ulborder1 clearfix">
             <li class="grid_1a ultdata">Username</li>
-            <li class="grid_3 ultdata"><%= admin.getUser().getUserName() %></li>
+            <li class="grid_3 ultdata"><%= adminUser.getUser().getUserName() %></li>
         </ul>
         
         <ul class="ultrow ulborder1 clearfix">
@@ -69,7 +55,7 @@
         
         <ul class="ultrow ulborder1 clearfix">
             <li class="grid_1a ultdata">Access Level</li>
-            <li class="grid_3 ultdata"><%= admin.getUser().getUser_type() %></li>
+            <li class="grid_3 ultdata"><%= adminUser.getUser().getUser_type() %></li>
         </ul>
     </div>
     

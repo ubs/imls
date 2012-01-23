@@ -27,7 +27,7 @@ public class Admin extends AdminBase implements IModelToOtherFormats {
 	public static Admin get(long adminID){
 		Admin admin = null;
 		try {
-			DAOManager.ADMIN_DAO.queryForId(adminID);
+			admin = DAOManager.ADMIN_DAO.queryForId(adminID);
 		} catch (SQLException e) {
 			admin = null;
 			e.printStackTrace();

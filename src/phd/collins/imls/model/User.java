@@ -30,7 +30,7 @@ public class User extends UserBase implements IModelToOtherFormats {
 	public static User get(long userID){
 		User user = null;
 		try {
-			DAOManager.USER_DAO.queryForId(userID);
+			user = DAOManager.USER_DAO.queryForId(userID);
 		} catch (SQLException e) {
 			user = null;
 			e.printStackTrace();

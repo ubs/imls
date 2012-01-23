@@ -25,7 +25,8 @@ public class AppInits {
 	}
 	
 	public boolean appInitsAlreadyDone(){
-		boolean appInitsDone = (new Admin().countAll() != 0); //Based on init Default Admin User
+		boolean appInitsDone = (new Admin().countAll() != 0)  || 
+			(new User().countAll() != 0); //Based on init Default Admin User
 		return appInitsDone;
 	}
 	
@@ -67,10 +68,10 @@ public class AppInits {
 	}
 	
 	private long initDefaultAdministrator(User user){
-		long userID = 0;
+		long adminID = 0;
 		Admin admin = getDefaultAdministrator(user);
-		userID = Admin.create(admin);
-		return userID;
+		adminID = Admin.create(admin);
+		return adminID;
 	}
 	
 	private Admin getDefaultAdministrator(User user){
