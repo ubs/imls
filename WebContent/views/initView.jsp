@@ -7,12 +7,10 @@
 <%
 	Object objParameter = null;	
 	ViewParameters viewParams = SessionManager.getViewParameters(request);
-	objParameter = viewParams.getParameter(ParameterNames.PN_APP_INIT_ALREADY_DONE);
-	//boolean initAlreadyDone = (objParameter != null) ? (Boolean)objParameter : false;
+	Boolean initAlreadyDone = (Boolean)viewParams.getParameter(ParameterNames.PN_APP_INIT_ALREADY_DONE);
 	Admin adminUser = (Admin)viewParams.getParameter(ParameterNames.PN_APP_INIT_ADMIN_USER);
 	
-	Boolean initAlreadyDone = (Boolean)viewParams.getParameter(ParameterNames.PN_APP_INIT_ALREADY_DONE);
-	
+
 	Info.sout("In authView.jspView Params Keys: " + viewParams.getAllParameterKeys());
 	Info.sout("In authView.jspView Params values are : " 
 			+ initAlreadyDone + ", " + adminUser + ", " + initAlreadyDone.booleanValue());
@@ -26,7 +24,7 @@
     
 	<div id="initalreadydone" class="grid_15 warninginfo">Application Initializations already performed</div>
 	
-	<% } else if (9 > 25) { %>
+	<% } else if (adminUser != null) { %>
     
     <div class="borderedgray" style="width:350px;">
     	<ul class="ultrow clearfix">
@@ -58,6 +56,10 @@
             <li class="grid_3 ultdata"><%= adminUser.getUser().getUser_type() %></li>
         </ul>
     </div>
+    
+    <% } else { %>
+    
+    <div id="initgenericerror" class="grid_15 errorinfo">Unexpected error while initializing IMLS application. Please check the init script.</div>
     
     <% } %>
 </div>
