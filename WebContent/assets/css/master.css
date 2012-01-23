@@ -9,6 +9,7 @@ body{
 	margin:0; padding:0;
 	font-family:Verdana, Geneva, sans-serif;
 	color:#000;
+	font-size:12px;
 }
 
 /* BEGIN >>> PAGE STRUCTURE */
@@ -68,5 +69,40 @@ body{
 
 /* END <<< AUTHENTICATION BOX */
 
+/* BEGIN >>> TITLE HEADERS */
+.titleheader{
+	padding:15px 5px 0 0; line-height:25px;
+	font-weight:bold; font-size:18px; color: #049DCD;
+}
+/* END <<< TITLE HEADERS */
+
+/* BEGIN >>> TABULAR UL LAYOUT */
+.ultrow{ margin:5px; list-style:none; }
+
+.ulthead, .ultdata{ line-height: 25px; text-align: left; }
+
+.ulthead{
+	background:#D4EEF7; font-family:Verdana, Geneva, sans-serif;
+	font-weight:bold; font-size:14px;
+	color:#000; padding:3px; padding-left:7px;
+}
+
+.ultdata{ }
+
+.ulborder1{ border-bottom: 1px dashed #CCC; }
+/* END <<< TABULAR UL LAYOUT */
+
+/* BEGIN >>> FLASH MESSGAE ITEMS */
+.normalinfo, .warninginfo, .errorinfo { margin:2px; padding:3px 3px 3px 10px; font:12px/25px Verdana, Geneva, sans-serif; }
+
+.normalinfo{ border: 1px solid #51E04B; background: #A5EFA2; }
+
+.warninginfo{ border: 1px solid #FF6000; background: #FFCCAD; }
+
+.errorinfo{border: 1px solid #FD474C; background: #FEACAE; }
+/* END <<< FLASH MESSGAE ITEMS */
+
 .bordered { border:1px solid #000; }
+.borderedgray { border:1px solid #CCC; }
 .bold{font-weight:bold;}
+p.br{ margin:0; padding:0; }

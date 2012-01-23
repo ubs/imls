@@ -53,7 +53,6 @@
             <% } %>
             
             <p>&nbsp;</p>
-            <p>&nbsp;</p>
             
             <div class="grid_16 alpha_omega pagebody">
            	  <jsp:include page="<%= requestController %>" ></jsp:include>

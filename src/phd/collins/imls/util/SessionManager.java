@@ -1,9 +1,11 @@
 package phd.collins.imls.util;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 public class SessionManager {
 	public static final String IS_AUTHENTICATED = "_isAuthenticated";
+	public static final String STR_VIEW_PARAMETERS = "viewParameters";
 	
 	public static boolean isAuthenticated(HttpSession session){
 		boolean isAuthenticated = false;
@@ -27,6 +29,14 @@ public class SessionManager {
 	
 	public static void deleteSessionItem(HttpSession session, String key){
 		session.removeAttribute(key);
+	}
+	
+	public static void setViewParameters(HttpServletRequest request, ViewParameters viewParams){
+		request.setAttribute(STR_VIEW_PARAMETERS, viewParams);
+	}
+	
+	public static ViewParameters getViewParameters(HttpServletRequest request){
+		return (ViewParameters)request.getAttribute(STR_VIEW_PARAMETERS);
 	}
 	
 }

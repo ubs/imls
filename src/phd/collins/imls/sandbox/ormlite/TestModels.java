@@ -9,6 +9,7 @@ import phd.collins.imls.model.ConnectionManager;
 import phd.collins.imls.model.DAOManager;
 import phd.collins.imls.model.MySQLDatabaseParams;
 import phd.collins.imls.model.Student;
+import phd.collins.imls.model.StudyArea;
 import phd.collins.imls.model.User;
 import phd.collins.imls.util.IMLSConfiguration;
 import phd.collins.imls.util.Info;
@@ -28,9 +29,10 @@ public class TestModels {
 		
 		Info.sout(new File("").getAbsolutePath());
 		
-		runIMLSConfig();
+		//runIMLSConfig();
 		
-		//connectToDatabase();
+		connectToDatabase();
+		new StudyArea().countAll();
 		
 		//User user1 = createTestUser();
         //createTestAdministrator(user1);
@@ -60,8 +62,9 @@ public class TestModels {
         user.setPassword("password".toLowerCase());
         user.setIs_active(true);
         user.setLast_login_date( new Date() );
+        Info.sout("Before DAO.create(), User ID is: " + user.getId());
         
-        DAOManager.USER_DAO.create(user);
+        //DAOManager.USER_DAO.create(user);
         Info.sout("ORMLite: I have created a user oh " + user.toString() + " UserID: " + user.getId());
         
 		return user;

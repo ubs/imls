@@ -20,9 +20,10 @@ public class DAOManager {
 	
 //	public static final Dao<User, Long> STUDY_AREA_DAO = getDAO(StudyArea.class);
 	
+	
 	private static ConnectionSource getConnectionSource() throws ConnectionSourceNotInitalizedException, Exception {
 		if (_connectionSource == null){
-			_connectionSource = ConnectionManager.getDatabaseConnection();
+			_connectionSource = ConnectionManager.getDatabaseConnection(new MySQLDatabaseParams());
 			if (_connectionSource == null){
 				throw new ConnectionSourceNotInitalizedException();
 			}
@@ -31,7 +32,7 @@ public class DAOManager {
 	}
 	
 	@SuppressWarnings("unchecked")
-	protected static <T> Dao<T, Long> getDAO(Class<T> clazz){
+	public static <T> Dao<T, Long> getDAO(Class<T> clazz){
 		String hashMapDAO_Key = getHashMapDAOKey(clazz.toString());
 		
 		if (!_hashmapDAO.containsKey(hashMapDAO_Key)){

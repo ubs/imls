@@ -1,3 +1,4 @@
+<%@page import="phd.collins.imls.util.WebServiceNames"%>
 <%@page import="phd.collins.imls.util.XML2Hash"%>
 <%@page import="com.tilab.wsig.soap.SoapClient"%>
 <%@page import="phd.collins.imls.agents.ontologies.authentication.AuthenticateResponse"%>
@@ -28,7 +29,7 @@
 		
 		WSIGStore wsigStore = (WSIGStore)application.getAttribute("WSIGStore");
 		WSIGConfiguration wsigConfig = (WSIGConfiguration)application.getAttribute("WSIGConfiguration");
-		String strServiceName = IMLSYellowPages.findService(wsigStore, "authenticate");
+		String strServiceName = IMLSYellowPages.findService(wsigStore, WebServiceNames.WS_AUTHENTICATE);
 		
 		String xmlRequest = XMLRequestTemplater.getAuthenticateRequestXML(strServiceName, parUsername, parPassword);
 		String SOAPUrl = IMLSYellowPages.getWSIGServiceURL(wsigConfig);

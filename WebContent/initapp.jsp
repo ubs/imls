@@ -1,5 +1,4 @@
 <%@page import="phd.collins.imls.util.Info"%>
-<%@page import="phd.collins.imls.util.SessionManager"%>
 <%@page import="phd.collins.imls.util.FrontController"%>
 
 <%
@@ -7,13 +6,7 @@
 	String requestController="";
 	
 	pageLayout = FrontController.getLayout(request);
-	
-	if (!SessionManager.isAuthenticated(session)){
-		requestController = FrontController.getAuthenticationController();
-	}
-	else{
-		requestController = FrontController.getRequestController(request);
-	}
+	requestController = FrontController.getAppInitsController();
 	
 	Info.sout("Context Path: " + request.getContextPath() +  
 			"  Layout: " + pageLayout + "  requestController: " + requestController);

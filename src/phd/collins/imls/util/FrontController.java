@@ -24,8 +24,12 @@ public class FrontController {
 		return pageController;
 	}
 	
-	public static String getAuthenticationController(HttpServletRequest request){
+	public static String getAuthenticationController(){
 		return getControllerFileName("auth", true);
+	}
+	
+	public static String getAppInitsController(){
+		return getControllerFileName("init", true);
 	}
 	
 	public static String getLayout(HttpServletRequest request){
