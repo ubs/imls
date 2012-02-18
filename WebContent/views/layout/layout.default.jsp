@@ -36,7 +36,7 @@
 
 <body>
 	<div class="">
-        <div class="container_16 pagewrapper">
+        <div class="container_16 pagewrapper clearfix">
             
             <div class="grid_16 alpha_omega header">
                 <div class="topbar">

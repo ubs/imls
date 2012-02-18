@@ -9,11 +9,6 @@
 	ViewParameters viewParams = SessionManager.getViewParameters(request);
 	Boolean initAlreadyDone = (Boolean)viewParams.getParameter(ParameterNames.PN_APP_INIT_ALREADY_DONE);
 	Admin adminUser = (Admin)viewParams.getParameter(ParameterNames.PN_APP_INIT_ADMIN_USER);
-	
-
-	Info.sout("In authView.jspView Params Keys: " + viewParams.getAllParameterKeys());
-	Info.sout("In authView.jspView Params values are : " 
-			+ initAlreadyDone + ", " + adminUser + ", " + initAlreadyDone.booleanValue());
 %>
 
 <div id="inituser" class="grid_16">
@@ -23,8 +18,11 @@
     <% if (initAlreadyDone){ %>
     
 	<div id="initalreadydone" class="grid_15 warninginfo">Application Initializations already performed</div>
+	<p class="clear">&nbsp;</p>
 	
-	<% } else if (adminUser != null) { %>
+	<% } %>
+	
+	<% if (adminUser != null) { %>
     
     <div class="borderedgray" style="width:350px;">
     	<ul class="ultrow clearfix">

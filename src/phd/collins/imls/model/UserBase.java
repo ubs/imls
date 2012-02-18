@@ -29,8 +29,8 @@ public class UserBase extends ModelBase {
 	public UserBase() { /*ORMLite needs a no-arg constructor*/ }
 
 	public UserBase(String _username, String _password) {
-		this.username = _username;
-		this.password = _password;
+		this.setUsername(_username);
+		this.setPassword(_password);
 	}
 	
 	public String toString(){

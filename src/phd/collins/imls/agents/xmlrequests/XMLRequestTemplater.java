@@ -10,10 +10,15 @@ public class XMLRequestTemplater {
 			.append("<password xsi:type=\"xsd:string\">").append(strPassword).append("</password>")
 			.append("</urn:Authenticate>").toString();
 		
-		strAuthRequestXML = getXMLSoapHeaderTag() + getXMLSoapBodyTag(strAuthRequestParameters);
-		strAuthRequestXML = getXMLSoapEnvelopeTag(strServiceName, strAuthRequestXML);
-		
+		strAuthRequestXML = prepareXMLSoapRequest(strServiceName, strAuthRequestParameters);
 		return strAuthRequestXML;
+	}
+
+	private static String prepareXMLSoapRequest(String strServiceName, String strSoapRequestParameters) {
+		String strSoapRequestXML;
+		strSoapRequestXML = getXMLSoapHeaderTag() + getXMLSoapBodyTag(strSoapRequestParameters);
+		strSoapRequestXML = getXMLSoapEnvelopeTag(strServiceName, strSoapRequestXML);
+		return strSoapRequestXML;
 	}
 	
 	public static String getXMLSoapHeaderTag(){

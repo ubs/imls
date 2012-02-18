@@ -14,6 +14,10 @@ public class AdminBase extends ModelBase {
 	
 	@DatabaseField(canBeNull=false, foreign=true)
 	private User user;
+	
+	public static final String FIELD_FULLNAME 	= "fullname";
+	public static final String FIELD_CONTACT 	= "contact";
+	public static final String FIELD_USER 		= "user";
 
 	public AdminBase() { /*ORMLite needs a no-arg constructor*/ }
 

@@ -1,3 +1,4 @@
+<%@page import="phd.collins.imls.util.ParameterNames"%>
 <%@page import="phd.collins.imls.util.WebServiceNames"%>
 <%@page import="phd.collins.imls.util.XML2Hash"%>
 <%@page import="com.tilab.wsig.soap.SoapClient"%>
@@ -19,13 +20,13 @@
 		//Redirect to user home based on identity
 	}
 
-	String parUsername = request.getParameter("username");
-	String parPassword = request.getParameter("password");
+	String parUsername = request.getParameter(ParameterNames.PN_AUTH_USERNAME);
+	String parPassword = request.getParameter(ParameterNames.PN_AUTH_PASSWORD);
 	
 	Info.sout("<Username, Password> : " + parUsername + " " + parPassword);
 	
 	if (parUsername != null && parPassword != null){
-		Info.sout("Call Authentication Agent to Process Authentication");
+		Info.sout("Now calling Authentication Agent to Process Authentication");
 		
 		WSIGStore wsigStore = (WSIGStore)application.getAttribute("WSIGStore");
 		WSIGConfiguration wsigConfig = (WSIGConfiguration)application.getAttribute("WSIGConfiguration");
@@ -46,7 +47,8 @@
 
 	String viewPage = FrontController.getViewPage("auth");
 	ViewParameters viewParams = new ViewParameters();
-	viewParams.setParameter("AuthenticateResponse", authResponse);
-	request.setAttribute("viewParameters", viewParams);
+	viewParams.setParameter(ParameterNames.PN_AUTH_RESPONSE, authResponse);
+	//request.setAttribute("viewParameters", viewParams);
+	SessionManager.setViewParameters(request, viewParams);
 %>
 <jsp:include page="<%= viewPage %>"></jsp:include>

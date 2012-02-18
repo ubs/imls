@@ -1,3 +1,4 @@
+<%@page import="phd.collins.imls.model.User"%>
 <%@page import="phd.collins.imls.model.Admin"%>
 <%@page import="java.util.Hashtable"%>
 <%@page import="phd.collins.imls.util.AppInits"%>
@@ -9,6 +10,7 @@
 <%
 	//Variables
 	Admin adminUser = null;
+	User adminUserAccount = null;
 	Hashtable<String, Object> appInitsResponse = new Hashtable<String, Object>();
 	
 	//Check if Initialisations have already been performed
@@ -19,8 +21,12 @@
 		appInitsResponse = AppInits.getInstance().initApplication();
 		Object adminUserID = appInitsResponse.get(AppInits.INIT_USER_ID);
 		adminUser = Admin.get( (Long.valueOf(adminUserID.toString())) );
-		Info.sout("Okay here in the controller, admin: " + adminUser);
 	}
+	else{
+		adminUser = Admin.getFirstObject();
+	}
+	
+	if (adminUser != null){ adminUser.refreshUserObject(); }
 
 	String viewPage = FrontController.getViewPage("init");
 	

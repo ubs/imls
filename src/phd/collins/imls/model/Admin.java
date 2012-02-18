@@ -1,6 +1,7 @@
 package phd.collins.imls.model;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -35,6 +36,18 @@ public class Admin extends AdminBase implements IModelToOtherFormats {
 		return admin;
 	}
 	
+	public static Admin getFirstObject(){
+		Admin admin = null;
+		try {
+			List<Admin> results = DAOManager.ADMIN_DAO.queryBuilder().limit(1L).query();
+			admin = results.iterator().next();
+		} catch (SQLException e) {
+			admin = null;
+			e.printStackTrace();
+		}
+		return admin;
+	}
+	
 	public static long create(Admin admin){
 		long adminID = 0;
 		try {
@@ -46,5 +59,11 @@ public class Admin extends AdminBase implements IModelToOtherFormats {
 		}
 		
 		return adminID;
+	}
+	
+	public void refreshUserObject(){
+		try {
+			DAOManager.USER_DAO.refresh(this.getUser());
+		} catch (Exception e){ e.printStackTrace(); }
 	}
 }
