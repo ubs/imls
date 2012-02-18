@@ -3,10 +3,7 @@ package phd.collins.imls.agents.ontologies.authentication;
 import jade.content.Concept;
 import jade.content.onto.annotations.Slot;
 
-import java.util.Date;
 import java.util.Hashtable;
-
-import phd.collins.imls.util.DateTime;
 
 public class AuthenticateResponse implements Concept {
 	
@@ -15,7 +12,7 @@ public class AuthenticateResponse implements Concept {
 	private String username;
 	private String userType;
 	private boolean isActive;
-	private Date lastLoginDate=null;
+	private String lastLoginDate;
 	private boolean authenticated;
 	
 	public AuthenticateResponse(){}
@@ -26,7 +23,8 @@ public class AuthenticateResponse implements Concept {
 		setUserType(attrHash.get("userType"));
 		setIsActive(Boolean.valueOf(attrHash.get("isActive")));
 		String strDate = attrHash.get("lastLoginDate");
-		setLastLoginDate( DateTime.getDateFromISO8601String(strDate) );
+		//setLastLoginDate( DateTime.getDateFromISO8601String(strDate) );
+		setLastLoginDate( strDate );
 		setAuthenticated(Boolean.valueOf(attrHash.get("authenticated")));
 	}
 	
@@ -70,12 +68,11 @@ public class AuthenticateResponse implements Concept {
 	}
 
 	@Slot(mandatory = false)
-	public Date getLastLoginDate() {
+	public String getLastLoginDate() {
 		return lastLoginDate;
-		//duration != null ? ("[" + duration.intValue() + " sec]") : ""
 	}
 
-	public void setLastLoginDate(Date lastLoginDate) {
+	public void setLastLoginDate(String lastLoginDate) {
 		this.lastLoginDate = lastLoginDate;
 	}
 	
@@ -93,5 +90,13 @@ public class AuthenticateResponse implements Concept {
 		.append(")");
 		
 		return sb.toString();
+	}
+	
+	public void setDefaults(){
+		this.setUsername("");
+		this.setUserType("");
+		this.setIsActive(false);
+		this.setLastLoginDate("");
+		this.setAuthenticated(false);
 	}
 }

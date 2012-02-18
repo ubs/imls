@@ -14,6 +14,7 @@ import phd.collins.imls.agents.ontologies.TestAction;
 import phd.collins.imls.agents.ontologies.authentication.AuthInfo;
 import phd.collins.imls.agents.ontologies.authentication.Authenticate;
 import phd.collins.imls.agents.ontologies.authentication.AuthenticateResponse;
+import phd.collins.imls.model.User;
 import phd.collins.imls.util.Info;
 
 public class CyclicAuthenticationBehaviour extends CyclicBehaviour {
@@ -41,7 +42,7 @@ public class CyclicAuthenticationBehaviour extends CyclicBehaviour {
 				Info.sout("In " + getClassName() + " actExpression: " + actExpression + ", action: " + action);
 				
 				if (action instanceof Authenticate) {
-					perfromAuthenticateAction((Authenticate) action, actExpression, msg);
+					performAuthenticateAction((Authenticate) action, actExpression, msg);
 				}
 				else if (action instanceof TestAction) {
 					perfromTestAction((TestAction) action, actExpression, msg);
@@ -55,15 +56,27 @@ public class CyclicAuthenticationBehaviour extends CyclicBehaviour {
 		}
 	}
 	
-	private void perfromAuthenticateAction(Authenticate authenticate, Action actExpression, ACLMessage msg) {
+	private void performAuthenticateAction(Authenticate authenticate, Action actExpression, ACLMessage msg) {
 		Info.sout(myAgent.getName() + ".perfromAuthenticateAction");
 		
+		User authUser = User.authenticateUser(authenticate.getUsername(), authenticate.getPassword());
+		Info.sout("User Auth Object Returned = " + authUser);
+		boolean authSuccess = (authUser != null && authUser instanceof User);
+		
+		//REMEMBER: add UserID to Response so we can store it in session
 		authResult = new AuthenticateResponse();
-		authResult.setUsername(authenticate.getUsername());
-		authResult.setAuthenticated(false);
-		authResult.setIsActive(false);
-		authResult.setUserType("ADMIN");
-		authResult.setLastLoginDate(new Date());
+		authResult.setDefaults();
+		
+		if (authSuccess){ 
+			authResult.setUsername(authenticate.getUsername());
+			authResult.setUserType(authUser.getUser_type());
+			authResult.setIsActive(authUser.getIs_active());
+			authResult.setLastLoginDate("" + authUser.getLast_login_date());
+			//authResult.setLastLoginDate(authUser.getLast_login_date());
+			Info.serr("{{{{{{{{{{{{{{{{{{adat DATE:  " + authUser.getLast_login_date());
+			Info.serr("{{{{{{{{{{{{{{{{{{adat DATE:  " + authUser.getLast_login_date());
+			authResult.setAuthenticated(authSuccess);
+		}
 		
 		BehaviourHelper.getInstance(myAgent).sendNotification(actExpression, msg, ACLMessage.INFORM, authResult);
 	}

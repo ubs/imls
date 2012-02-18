@@ -14,18 +14,22 @@
 <%@page import="phd.collins.imls.util.FrontController"%>
 <%
 	String SOAPResponse = "";
+	String parUsername, parPassword;
 	AuthenticateResponse authResponse = null;
 
 	if (SessionManager.isAuthenticated(session)){
 		//Redirect to user home based on identity
 	}
 
-	String parUsername = request.getParameter(ParameterNames.PN_AUTH_USERNAME);
-	String parPassword = request.getParameter(ParameterNames.PN_AUTH_PASSWORD);
+	Object parTestParam = request.getParameter(ParameterNames.PN_AUTH_USERNAME);
+	if (parTestParam == null){
+		parUsername = parPassword = "";
+	}
+	else {
+		parUsername = request.getParameter(ParameterNames.PN_AUTH_USERNAME);
+		parPassword = request.getParameter(ParameterNames.PN_AUTH_PASSWORD);
 	
-	Info.sout("<Username, Password> : " + parUsername + " " + parPassword);
-	
-	if (parUsername != null && parPassword != null){
+		Info.sout("<Username, Password> : " + parUsername + " " + parPassword);
 		Info.sout("Now calling Authentication Agent to Process Authentication");
 		
 		WSIGStore wsigStore = (WSIGStore)application.getAttribute("WSIGStore");
@@ -47,8 +51,9 @@
 
 	String viewPage = FrontController.getViewPage("auth");
 	ViewParameters viewParams = new ViewParameters();
+	viewParams.setParameter(ParameterNames.PN_AUTH_USERNAME, parUsername);
+	viewParams.setParameter(ParameterNames.PN_AUTH_PASSWORD, parPassword);
 	viewParams.setParameter(ParameterNames.PN_AUTH_RESPONSE, authResponse);
-	//request.setAttribute("viewParameters", viewParams);
 	SessionManager.setViewParameters(request, viewParams);
 %>
 <jsp:include page="<%= viewPage %>"></jsp:include>

@@ -58,13 +58,13 @@ public class TestModels {
 
 	private User createTestUser() throws SQLException {
         User user = new User();
-        user.setUsername(UtilGeneral.getRandomString());
+        user.setUsername(UtilGeneral.getRandomString().toLowerCase());
         user.setPassword("password".toLowerCase());
         user.setIs_active(true);
         user.setLast_login_date( new Date() );
         Info.sout("Before DAO.create(), User ID is: " + user.getId());
         
-        //DAOManager.USER_DAO.create(user);
+        DAOManager.USER_DAO.create(user);
         Info.sout("ORMLite: I have created a user oh " + user.toString() + " UserID: " + user.getId());
         
 		return user;

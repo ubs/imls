@@ -2,6 +2,7 @@ package phd.collins.imls.model;
 
 import java.util.Date;
 
+import phd.collins.imls.util.Info;
 import phd.collins.imls.util.UtilGeneral;
 
 import com.j256.ormlite.field.DataType;
@@ -25,6 +26,11 @@ public class UserBase extends ModelBase {
 	
 	@DatabaseField(dataType=DataType.DATE_STRING)
 	private Date last_login_date;
+	
+	public static final String FIELD_USERNAME 	= "username";
+	public static final String FIELD_PASSWORD 	= "password";
+	public static final String FIELD_USER_TYPE 	= "user_type";
+	public static final String FIELD_IS_ACTIVE 	= "is_active";
 
 	public UserBase() { /*ORMLite needs a no-arg constructor*/ }
 
@@ -74,6 +80,7 @@ public class UserBase extends ModelBase {
 	}
 
 	public Date getLast_login_date() {
+		Info.sout("Hello: " + last_login_date);
 		return last_login_date;
 	}
 
@@ -81,11 +88,15 @@ public class UserBase extends ModelBase {
 		this.is_active = is_active;
 	}
 
-	public boolean isIs_active() {
+	public boolean getIs_active() {
 		return is_active;
 	}
 	
 	public String digestPassword(String plainPassword){
+		return digestUserPassword(plainPassword);
+	}
+	
+	public static String digestUserPassword(String plainPassword){
 		return UtilGeneral.digestStringToMD5(plainPassword);
 	}
 }

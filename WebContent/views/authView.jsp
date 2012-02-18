@@ -11,7 +11,7 @@
 	
 	if (viewParams != null){
 		parUsername = (String)viewParams.getParameter(ParameterNames.PN_AUTH_USERNAME);
-		parPassword = (String)request.getParameter(ParameterNames.PN_AUTH_PASSWORD);
+		parPassword = (String)viewParams.getParameter(ParameterNames.PN_AUTH_PASSWORD);
 		
 		//Admin adminUser = (Admin)viewParams.getParameter(ParameterNames.PN_APP_INIT_ADMIN_USER);
 	}
