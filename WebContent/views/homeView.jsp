@@ -7,7 +7,10 @@
 	String parUsername = "", parPassword = "";
 
 	ViewParameters viewParams = SessionManager.getViewParameters(request);
-	Info.sout("In homeView.jspView Params Keys: " + viewParams.getAllParameterKeys());
+	Info.sout("In homeView.jspView viewParams itself is ::: " + viewParams);
+	if (viewParams != null){
+		Info.sout("In homeView.jspView Params Keys: " + viewParams.getAllParameterKeys());
+	}
 	
 	if (viewParams != null){
 		//parUsername = (String)viewParams.getParameter(ParameterNames.PN_AUTH_USERNAME);

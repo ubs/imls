@@ -17,7 +17,7 @@ public class FrontController {
 		String parPage = request.getParameter("page");
 		
 		if (UtilGeneral.isNull(parPage) || parPage.isEmpty()){
-			parPage = "index";
+			parPage = "home";
 		}
 		
 		pageController = getControllerFileName(parPage, true);
