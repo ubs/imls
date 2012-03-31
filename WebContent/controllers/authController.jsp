@@ -1,3 +1,4 @@
+<%@page import="phd.collins.imls.util.LinksManager"%>
 <%@page import="phd.collins.imls.util.ParameterNames"%>
 <%@page import="phd.collins.imls.util.WebServiceNames"%>
 <%@page import="phd.collins.imls.util.XML2Hash"%>
@@ -46,6 +47,12 @@
 			
 			authResponse = new AuthenticateResponse(XML2Hash.XML2HashTable(SOAPResponse));
 			Info.sout("See It there::: " + authResponse);
+			
+			//If authentication is successful, do this
+			if (authResponse.isAuthenticated()){
+				SessionManager.setIsAuthenticated(session);
+				response.sendRedirect( LinksManager.HOME_PAGE );
+			}
 		}
 	}
 

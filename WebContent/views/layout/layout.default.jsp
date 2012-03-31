@@ -54,15 +54,14 @@
             
             <p>&nbsp;</p>
             
-            <div class="grid_16 alpha_omega pagebody">
+            <div class="grid_16 alpha_omega pagebody clearfix">
            	  <jsp:include page="<%= requestController %>" ></jsp:include>
             </div>
-            <div class="clearfix">&nbsp;</div>
             
             <p>&nbsp;</p>
             <p>&nbsp;</p>
             
-            <div class="grid_16 alpha_omega footer">
+            <div class="grid_16 alpha_omega footer clearfix">
                 <div class="footerbar">
                 	<ul id="footerlist">
                     	<li>&copy;Copyright, 2012 IMLS |</li>
@@ -71,7 +70,7 @@
                     </ul>
                     
                     <div id="footerright">
-                    	Powered By: theCLOUD<sup>&reg;</sup>
+                    	Powered By: thinkCLOUD<sup>&reg;</sup>
                     </div>
                 </div>
             </div>

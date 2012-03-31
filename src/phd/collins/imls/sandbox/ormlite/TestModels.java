@@ -38,8 +38,12 @@ public class TestModels {
         //createTestAdministrator(user1);
         //createTestAdministrator(createTestUser());
         //createTestStudent(createTestUser());
+		
+		//Test Password Digest
+		testDigestPassword("password");
 	}
 
+	@SuppressWarnings("unused")
 	private Student createTestStudent(User user) throws SQLException {
 		Student student = new Student(UtilGeneral.getRandomString(), UtilGeneral.getRandomString());
 		student.setDate_registered(new Date());
@@ -49,6 +53,7 @@ public class TestModels {
 		return student;
 	}
 	
+	@SuppressWarnings("unused")
 	private Admin createTestAdministrator(User user) throws SQLException {
 		Admin admin = new Admin(UtilGeneral.getRandomString(), UtilGeneral.getRandomString());
         admin.setUser(user);
@@ -56,6 +61,7 @@ public class TestModels {
 		return admin;
 	}
 
+	@SuppressWarnings("unused")
 	private User createTestUser() throws SQLException {
         User user = new User();
         user.setUsername(UtilGeneral.getRandomString().toLowerCase());
@@ -69,12 +75,21 @@ public class TestModels {
         
 		return user;
 	}
+	
+	@SuppressWarnings("unused")
+	private String testDigestPassword(String plainPassword){
+		String digestedPassword = User.digestUserPassword(plainPassword);
+		Info.sout("In testDigestPassword: [plainPassword, digestedPassword] == [" + 
+				plainPassword + ", " + digestedPassword + "]");
+		return digestedPassword;
+	}
 
 	private void connectToDatabase() throws Exception {
 		connectionSource = ConnectionManager.getDatabaseConnection(new MySQLDatabaseParams());
 		Info.sout(connectionSource.toString());
 	}
 	
+	@SuppressWarnings("unused")
 	private void runIMLSConfig(){
 		IMLSConfiguration.init(null);
 		//IMLSConfiguration.init(new File("WebContent\\conf\\imls.properties").getAbsolutePath());

@@ -73,8 +73,6 @@ public class CyclicAuthenticationBehaviour extends CyclicBehaviour {
 			authResult.setIsActive(authUser.getIs_active());
 			authResult.setLastLoginDate("" + authUser.getLast_login_date());
 			//authResult.setLastLoginDate(authUser.getLast_login_date());
-			Info.serr("{{{{{{{{{{{{{{{{{{adat DATE:  " + authUser.getLast_login_date());
-			Info.serr("{{{{{{{{{{{{{{{{{{adat DATE:  " + authUser.getLast_login_date());
 			authResult.setAuthenticated(authSuccess);
 		}
 		
