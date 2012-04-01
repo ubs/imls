@@ -3,12 +3,13 @@
 <%
 	String assetsBase = "assets";
 	String testLayout = request.getParameter("test");
-	String requestController = request.getParameter("requestController");
+
+	String viewPage = request.getParameter("viewPage");
+	String viewPagePath = "../" + viewPage;
+	Info.sout("In Layout, viewPage: " + viewPage);
 	
 	boolean LAYOUT_TEST_MODE = (testLayout != null) && testLayout.equalsIgnoreCase("1");
-	if ( LAYOUT_TEST_MODE ){ assetsBase = "../../assets"; }
-	
-	Info.sout("On the layout page, parameter passed as currentPage = " + requestController); 
+	if ( LAYOUT_TEST_MODE ){ assetsBase = "../../assets"; } 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -49,17 +50,20 @@
             <div id="navbar" class="alpha_omega">
             	<jsp:include page="../menu.default.jsp"></jsp:include>
             </div>
-            <div class="clear">&nbsp;</div>
             <% } %>
             
-            <p>&nbsp;</p>
-            
-            <div class="grid_16 alpha_omega pagebody clearfix">
-           	  <jsp:include page="<%= requestController %>" ></jsp:include>
+            <%
+            	if (SessionManager.flashInfoExist(session)){
+            		String[] arrFlashInfo = (String[])SessionManager.getFlashInfo(session);
+            %>
+            <div id="flashInfo" class="grid_16">
+            	<div class="<%= arrFlashInfo[1] %>"><%= arrFlashInfo[0] %></div>
             </div>
+            <% } %>
             
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
+            <div class="grid_16 clearfix">
+           	  <jsp:include page="<%= viewPagePath %>" ></jsp:include>
+            </div>
             
             <div class="grid_16 alpha_omega footer clearfix">
                 <div class="footerbar">
@@ -74,7 +78,6 @@
                     </div>
                 </div>
             </div>
-            <div class="clear">&nbsp;</div>
             
         </div>
 	</div>

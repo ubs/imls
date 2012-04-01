@@ -7,5 +7,6 @@ public interface ParameterNames {
 	
 	public static final String PN_AUTH_USERNAME = "username";
 	public static final String PN_AUTH_PASSWORD = "password";
+	public static final String PN_AUTH_LOGOUT = "logout";
 	public static final String PN_AUTH_RESPONSE = "AuthenticateResponse";
 }

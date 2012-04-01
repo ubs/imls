@@ -1,6 +1,6 @@
+<%@page import="phd.collins.imls.util.SessionManager"%>
 <%@page import="phd.collins.imls.util.LinksManager"%>
 <%@ page contentType="text/html; charset=ISO-8859-1" %>
-
 <ul class="sf-menu">
     <li class="current">
         <a href="<%= LinksManager.DASHBOARD %>">Dashboard</a>
@@ -32,5 +32,11 @@
                 <a href="<%= LinksManager.WSIG_ADMIN_TEST %>">WSIG Test</a>
 			</li>
         </ul>
-    </li>	
+    </li>
+    
+    <% if (SessionManager.isAuthenticated(session)){ %>
+    <li>
+        <a href="<%= LinksManager.AUTH_LOGOUT_PAGE %>" title="Click to logout">Logout</a>
+    </li>
+    <% } %>	
 </ul>

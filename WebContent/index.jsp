@@ -1,24 +1,15 @@
-<%@page import="phd.collins.imls.util.Info"%>
 <%@page import="phd.collins.imls.util.SessionManager"%>
-<%@page import="phd.collins.imls.util.FrontController"%>
-
+<%@page import="phd.collins.imls.util.LinksManager"%>
+<%@page import="phd.collins.imls.util.Info"%>
 <%
-	String pageLayout="";
-	String requestController="";
-	
-	pageLayout = FrontController.getLayout(request);
-	
-	if (!SessionManager.isAuthenticated(session)){
-		requestController = FrontController.getAuthenticationController();
-	}
-	else{
-		requestController = FrontController.getRequestController(request);
-	}
-	
-	Info.sout("Context Path: " + request.getContextPath() +  
-			"  Layout: " + pageLayout + "  requestController: " + requestController);
-%>
+	//Check authentication if page is to be secured
+	if (!SessionManager.isAuthenticated(session)) response.sendRedirect(LinksManager.AUTH_PAGE);
 
-<jsp:include page="<%= pageLayout %>">
-	<jsp:param name="requestController" value="<%= requestController %>" />
+	Info.sout("IN INDEX.JSP NOW........");
+	String viewPage = "homeView.jsp";
+	
+	Info.sout("Context Path: " + request.getContextPath() +  "  viewPage: " + viewPage);
+%>
+<jsp:include page="<%= LinksManager.LAYOUT_PAGE %>" flush="true">
+	<jsp:param name="viewPage" value="<%= viewPage %>" />
 </jsp:include>

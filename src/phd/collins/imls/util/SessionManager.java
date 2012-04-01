@@ -7,28 +7,84 @@ public class SessionManager {
 	public static final String IS_AUTHENTICATED = "_isAuthenticated";
 	public static final String STR_VIEW_PARAMETERS = "viewParameters";
 	
-	public static boolean isAuthenticated(HttpSession session){
+	public static final String FLASH_INFO = "FlashInfo";
+	public static final String CUSER_AUTHRESPONSE = "CUserAuthResponse";
+	
+	public class FlashInfoType{
+		public static final String NORMAL = "normalinfo";
+		public static final String WARNING = "warninginfo";
+		public static final String ERROR = "errorinfo";
+	}
+	
+	public static boolean isAuthenticated(HttpSession _httpsession){
 		boolean isAuthenticated = false;
-		Object ssItem = getSessionItem(session, IS_AUTHENTICATED);
-		Info.sout("Item " + IS_AUTHENTICATED + " from Session[" + session.getId() + "]: " + ssItem);
+		Object ssItem = getSessionItem(_httpsession, IS_AUTHENTICATED);
+		Info.sout("Item " + IS_AUTHENTICATED + " from Session[" + _httpsession.getId() + "]: " + ssItem);
 		if (ssItem != null){ isAuthenticated = (Boolean)ssItem; }
 		return isAuthenticated;
 	}
 	
-	public static void setIsAuthenticated(HttpSession session){
-		setSessionItem(session, IS_AUTHENTICATED, true);
+	public static void setIsAuthenticated(HttpSession _httpsession){
+		setSessionItem(_httpsession, IS_AUTHENTICATED, true);
 	}
 	
-	public static void setSessionItem(HttpSession session, String key, Object val){
-		session.setAttribute(key, val);
+	public static Object getUserAuthResponse(HttpSession _httpsession){
+		return getSessionItem(_httpsession, CUSER_AUTHRESPONSE);
 	}
 	
-	public static Object getSessionItem(HttpSession session, String key){
-		return session.getAttribute(key);
+	public static void setUserAuthResponse(HttpSession _httpsession, Object authResponse){
+		setSessionItem(_httpsession, CUSER_AUTHRESPONSE, authResponse);
 	}
 	
-	public static void deleteSessionItem(HttpSession session, String key){
-		session.removeAttribute(key);
+	public static void deleteUserAuthResponse(HttpSession _httpsession){
+		deleteSessionItem(_httpsession, CUSER_AUTHRESPONSE);
+	}
+	
+	public static void logOutCurrentUser(HttpSession _httpsession){
+		deleteSessionItem(_httpsession, IS_AUTHENTICATED);
+		deleteUserAuthResponse(_httpsession);
+	}
+	
+	public static boolean flashInfoExist(HttpSession _httpsession){
+		boolean flashInfoExistInSession = false;
+		Object ssItem = getSessionItem(_httpsession, FLASH_INFO);
+		Info.sout("Item " + FLASH_INFO + " from Session[" + _httpsession.getId() + "]: " + ssItem);
+		if (ssItem != null){ flashInfoExistInSession = true; }
+		return flashInfoExistInSession;
+	}
+	
+	public static Object getFlashInfo(HttpSession _httpsession){
+		return getFlashInfo(_httpsession, true);
+	}
+	
+	public static Object getFlashInfo(HttpSession _httpsession, boolean deleteInfo){
+		Object ssItem = getSessionItem(_httpsession, FLASH_INFO);
+		if (deleteInfo){ deleteFlashInfo(_httpsession); }
+		return ssItem;
+	}
+	
+	public static void setFlashInfo(HttpSession _httpsession, String info, String infoType){
+		if (infoType == null) infoType = FlashInfoType.NORMAL;
+		String[] FlashInfo = {info, infoType};
+		setSessionItem(_httpsession, FLASH_INFO, FlashInfo);
+	}
+	
+	public static void deleteFlashInfo(HttpSession _httpsession){
+		deleteSessionItem(_httpsession, FLASH_INFO);
+	}
+	
+	
+	//Main setters and getters
+	public static void setSessionItem(HttpSession _httpsession, String key, Object val){
+		_httpsession.setAttribute(key, val);
+	}
+	
+	public static Object getSessionItem(HttpSession _httpsession, String key){
+		return _httpsession.getAttribute(key);
+	}
+	
+	public static void deleteSessionItem(HttpSession _httpsession, String key){
+		_httpsession.removeAttribute(key);
 	}
 	
 	public static void setViewParameters(HttpServletRequest request, ViewParameters viewParams){

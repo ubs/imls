@@ -15,25 +15,31 @@ body{
 /* BEGIN >>> PAGE STRUCTURE */
 .pagewrapper{
 	border:1px solid #000;
-	width:950px;
 }
 
-.topbar{ background:#000; height:150px; }
+.header{ margin-bottom: 0; }
+
+.topbar{
+	position:relative;
+	background:#000; height:150px; width: 960px;
+}
 
 .topbar .imls{
 	position:absolute;
-	bottom:5px; padding-left:10px;
+	bottom:10px; padding-left:10px;
 	color:#FFF; font-size:36px; font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
 .topbar .imls sup{ font-size:18px; }
+
+.pagebody{ padding: 2px 5px; }
 
 #navbar{
 	background:#FF6805; height:31px;
 	border-bottom: 1px solid #EA5D00;
 }
 
-.footer{ background:#000; color:#FFF;}
+.footer{ background:#000; color:#FFF; width: 960px !important; }
 
 .footerbar{ background:#000; height:35px; }
 
@@ -48,6 +54,7 @@ body{
 /* BEGIN >>> AUTHENTICATION BOX */
 #authbox{
 	margin-left: auto; margin-right: auto;
+	margin-top: 15px;margin-bottom: 15px;
 	width:350px; color: #000; border: 1px solid #000;
 	font-family:Verdana, Geneva, sans-serif;
 }

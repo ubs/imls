@@ -7,16 +7,14 @@
 	String parUsername = "", parPassword = "";
 
 	ViewParameters viewParams = SessionManager.getViewParameters(request);
-	Info.sout("In authView.jspView Params Keys: " + viewParams.getAllParameterKeys());
 	
 	if (viewParams != null){
+		Info.sout("In authView.jspView Params Keys: " + viewParams.getAllParameterKeys());
 		parUsername = (String)viewParams.getParameter(ParameterNames.PN_AUTH_USERNAME);
 		parPassword = (String)viewParams.getParameter(ParameterNames.PN_AUTH_PASSWORD);
 		
 		//AuthenticateResponse authResponse = (AuthenticateResponse)viewParams.getParameter(ParameterNames.PN_APP_INIT_ADMIN_USER);
 	}
-	
-	
 %>
 
 <div id="authbox">
@@ -27,7 +25,7 @@
 	<h2 id="info">Please enter your login details to access the IMLS Platform</h2>
     
 	<div style="margin-bottom: 10px;">
-		<form name="frmAuth" id="frmAuth" method="post">
+		<form name="frmAuth" id="frmAuth" method="post" action="">
             <ul class="formrow clearfix">
             	<li class="grid_1a formlabel">Username</li>
             	<li class="grid_3 formcontrol">
@@ -53,4 +51,3 @@
 	</div>
 
 </div>
-<div class="clearfix">&nbsp;</div>

@@ -13,6 +13,7 @@ h1,h2,h3,h4,h5,h6,strong { font-weight:700; }
 h1,h2,h3,h4,h5,h6 {
 	color:#333;
 	font-size:1em;
+	line-height: 120%;
 }
 
 h1{ font-size:2.0em; }
@@ -50,8 +51,4 @@ sup {
 
 li li { font-size:1em; }
 
-.clearfix { display:block; }
-
-/* Hides from IE-mac \*/
-* html .clearfix { height:1%; }
-/* End hide from IE-mac */
+/*END OF REBUILD CSS*/
