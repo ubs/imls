@@ -31,6 +31,7 @@
 <div>
 	<h1>Welcome Home <%= username %> (Access Level: <%= usertype %>)!</h1>
 	<div style="min-height: 100px;">
+		<p>&nbsp;</p>
 		<p>Your last login date was: <%= userLastLoginDate %></p>
 	</div>
 </div>

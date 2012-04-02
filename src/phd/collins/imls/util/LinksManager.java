@@ -14,7 +14,7 @@ public class LinksManager {
 	public static String AUTH_LOGOUT_PAGE = AUTH_PAGE + QMARK + "logout=1";
 	
 	public static String HOME_PAGE = "index.jsp";
-	public static String DASHBOARD = "dashboard.jsp";
+	public static String DASHBOARD = "index.jsp";
 	public static String USERS = "users.jsp";
 	public static String USERS_STUDENTS = "?page=students";
 	public static String USERS_ADMINS = "?page=admins";

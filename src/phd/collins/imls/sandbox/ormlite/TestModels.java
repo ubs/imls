@@ -40,7 +40,7 @@ public class TestModels {
         //createTestStudent(createTestUser());
 		
 		//Test Password Digest
-		testDigestPassword("admin");
+		testDigestPassword("collins");
 	}
 
 	@SuppressWarnings("unused")
