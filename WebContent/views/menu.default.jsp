@@ -18,9 +18,25 @@
         </ul>
     </li>
     
+    <% if (SessionManager.userIsADMIN(session)){ %>
     <li>
-        <a href="<%= LinksManager.TUTORIAL_ADMIN %>">Tutorial Admin</a>
+        <a href="<%= LinksManager.COURSE_ADMIN %>">Course Admin</a>
+        <ul>
+            <li>
+                <a href="<%= LinksManager.STUDY_AREAS_ADMIN %>">Study Areas Admin</a>
+			</li>
+            <li>
+                <a href="<%= LinksManager.AREA_FIELDS_ADMIN %>">Area Fields Admin</a>
+			</li>
+            <li>
+                <a href="<%= LinksManager.FIELD_COURSES_ADMIN %>">Field Courses Admin</a>
+			</li>
+            <li>
+                <a href="<%= LinksManager.COURSE_MODULES_ADMIN %>">Course Modules Admin</a>
+			</li>
+        </ul>
     </li>
+    <% } %>
     
     <li>
         <a href="<%= LinksManager.WSIG_ADMIN_HOME %>">WSIG Admin</a>

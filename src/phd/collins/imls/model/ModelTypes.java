@@ -6,6 +6,7 @@ public class ModelTypes {
 	public interface UserType{
 		public static final String USER_TYPE_ADMIN = "ADMIN";
 		public static final String USER_TYPE_STUDENT = "STUDENT";
+		public static final String USER_TYPE_GUEST = "GUEST";
 	}
 	
 	public interface Kings{

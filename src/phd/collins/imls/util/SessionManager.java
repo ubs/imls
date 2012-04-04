@@ -3,6 +3,9 @@ package phd.collins.imls.util;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import phd.collins.imls.agents.ontologies.authentication.AuthenticateResponse;
+import phd.collins.imls.model.ModelTypes.UserType;
+
 public class SessionManager {
 	public static final String IS_AUTHENTICATED = "_isAuthenticated";
 	public static final String STR_VIEW_PARAMETERS = "viewParameters";
@@ -43,6 +46,16 @@ public class SessionManager {
 	public static void logOutCurrentUser(HttpSession _httpsession){
 		deleteSessionItem(_httpsession, IS_AUTHENTICATED);
 		deleteUserAuthResponse(_httpsession);
+	}
+	
+	public static boolean userIsADMIN(HttpSession _httpsession){
+		boolean userIsAdmin = false;
+		Object objAuthResponse = getUserAuthResponse(_httpsession);
+		if (objAuthResponse != null){
+			AuthenticateResponse authResponse = (AuthenticateResponse)objAuthResponse;
+			userIsAdmin = (authResponse.getUserType().trim().equalsIgnoreCase(UserType.USER_TYPE_ADMIN));
+		}
+		return userIsAdmin;
 	}
 	
 	public static boolean flashInfoExist(HttpSession _httpsession){
