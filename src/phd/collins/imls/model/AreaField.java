@@ -21,4 +21,9 @@ public class AreaField extends AreaFieldBase implements IModelToOtherFormats {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	//Static Field and Methods
+	public static boolean areaFieldsExist(){
+		return (new AreaField().countAll() != 0);
+	}
 }

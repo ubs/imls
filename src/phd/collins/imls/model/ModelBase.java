@@ -4,8 +4,7 @@ import java.sql.SQLException;
 
 public abstract class ModelBase {
 	//Mother class for all Models
-		
-	
+
 	public long countAll(){
 		long count = 0;
 		try {

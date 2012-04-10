@@ -25,4 +25,9 @@ public class FieldCourse extends FieldCourseBase implements IModelToOtherFormats
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	//Static Field and Methods
+	public static boolean fieldCoursesExist(){
+		return (new FieldCourse().countAll() != 0);
+	}
 }

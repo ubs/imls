@@ -13,10 +13,7 @@
 <%@page import="phd.collins.imls.util.LinksManager"%>
 <%@page import="phd.collins.imls.util.Info"%>
 <%
-	Info.sout("IN AUTH.JSP NOW........");
-
 	String viewPage = "authView.jsp";
-	Info.sout("Context Path: " + request.getContextPath() +  "  viewPage: " + viewPage);
 	
 	String SOAPResponse = "";
 	String parUsername, parPassword, parLogout;
@@ -75,8 +72,8 @@
 			}
 		}
 		else{
-			String sss = "Error while processing your request. Please try again later.";
-			SessionManager.setFlashInfo(session, sss, FlashInfoType.ERROR);
+			String flashInfo = "Error while processing your request. Please try again later.";
+			SessionManager.setFlashInfo(session, flashInfo, FlashInfoType.ERROR);
 		}
 	}
 	

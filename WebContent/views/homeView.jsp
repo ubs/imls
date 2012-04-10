@@ -33,5 +33,12 @@
 	<div style="min-height: 100px;">
 		<p>&nbsp;</p>
 		<p>Your last login date was: <%= userLastLoginDate %></p>
+		
+		<ul>
+			<li>Course Modules</li>
+			<li>Field Courses</li>
+			<li>Area Fields</li>
+			<li>Study Areas</li>
+		</ul>
 	</div>
 </div>

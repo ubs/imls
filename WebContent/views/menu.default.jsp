@@ -23,16 +23,16 @@
         <a href="<%= LinksManager.COURSE_ADMIN %>">Course Admin</a>
         <ul>
             <li>
-                <a href="<%= LinksManager.STUDY_AREAS_ADMIN %>">Study Areas Admin</a>
+                <a href="<%= LinksManager.STUDY_AREAS_ADMIN %>">Study Areas</a>
 			</li>
             <li>
-                <a href="<%= LinksManager.AREA_FIELDS_ADMIN %>">Area Fields Admin</a>
+                <a href="<%= LinksManager.AREA_FIELDS_ADMIN %>">Area Fields</a>
 			</li>
             <li>
-                <a href="<%= LinksManager.FIELD_COURSES_ADMIN %>">Field Courses Admin</a>
+                <a href="<%= LinksManager.FIELD_COURSES_ADMIN %>">Field Courses</a>
 			</li>
             <li>
-                <a href="<%= LinksManager.COURSE_MODULES_ADMIN %>">Course Modules Admin</a>
+                <a href="<%= LinksManager.COURSE_MODULES_ADMIN %>">Course Modules</a>
 			</li>
         </ul>
     </li>

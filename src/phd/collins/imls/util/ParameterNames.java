@@ -9,4 +9,13 @@ public interface ParameterNames {
 	public static final String PN_AUTH_PASSWORD = "password";
 	public static final String PN_AUTH_LOGOUT = "logout";
 	public static final String PN_AUTH_RESPONSE = "AuthenticateResponse";
+	
+	public static final String PN_COURSE_ID = "courseid";
+	public static final String PN_MODULE_NAME = "modulename";
+	public static final String PN_STUDY_ORDER = "studyorder";
+	public static final String PN_MODULE_DESCRIPTION = "description";
+	public static final String PN_MODULE_CONTENT = "modulecontent";
+	
+	public static final String PN_FIELD_COURSES_EXIST = "FieldCoursesExist";
+	public static final String PN_AREA_FIELDS_EXIST = "AreaFieldsExist";
 }
