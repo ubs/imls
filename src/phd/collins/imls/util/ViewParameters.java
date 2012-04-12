@@ -12,6 +12,12 @@ public class ViewParameters implements Serializable {
 		//
 	}
 	
+	public boolean getBooleanParameter(String pKey){
+		Object pVal = getParameter(pKey);
+		boolean pBoolVal = (pVal == null) ? null : Boolean.valueOf( pVal.toString() );
+		return pBoolVal;
+	}
+	
 	public Object getParameter(String pKey){
 		return (_viewParameters.containsKey(pKey)) ? _viewParameters.get(pKey) : null;
 	}

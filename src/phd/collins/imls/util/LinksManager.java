@@ -20,7 +20,7 @@ public class LinksManager {
 	public static String USERS_ADMINS = "?page=admins";
 	
 	public static String COURSE_ADMIN = "courseadminall.jsp";
-	public static String STUDY_AREAS_ADMIN = "areaadmin.jsp";
+	public static String STUDY_AREAS_ADMIN = "studyareaadmin.jsp";
 	public static String AREA_FIELDS_ADMIN = "fieldadmin.jsp";
 	public static String FIELD_COURSES_ADMIN = "courseadmin.jsp";
 	public static String COURSE_MODULES_ADMIN = "moduleadmin.jsp";

@@ -31,4 +31,4 @@ input.textbox, textarea.textbox {
 
 input.textbox:focus, textarea.textbox:focus { background-color: #FFF; border-color: #FF6000;}
 
-textarea.textbox { height: 120px; }
+textarea.textbox { height: 50px; }

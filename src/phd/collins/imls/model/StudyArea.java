@@ -21,4 +21,9 @@ public class StudyArea extends StudyAreaBase implements IModelToOtherFormats {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	//Static Field and Methods
+	public static boolean studyAreasExist(){
+		return (new StudyArea().countAll() != 0);
+	}
 }

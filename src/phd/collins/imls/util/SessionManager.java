@@ -14,7 +14,8 @@ public class SessionManager {
 	public static final String CUSER_AUTHRESPONSE = "CUserAuthResponse";
 	
 	public class FlashInfoType{
-		public static final String NORMAL = "normalinfo";
+		public static final String INFO = "normalinfo";
+		public static final String NORMAL = INFO; //"normalinfo";
 		public static final String WARNING = "warninginfo";
 		public static final String ERROR = "errorinfo";
 	}
