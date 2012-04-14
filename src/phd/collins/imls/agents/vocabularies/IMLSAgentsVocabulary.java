@@ -12,4 +12,9 @@ public interface IMLSAgentsVocabulary {
 	public static final String AUTHENTICATION_AGENT = "AuthenticationAgent";
 	public static final String AUTHENTICATION_AGENT_OWNER = "AuthenticationAgentOwner";
 	public static final String AUTHENTICATION_AGENT_BASENAME = "IMLS_Authentication_Agent";
+	
+	//Authentication Agent
+	public static final String IMLS_GENERAL_AGENT = "IMLSGeneralAgent";
+	public static final String IMLS_GENERAL_AGENT_OWNER = "IMLSGeneralAgentOwner";
+	public static final String IMLS_GENERAL_AGENT_BASENAME = "IMLS_General_Agent";
 }

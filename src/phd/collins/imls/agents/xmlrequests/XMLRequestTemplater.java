@@ -5,13 +5,25 @@ public class XMLRequestTemplater {
 	public static String getAuthenticateRequestXML(String strServiceName, String strUsername, String strPassword){
 		String strAuthRequestXML = "";
 		String strAuthRequestParameters = new StringBuffer()
+		.append("<urn:Authenticate soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">")
+		.append("<username xsi:type=\"xsd:string\">").append(strUsername).append("</username>")
+		.append("<password xsi:type=\"xsd:string\">").append(strPassword).append("</password>")
+		.append("</urn:Authenticate>").toString();
+		
+		strAuthRequestXML = prepareXMLSoapRequest(strServiceName, strAuthRequestParameters);
+		return strAuthRequestXML;
+	}
+	
+	public static String getStudyAreaRequestXML(String strServiceName, String strUsername, String strPassword){
+		String strRequestXML = "";
+		String strRequestParameters = new StringBuffer()
 			.append("<urn:Authenticate soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">")
 			.append("<username xsi:type=\"xsd:string\">").append(strUsername).append("</username>")
 			.append("<password xsi:type=\"xsd:string\">").append(strPassword).append("</password>")
 			.append("</urn:Authenticate>").toString();
 		
-		strAuthRequestXML = prepareXMLSoapRequest(strServiceName, strAuthRequestParameters);
-		return strAuthRequestXML;
+		strRequestXML = prepareXMLSoapRequest(strServiceName, strRequestParameters);
+		return strRequestXML;
 	}
 
 	private static String prepareXMLSoapRequest(String strServiceName, String strSoapRequestParameters) {

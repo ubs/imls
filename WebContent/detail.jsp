@@ -21,7 +21,9 @@ import="jade.content.onto.Ontology,
 <link rel="stylesheet" href="wsig.css"/>
 </head>
 <body>
-<div class="nav" align="right"><font size="-2"><a href="http://jade.tilab.com/" target="_top">Jade - Java Agent DEvelopment Framework</a></font></div>
+<div class="nav" align="right" style="font-size:-2px">
+	<a href="http://jade.tilab.com/" target="_top">Jade - Java Agent DEvelopment Framework</a>
+</div>
 <h1>.: WSIG Console :.</h1>
 <h3> <a href="wsig-index.jsp" class="title">Home</a> - <a href="test.jsp" class="title">Test</a></h3>
 

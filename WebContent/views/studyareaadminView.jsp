@@ -22,12 +22,12 @@
 		studyAreasExist = viewParams.getBooleanParameter(ParameterNames.PN_STUDY_AREAS_EXIST);
 		Info.sout ("The parameter studyAreasExist is now: " + studyAreasExist);
 	}
-	
 %>
 <div>
 	
-	<div style="margin-bottom: 10px;">
-		<form name="frmAuth" id="frmAuth" method="post" action="">
+	<div>&raquo; Add/Edit Study Area</div>
+	<div id="addeditsection" style="margin-bottom: 10px;">
+		<form name="form1" id="form1" method="post" action="">
             <ul class="formrow clearfix">
             	<li class="grid_3 formlabel">Study Area Name</li>
             	<li class="grid_3 formcontrol">
