@@ -26,4 +26,18 @@ public class StudyArea extends StudyAreaBase implements IModelToOtherFormats {
 	public static boolean studyAreasExist(){
 		return (new StudyArea().countAll() != 0);
 	}
+	
+	public static long create(String studyAreaName, String description){
+		long ID = 0;
+		try {
+			StudyArea studyArea = new StudyArea(studyAreaName, description);
+			DAOManager.STUDY_AREA_DAO.create(studyArea);
+			ID = studyArea.getId();
+		} catch (Exception e){
+			ID = 0;
+			e.printStackTrace();
+		}
+		
+		return ID;
+	}
 }

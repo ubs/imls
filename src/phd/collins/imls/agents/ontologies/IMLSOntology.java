@@ -3,8 +3,6 @@ package phd.collins.imls.agents.ontologies;
 import jade.content.onto.BeanOntology;
 import jade.content.onto.BeanOntologyException;
 import jade.content.onto.Ontology;
-import phd.collins.imls.agents.ontologies.authentication.AuthInfo;
-import phd.collins.imls.agents.ontologies.authentication.Authenticate;
 import phd.collins.imls.agents.vocabularies.IMLSOntoVocabulary;
 import phd.collins.imls.util.Info;
 
@@ -13,6 +11,7 @@ public class IMLSOntology extends BeanOntology implements IMLSOntoVocabulary {
 	private static final long serialVersionUID = -6052189373483758586L;
 	
 	private static Ontology theInstance;
+	private String[] beanOntologyPackages = { "phd.collins.imls.agents.actions" };
 	
 	public synchronized final static Ontology getInstance() {
 		initTheInstance();
@@ -40,29 +39,11 @@ public class IMLSOntology extends BeanOntology implements IMLSOntoVocabulary {
 	public IMLSOntology(String name) throws BeanOntologyException {
 		super(name);
 		
-		String packageName = TestAction.class.getName();
-		//String packageName = "phd.collins.imls.agents.ontologies.imlsontology";
-		packageName = packageName.substring(0, packageName.lastIndexOf("."));
-		
-		add(packageName);
-		Info.sout("Ontology successfully added via BeanOntology from: " + packageName);
-		
-		packageName = Authenticate.class.getName();
-		packageName = packageName.substring(0, packageName.lastIndexOf("."));
-		add(packageName);
-		Info.sout("Ontology successfully added via BeanOntology from: " + packageName);
-	}
-	
-	protected void addAllOntologies(){
-		//
-	}
-	
-	protected void addAuthenticationOntologies() throws BeanOntologyException {
-		String packageName = AuthInfo.class.getName();
-		packageName = packageName.substring(0, packageName.lastIndexOf("."));
-		
-		add(packageName);
-		Info.sout("Ontology successfully added via BeanOntology from: " + packageName);
+		for (String pkgName : beanOntologyPackages) {
+			Info.sout("Currently adding package in IMLSOntology: " + pkgName);
+			add(pkgName);
+			Info.sout("Ontology successfully added via BeanOntology from: " + pkgName);
+		}
 	}
 	
 	protected static void initTheInstance() {

@@ -13,6 +13,19 @@ public class User extends UserBase implements IModelToOtherFormats {
 	public User(String _username, String _password){
 		super(_username, _password);
 	}
+	
+	public boolean updateUser(){
+		boolean successStatus = false;
+		try {
+			DAOManager.USER_DAO.update(this);
+			successStatus = true;
+		} catch (Exception e){
+			successStatus = false;
+			e.printStackTrace();
+		}
+		
+		return successStatus;
+	}
 
 	@Override
 	public Object toXML() {
@@ -71,14 +84,6 @@ public class User extends UserBase implements IModelToOtherFormats {
 		return user;
 	}
 }
-
-
-
-
-
-
-
-
 
 
 

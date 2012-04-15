@@ -9,7 +9,7 @@
 <%@page import="phd.collins.imls.util.ViewParameters"%>
 <%@page import="phd.collins.imls.util.SessionManager"%>
 <%@page import="phd.collins.imls.util.ParameterNames"%>
-<%@page import="phd.collins.imls.agents.ontologies.authentication.AuthenticateResponse"%>
+<%@page import="phd.collins.imls.agents.actions.AuthenticateResponse"%>
 <%@page import="phd.collins.imls.util.LinksManager"%>
 <%@page import="phd.collins.imls.util.Info"%>
 <%

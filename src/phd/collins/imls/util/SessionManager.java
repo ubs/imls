@@ -3,7 +3,7 @@ package phd.collins.imls.util;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import phd.collins.imls.agents.ontologies.authentication.AuthenticateResponse;
+import phd.collins.imls.agents.actions.AuthenticateResponse;
 import phd.collins.imls.model.ModelTypes.UserType;
 
 public class SessionManager {
