@@ -9,6 +9,7 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.FIPAManagementOntology;
 import jade.domain.FIPAAgentManagement.Property;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
+import phd.collins.imls.agents.behaviours.CyclicAuthenticationBehaviour;
 import phd.collins.imls.agents.behaviours.CyclicIMLSGeneralBehaviour;
 import phd.collins.imls.agents.ontologies.IMLSOntology;
 import phd.collins.imls.agents.vocabularies.IMLSAgentsVocabulary;
@@ -72,6 +73,7 @@ public class IMLSGeneralAgent extends Agent implements IMLSAgentsVocabulary {
 		}
 		
 		//Add Behaviour
+		this.addBehaviour(new CyclicAuthenticationBehaviour());
 		this.addBehaviour(new CyclicIMLSGeneralBehaviour());
 	}
 	

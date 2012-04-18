@@ -1,10 +1,11 @@
+<%@page import="phd.collins.imls.util.XML2Hash"%>
+<%@page import="phd.collins.imls.agents.actions.AddStudyAreaResponse"%>
 <%@page import="com.tilab.wsig.soap.SoapClient"%>
 <%@page import="phd.collins.imls.agents.xmlrequests.XMLRequestTemplater"%>
 <%@page import="phd.collins.imls.util.WebServiceNames"%>
 <%@page import="phd.collins.imls.util.IMLSYellowPages"%>
 <%@page import="com.tilab.wsig.WSIGConfiguration"%>
 <%@page import="com.tilab.wsig.store.WSIGStore"%>
-<%@page import="phd.collins.imls.agents.IMLSGeneralAgent"%>
 <%@page import="phd.collins.imls.model.StudyArea"%>
 <%@page import="phd.collins.imls.util.LinksManager"%>
 <%@page import="phd.collins.imls.util.SessionManager"%>
@@ -20,7 +21,8 @@
 	
 	String SOAPResponse = "";
 	String parID = "", parStudyAreaName = "", parDescription = "";
-	IMLSGeneralAgent imlsAgent = null;
+	AddStudyAreaResponse addStudyAreaResponse = null;
+	
 	boolean studyAreasExist = false;
 	
 	Info.sout("Context Path: " + request.getContextPath() +  "  viewPage: " + viewPage);
@@ -42,9 +44,9 @@
 		
 		WSIGStore wsigStore = (WSIGStore)application.getAttribute("WSIGStore");
 		WSIGConfiguration wsigConfig = (WSIGConfiguration)application.getAttribute("WSIGConfiguration");
-		String strServiceName = IMLSYellowPages.findService(wsigStore, WebServiceNames.WS_AUTHENTICATE);
+		String strServiceName = IMLSYellowPages.findService(wsigStore, WebServiceNames.WS_ADD_STUDY_AREA);
 		
-		String xmlRequest = XMLRequestTemplater.getAuthenticateRequestXML(strServiceName, parStudyAreaName, parStudyAreaName);
+		String xmlRequest = XMLRequestTemplater.getAddStudyAreaRequestXML(strServiceName, parStudyAreaName, parDescription);
 		String SOAPUrl = IMLSYellowPages.getWSIGServiceURL(wsigConfig);
 		Info.sout("Service Name = " + strServiceName + " Web Service URL = " + SOAPUrl);
 		
@@ -52,9 +54,9 @@
 			Info.sout(xmlRequest);
 			SOAPResponse = SoapClient.sendStringMessage(SOAPUrl, xmlRequest);
 			
-			//authResponse = new AuthenticateResponse(XML2Hash.XML2HashTable(SOAPResponse));
-			//Info.sout("See It there::: " + authResponse);
-		} //
+			addStudyAreaResponse = new AddStudyAreaResponse(XML2Hash.XML2HashTable(SOAPResponse));
+			Info.sout("See It there::: " + addStudyAreaResponse);
+		}
 	}
 	
 	ViewParameters viewParams = new ViewParameters();

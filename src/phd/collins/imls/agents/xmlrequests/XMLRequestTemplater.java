@@ -14,13 +14,13 @@ public class XMLRequestTemplater {
 		return strAuthRequestXML;
 	}
 	
-	public static String getStudyAreaRequestXML(String strServiceName, String strUsername, String strPassword){
+	public static String getAddStudyAreaRequestXML(String strServiceName, String strStudyAreaName, String strDescription){
 		String strRequestXML = "";
 		String strRequestParameters = new StringBuffer()
-			.append("<urn:Authenticate soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">")
-			.append("<username xsi:type=\"xsd:string\">").append(strUsername).append("</username>")
-			.append("<password xsi:type=\"xsd:string\">").append(strPassword).append("</password>")
-			.append("</urn:Authenticate>").toString();
+			.append("<urn:AddStudyArea soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">")
+			.append("<studyareaname xsi:type=\"xsd:string\">").append(strStudyAreaName).append("</studyareaname>")
+			.append("<description xsi:type=\"xsd:string\">").append(strDescription).append("</description>")
+			.append("</urn:AddStudyArea>").toString();
 		
 		strRequestXML = prepareXMLSoapRequest(strServiceName, strRequestParameters);
 		return strRequestXML;

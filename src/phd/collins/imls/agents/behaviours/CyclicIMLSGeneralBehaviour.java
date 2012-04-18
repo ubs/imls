@@ -52,27 +52,20 @@ public class CyclicIMLSGeneralBehaviour extends CyclicBehaviour {
 	private void performAddStudyAreaAction(AddStudyArea addStudyArea, Action actExpression, ACLMessage msg) {
 		Info.sout(myAgent.getName() + ".performAddStudyAreaAction");
 		
-		long studyArea = StudyArea.create(addStudyArea.getStudyAreaName(), addStudyArea.getDescription());
+		long studyAreaID = StudyArea.create(addStudyArea.getStudyAreaName(), addStudyArea.getDescription());
+		boolean isSuccessful = ( studyAreaID > 0 );
 		
-		//User authUser = User.authenticateUser(authenticate.getUsername(), authenticate.getPassword());
-		Info.sout("StudyArea Object Returned = " + studyArea);
-		//boolean authSuccess = (authUser != null && authUser instanceof User);
+		Info.sout("StudyArea Object Returned = " + studyAreaID);
 		
-		//REMEMBER: add UserID to Response so we can store it in session
-		//authResult = new AuthenticateResponse();
 		AddStudyAreaResponse studyAreaResponse = new AddStudyAreaResponse();
 		studyAreaResponse.setDefaults();
 		
-		/*
-		 if (authSuccess){ 
-			authResult.setUsername(authenticate.getUsername());
-			authResult.setUserType(authUser.getUser_type());
-			authResult.setIsActive(authUser.getIs_active());
-			authResult.setLastLoginDate("" + authUser.getLast_login_date());
-			//authResult.setLastLoginDate(authUser.getLast_login_date());
-			authResult.setAuthenticated(authSuccess);
+		if (isSuccessful){
+			studyAreaResponse.setId(String.valueOf(studyAreaID));
+			studyAreaResponse.setStudyAreaName( addStudyArea.getStudyAreaName() );
+			studyAreaResponse.setDescription( addStudyArea.getDescription() );
+			studyAreaResponse.setSuccessStatus(isSuccessful);
 		}
-		*/
 		
 		BehaviourHelper.getInstance(myAgent).sendNotification(actExpression, msg, ACLMessage.INFORM, studyAreaResponse);
 	}

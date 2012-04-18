@@ -7,5 +7,6 @@ package phd.collins.imls.util;
 
 public interface WebServiceNames {	
 	public static final String WS_APP_INIT = "appinit";
-	public static final String WS_AUTHENTICATE = "authenticate";
+	public static final String WS_AUTHENTICATE = "Authenticate";
+	public static final String WS_ADD_STUDY_AREA = "AddStudyArea";
 }

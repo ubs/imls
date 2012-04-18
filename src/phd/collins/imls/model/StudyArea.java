@@ -1,5 +1,7 @@
 package phd.collins.imls.model;
 
+import java.sql.SQLException;
+
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "study_areas")
@@ -25,6 +27,17 @@ public class StudyArea extends StudyAreaBase implements IModelToOtherFormats {
 	//Static Field and Methods
 	public static boolean studyAreasExist(){
 		return (new StudyArea().countAll() != 0);
+	}
+	
+	public static StudyArea get(long studyAreaID){
+		StudyArea studyArea = null;
+		try {
+			studyArea = DAOManager.STUDY_AREA_DAO.queryForId(studyAreaID);
+		} catch (SQLException e) {
+			studyArea = null;
+			e.printStackTrace();
+		}
+		return studyArea;
 	}
 	
 	public static long create(String studyAreaName, String description){
