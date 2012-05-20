@@ -1,4 +1,4 @@
-<%@page import="phd.collins.imls.agents.actions.AuthenticateResponse"%>
+<%@page import="phd.collins.imls.agents.actions.Authentication.AuthenticateResponse"%>
 <%@page import="phd.collins.imls.util.SessionManager"%>
 <%@page import="phd.collins.imls.util.ParameterNames"%>
 <%@page import="phd.collins.imls.model.User"%>

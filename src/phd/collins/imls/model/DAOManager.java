@@ -19,6 +19,7 @@ public class DAOManager {
 	public static final Dao<Student, Long> STUDENT_DAO = getDAO(Student.class);
 	
 	public static final Dao<StudyArea, Long> STUDY_AREA_DAO = getDAO(StudyArea.class); 
+	//public static final Dao<StudyArea, Long> STUDY_AREA_DAO = getDAO(StudyArea.class); 
 	
 	
 	private static ConnectionSource getConnectionSource() throws ConnectionSourceNotInitalizedException, Exception {

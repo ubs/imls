@@ -1,4 +1,4 @@
-package phd.collins.imls.agents.actions;
+package phd.collins.imls.agents.actions.Authentication;
 
 import jade.content.AgentAction;
 import jade.content.onto.annotations.Result;

@@ -1,6 +1,7 @@
 package phd.collins.imls.agents;
 
 import jade.content.lang.sl.SLCodec;
+import jade.content.onto.Ontology;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.domain.DFService;
@@ -9,9 +10,8 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.FIPAManagementOntology;
 import jade.domain.FIPAAgentManagement.Property;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
-import phd.collins.imls.agents.behaviours.CyclicAuthenticationBehaviour;
 import phd.collins.imls.agents.behaviours.CyclicIMLSGeneralBehaviour;
-import phd.collins.imls.agents.ontologies.IMLSOntology;
+import phd.collins.imls.agents.ontologies.AuthenticationOntology;
 import phd.collins.imls.agents.vocabularies.IMLSAgentsVocabulary;
 import phd.collins.imls.util.Info;
 
@@ -24,6 +24,8 @@ public class IMLSGeneralAgent extends Agent implements IMLSAgentsVocabulary {
 	
 	private Object[] args;
 	
+	private Ontology imlsOntology;
+	
 	protected void setup() {
 		Info.sout("Starting Agent: " + this.getClass().getName() 
 				+ " <Agent name: " + getLocalName() + ">" + " AID()" + this.getAID());
@@ -31,10 +33,13 @@ public class IMLSGeneralAgent extends Agent implements IMLSAgentsVocabulary {
 		// Get agent arguments
 		args = getArguments();
 		
+		//Get Ontology
+		imlsOntology = AuthenticationOntology.getInstance();
+		
 		// Register codec/ontology(ies)
 		getContentManager().registerLanguage(codec);
 		getContentManager().registerOntology(FIPAManagementOntology.getInstance());
-		getContentManager().registerOntology(IMLSOntology.getInstance());
+		getContentManager().registerOntology(imlsOntology);
 		
 		// Prepare a DFAgentDescription
 		DFAgentDescription dfAgentDesc = new DFAgentDescription();
@@ -47,7 +52,7 @@ public class IMLSGeneralAgent extends Agent implements IMLSAgentsVocabulary {
 		serviceDesc.addProtocols(FIPANames.InteractionProtocol.FIPA_REQUEST);
 		serviceDesc.setType(IMLS_GENERAL_AGENT);
 		serviceDesc.setOwnership(IMLS_GENERAL_AGENT_OWNER);
-		serviceDesc.addOntologies(IMLSOntology.getInstance().getName());
+		serviceDesc.addOntologies(imlsOntology.getName());
 
 		// WSIG properties
 		serviceDesc.addProperties(new Property(WSIGPropertyConstants.WSIG_FLAG, TRUE));
@@ -73,7 +78,6 @@ public class IMLSGeneralAgent extends Agent implements IMLSAgentsVocabulary {
 		}
 		
 		//Add Behaviour
-		this.addBehaviour(new CyclicAuthenticationBehaviour());
 		this.addBehaviour(new CyclicIMLSGeneralBehaviour());
 	}
 	

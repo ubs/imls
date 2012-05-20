@@ -8,7 +8,6 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import phd.collins.imls.agents.actions.AddStudyArea;
 import phd.collins.imls.agents.actions.AddStudyAreaResponse;
-import phd.collins.imls.agents.ontologies.IMLSOntology;
 import phd.collins.imls.model.StudyArea;
 import phd.collins.imls.util.Info;
 
@@ -16,8 +15,8 @@ public class CyclicIMLSGeneralBehaviour extends CyclicBehaviour {
 
 	private static final long serialVersionUID = -2554089872175172311L;
 	
-	private MessageTemplate msgTemplate = MessageTemplate.MatchOntology(
-			IMLSOntology.getInstance().getName());
+	private MessageTemplate msgTemplate = MessageTemplate.MatchOntology("imls-another-random-ontology");
+			//AnotherRandomOntology.getInstance().getName());
 
 	@Override
 	public void action() {

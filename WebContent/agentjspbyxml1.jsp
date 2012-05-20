@@ -1,5 +1,5 @@
 <%@page import="phd.collins.imls.util.XML2Hash"%>
-<%@page import="phd.collins.imls.agents.actions.AuthenticateResponse"%>
+<%@page import="phd.collins.imls.agents.actions.Authentication.AuthenticateResponse"%>
 <%@page import="com.tilab.wsig.WSIGConfiguration"%>
 <%@page import="com.tilab.wsig.store.WSIGStore"%>
 <%@page import="phd.collins.imls.util.IMLSYellowPages"%>

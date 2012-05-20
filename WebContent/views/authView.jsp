@@ -12,8 +12,6 @@
 		Info.sout("In authView.jspView Params Keys: " + viewParams.getAllParameterKeys());
 		parUsername = (String)viewParams.getParameter(ParameterNames.PN_AUTH_USERNAME);
 		parPassword = (String)viewParams.getParameter(ParameterNames.PN_AUTH_PASSWORD);
-		
-		//AuthenticateResponse authResponse = (AuthenticateResponse)viewParams.getParameter(ParameterNames.PN_APP_INIT_ADMIN_USER);
 	}
 %>
 

@@ -1,3 +1,4 @@
+<%@page import="phd.collins.imls.agents.actions.Authentication.AuthenticateResponse"%>
 <%@page import="phd.collins.imls.util.SessionManager.FlashInfoType"%>
 <%@page import="phd.collins.imls.util.XML2Hash"%>
 <%@page import="com.tilab.wsig.soap.SoapClient"%>
@@ -9,7 +10,6 @@
 <%@page import="phd.collins.imls.util.ViewParameters"%>
 <%@page import="phd.collins.imls.util.SessionManager"%>
 <%@page import="phd.collins.imls.util.ParameterNames"%>
-<%@page import="phd.collins.imls.agents.actions.AuthenticateResponse"%>
 <%@page import="phd.collins.imls.util.LinksManager"%>
 <%@page import="phd.collins.imls.util.Info"%>
 <%

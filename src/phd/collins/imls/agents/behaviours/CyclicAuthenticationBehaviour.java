@@ -1,16 +1,17 @@
 package phd.collins.imls.agents.behaviours;
 
-import java.util.Date;
-
 import jade.content.AgentAction;
 import jade.content.onto.basic.Action;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
-import phd.collins.imls.agents.actions.Authenticate;
-import phd.collins.imls.agents.actions.AuthenticateResponse;
-import phd.collins.imls.agents.ontologies.IMLSOntology;
+
+import java.util.Date;
+
+import phd.collins.imls.agents.actions.Authentication.Authenticate;
+import phd.collins.imls.agents.actions.Authentication.AuthenticateResponse;
+import phd.collins.imls.agents.ontologies.AuthenticationOntology;
 import phd.collins.imls.model.User;
 import phd.collins.imls.util.Info;
 
@@ -20,8 +21,11 @@ public class CyclicAuthenticationBehaviour extends CyclicBehaviour {
 	
 	AuthenticateResponse authResult;
 	
-	private MessageTemplate msgTemplate = MessageTemplate.MatchOntology(
-			IMLSOntology.getInstance().getName());
+	private MessageTemplate msgTemplate = MessageTemplate.MatchOntology(AuthenticationOntology.getInstance().getName());
+	
+	public CyclicAuthenticationBehaviour(){
+		super();
+	}
 
 	@Override
 	public void action() {

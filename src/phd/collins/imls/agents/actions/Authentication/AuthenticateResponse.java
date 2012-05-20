@@ -1,4 +1,4 @@
-package phd.collins.imls.agents.actions;
+package phd.collins.imls.agents.actions.Authentication;
 
 import jade.content.Concept;
 import jade.content.onto.annotations.Slot;
