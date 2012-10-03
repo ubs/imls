@@ -56,17 +56,17 @@
 			SOAPResponse = SoapClient.sendStringMessage(SOAPUrl, xmlRequest);
 			
 			authResponse = new AuthenticateResponse(XML2Hash.XML2HashTable(SOAPResponse));
-			Info.sout("See It there::: " + authResponse);
+			Info.sout("Web service response : " + authResponse);
 			
 			//If authentication is successful, do this
 			if (authResponse.isAuthenticated()){
-				Info.sout("I SHALL NOW REDIRECT YOU!!!!!");
+				Info.sout("Authentication successful, now redirecting...");
 				SessionManager.setIsAuthenticated(session);
 				SessionManager.setUserAuthResponse(session, authResponse);
 				response.sendRedirect( LinksManager.HOME_PAGE );
 			}
 			else {
-				Info.sout("I COULD NOT SEND RE-DIRECT FOR SOME REASONS: " + authResponse.isAuthenticated());
+				Info.sout("Authentication NOT successful. Response is : " + authResponse.isAuthenticated());
 				String flashInfo = "Invalid Login details, Please try again.";
 				SessionManager.setFlashInfo(session, flashInfo, FlashInfoType.ERROR);
 			}

@@ -8,15 +8,21 @@ import jade.lang.acl.ACLMessage;
 import jade.lang.acl.MessageTemplate;
 import phd.collins.imls.agents.actions.StudyArea.AddStudyArea;
 import phd.collins.imls.agents.actions.StudyArea.AddStudyAreaResponse;
+import phd.collins.imls.agents.ontologies.StudyAreaOntology;
 import phd.collins.imls.model.StudyArea;
 import phd.collins.imls.util.Info;
 
-public class CyclicIMLSGeneralBehaviour extends CyclicBehaviour {
+public class CyclicAddStudyAreaBehaviour extends CyclicBehaviour {
 
-	private static final long serialVersionUID = -2554089872175172311L;
+	private static final long serialVersionUID = 1763495100623127018L;
+
+	AddStudyAreaResponse actionResponse;
 	
-	private MessageTemplate msgTemplate = MessageTemplate.MatchOntology("imls-another-random-ontology");
-			//AnotherRandomOntology.getInstance().getName());
+	private MessageTemplate msgTemplate = MessageTemplate.MatchOntology(StudyAreaOntology.getInstance().getName());
+	
+	public CyclicAddStudyAreaBehaviour(){
+		super();
+	}
 
 	@Override
 	public void action() {
@@ -36,9 +42,6 @@ public class CyclicIMLSGeneralBehaviour extends CyclicBehaviour {
 				if (action instanceof AddStudyArea) {
 					performAddStudyAreaAction((AddStudyArea) action, actExpression, msg);
 				}
-				//else if (action instanceof TestAction) {
-					//perfromTestAction((TestAction) action, actExpression, msg);
-				//}
 			} catch (Exception e) {
 				Info.serr("Exception in Agent Behaviour: " + getClassName() + ". Details: " + e.getMessage());
 			}
@@ -48,27 +51,32 @@ public class CyclicIMLSGeneralBehaviour extends CyclicBehaviour {
 		}
 	}
 	
-	private void performAddStudyAreaAction(AddStudyArea addStudyArea, Action actExpression, ACLMessage msg) {
+	private void performAddStudyAreaAction(AddStudyArea parStudyArea, Action actExpression, ACLMessage msg) {
 		Info.sout(myAgent.getName() + ".performAddStudyAreaAction");
 		
-		long studyAreaID = StudyArea.create(addStudyArea.getStudyAreaName(), addStudyArea.getDescription());
-		boolean isSuccessful = ( studyAreaID > 0 );
+		StudyArea studyArea = StudyArea.AddStudyArea(parStudyArea.getStudyAreaName(), parStudyArea.getDescription());
+		Info.sout("Study Area Object Returned = " + studyArea);
+		boolean isSuccessful = (studyArea != null && studyArea instanceof StudyArea);
 		
-		Info.sout("StudyArea Object Returned = " + studyAreaID);
-		
-		AddStudyAreaResponse studyAreaResponse = new AddStudyAreaResponse();
-		studyAreaResponse.setDefaults();
+		//REMEMBER: add UserID to Response so we can store it in session
+		actionResponse = new AddStudyAreaResponse();
+		actionResponse.setDefaults();
 		
 		if (isSuccessful){
-			studyAreaResponse.setId(String.valueOf(studyAreaID));
-			studyAreaResponse.setStudyAreaName( addStudyArea.getStudyAreaName() );
-			studyAreaResponse.setDescription( addStudyArea.getDescription() );
-			studyAreaResponse.setSuccessStatus(isSuccessful);
+			String strID = studyArea.getId() + "";
+			actionResponse.setId(strID);
+			actionResponse.setStudyAreaName(studyArea.getArea_name());
+			actionResponse.setDescription(studyArea.getDescription());
+			actionResponse.setSuccessStatus(isSuccessful);
 		}
 		
-		BehaviourHelper.getInstance(myAgent).sendNotification(actExpression, msg, ACLMessage.INFORM, studyAreaResponse);
+		BehaviourHelper.getInstance(myAgent).sendNotification(actExpression, msg, ACLMessage.INFORM, actionResponse);
 	}
-
+	
+	public AddStudyAreaResponse getResult(){
+		return actionResponse;
+	}
+	
 	public Agent getMyAgent(){
 		return myAgent;
 	}

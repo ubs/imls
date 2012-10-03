@@ -53,4 +53,9 @@ public class StudyArea extends StudyAreaBase implements IModelToOtherFormats {
 		
 		return ID;
 	}
+
+	public static StudyArea AddStudyArea(String studyAreaName, String description) {
+		long studyAreaID = create(studyAreaName, description);
+		return get(studyAreaID);
+	}
 }

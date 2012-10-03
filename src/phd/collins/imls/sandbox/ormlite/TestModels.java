@@ -39,8 +39,19 @@ public class TestModels {
         //createTestAdministrator(createTestUser());
         //createTestStudent(createTestUser());
 		
+		createTestStudyArea();
+		
 		//Test Password Digest
 		testDigestPassword("collins");
+	}
+	
+	@SuppressWarnings("unused")
+	private StudyArea createTestStudyArea() throws SQLException {
+		StudyArea std = new StudyArea();
+		std.setArea_name("Test Study Area");
+		std.setDescription("Testing Models for Study Area");
+		DAOManager.STUDY_AREA_DAO.create(std);
+		return std;
 	}
 
 	@SuppressWarnings("unused")

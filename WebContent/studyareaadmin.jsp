@@ -1,5 +1,5 @@
 <%@page import="phd.collins.imls.util.XML2Hash"%>
-<%@page import="phd.collins.imls.agents.actions.AddStudyAreaResponse"%>
+<%@page import="phd.collins.imls.agents.actions.StudyArea.AddStudyAreaResponse"%>
 <%@page import="com.tilab.wsig.soap.SoapClient"%>
 <%@page import="phd.collins.imls.agents.xmlrequests.XMLRequestTemplater"%>
 <%@page import="phd.collins.imls.util.WebServiceNames"%>

@@ -31,9 +31,16 @@ public class ConnectionManager {
 	}
 	
 	public static ConnectionSource getDatabaseConnection() throws Exception {
-		if (connectionSource == null || refreshDBConnection){
-			connectionSource = new JdbcConnectionSource(dbaseURL, dbaseUsername, dbasePassword, dbaseType);
-			refreshDBConnection = false;
+		try{
+			if (connectionSource == null || refreshDBConnection){
+				connectionSource = new JdbcConnectionSource(dbaseURL, dbaseUsername, dbasePassword, dbaseType);
+				refreshDBConnection = false;
+			}
+		}
+		catch (Exception ex){
+			Info.serr(
+				"Error in connecting to database. Please ensure the database server is available. Details: " + 
+				ex.getMessage());
 		}
 		return connectionSource;
 	}
