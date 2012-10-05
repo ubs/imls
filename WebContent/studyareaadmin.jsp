@@ -1,3 +1,4 @@
+<%@page import="phd.collins.imls.model.DAOManager"%>
 <%@page import="phd.collins.imls.util.XML2Hash"%>
 <%@page import="phd.collins.imls.agents.actions.StudyArea.AddStudyAreaResponse"%>
 <%@page import="com.tilab.wsig.soap.SoapClient"%>
@@ -42,6 +43,14 @@
 		parStudyAreaName = request.getParameter(ParameterNames.PN_STUDY_AREA_NAME);
 		parDescription = request.getParameter(ParameterNames.PN_DESCRIPTION);
 		
+		StudyArea studyArea = StudyArea.AddStudyArea(parStudyAreaName, parDescription);
+		if (studyArea != null){
+			String flashInfo = "Study area (" + parStudyAreaName +") successfully created";
+			SessionManager.setFlashInfo(session, flashInfo, FlashInfoType.INFO);
+			response. sendRedirect(LinksManager.STUDY_AREAS_ADMIN);
+		}
+		
+		/****************************************************************************************
 		WSIGStore wsigStore = (WSIGStore)application.getAttribute("WSIGStore");
 		WSIGConfiguration wsigConfig = (WSIGConfiguration)application.getAttribute("WSIGConfiguration");
 		String strServiceName = IMLSYellowPages.findService(wsigStore, WebServiceNames.WS_ADD_STUDY_AREA);
@@ -57,6 +66,7 @@
 			addStudyAreaResponse = new AddStudyAreaResponse(XML2Hash.XML2HashTable(SOAPResponse));
 			Info.sout("See It there::: " + addStudyAreaResponse);
 		}
+		****************************************************************************************/
 	}
 	
 	ViewParameters viewParams = new ViewParameters();

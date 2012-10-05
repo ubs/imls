@@ -32,7 +32,6 @@ public class TestModels {
 		//runIMLSConfig();
 		
 		connectToDatabase();
-		new StudyArea().countAll();
 		
 		//User user1 = createTestUser();
         //createTestAdministrator(user1);
@@ -40,6 +39,7 @@ public class TestModels {
         //createTestStudent(createTestUser());
 		
 		createTestStudyArea();
+		new StudyArea().countAll();
 		
 		//Test Password Digest
 		testDigestPassword("collins");
@@ -50,7 +50,8 @@ public class TestModels {
 		StudyArea std = new StudyArea();
 		std.setArea_name("Test Study Area");
 		std.setDescription("Testing Models for Study Area");
-		DAOManager.STUDY_AREA_DAO.create(std);
+		int numRowsAffected = DAOManager.STUDY_AREA_DAO.create(std);
+		Info.sout("Number of rows affected: " + numRowsAffected + " Study Area ID Created from the object: " + std.getId());
 		return std;
 	}
 

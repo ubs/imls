@@ -36,42 +36,42 @@
 	<div style="margin-bottom: 10px;">
 		<form name="frmAuth" id="frmAuth" method="post" action="">
             <ul class="formrow clearfix">
-            	<li class="grid_1a formlabel">Field Course</li>
+            	<li class="grid_2 formlabel">Field Course</li>
             	<li class="grid_3 formcontrol">
             		<input class="textbox" name="<%= ParameterNames.PN_COURSE_ID %>" type="text" value="<%= parCourseID %>" />
             	</li>
             </ul>
             
             <ul class="formrow clearfix">
-            	<li class="grid_1a formlabel">Module Name</li>
+            	<li class="grid_2 formlabel">Module Name</li>
             	<li class="grid_3 formcontrol">
             		<input class="textbox" name="<%= ParameterNames.PN_MODULE_NAME %>" type="password" value="<%= parModuleName %>" />
             	</li>
             </ul>
             
             <ul class="formrow clearfix">
-            	<li class="grid_1a formlabel">Study Order</li>
+            	<li class="grid_2 formlabel">Study Order</li>
             	<li class="grid_3 formcontrol">
             		<input class="textbox" name="<%= ParameterNames.PN_STUDY_ORDER %>" type="password" value="<%= parStudyOrder %>" />
             	</li>
             </ul>
             
             <ul class="formrow clearfix">
-            	<li class="grid_1a formlabel">Description</li>
+            	<li class="grid_2 formlabel">Description</li>
             	<li class="grid_3 formcontrol">
             		<input class="textbox" name="<%= ParameterNames.PN_MODULE_DESCRIPTION %>" type="password" value="<%= parDescription %>" />
             	</li>
             </ul>
             
             <ul class="formrow clearfix">
-            	<li class="grid_1a formlabel">Module Content</li>
+            	<li class="grid_2 formlabel">Module Content</li>
             	<li class="grid_3 formcontrol">
             		<input class="textbox" name="<%= ParameterNames.PN_MODULE_CONTENT %>" type="password" value="<%= parModuleContent %>" />
             	</li>
             </ul>
             
             <ul class="formrow formButtons clearfix">
-            	<li class="grid_1a formlabel">&nbsp;</li>
+            	<li class="grid_2 formlabel">&nbsp;</li>
             	<li class="grid_3 formcontrol">
             		<input class="button" name="btnSignIn" type="submit" id="btnSubmit" value="Submit" />
             		<input class="button" name="btnReset" type="reset" id="btnReset" value="Reset Fields" />
