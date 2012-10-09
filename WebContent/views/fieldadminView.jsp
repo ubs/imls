@@ -1,3 +1,4 @@
+<%@page import="phd.collins.imls.model.StudyArea"%>
 <%@page import="phd.collins.imls.util.LinksManager"%>
 <%@page import="phd.collins.imls.util.SessionManager"%>
 <%@page import="phd.collins.imls.util.ParameterNames"%>
@@ -21,8 +22,6 @@
 		parDescription = (String)viewParams.getParameter(ParameterNames.PN_MODULE_DESCRIPTION);
 		parModuleContent = (String)viewParams.getParameter(ParameterNames.PN_MODULE_CONTENT);
 		studyAreasExist = viewParams.getBooleanParameter(ParameterNames.PN_STUDY_AREAS_EXIST); 
-		
-		Info.sout ("The parameter studyAreasExist is now: " + studyAreasExist);
 	}
 	
 %>
@@ -36,37 +35,25 @@
 	<div style="margin-bottom: 10px;">
 		<form name="frmAuth" id="frmAuth" method="post" action="">
             <ul class="formrow clearfix">
-            	<li class="grid_2 formlabel">Field Course</li>
+            	<li class="grid_2 formlabel">Study Area</li>
             	<li class="grid_3 formcontrol">
-            		<input class="textbox" name="<%= ParameterNames.PN_COURSE_ID %>" type="text" value="<%= parCourseID %>" />
+            		<select class="select">
+            			<%= StudyArea.getAllAsListOptions() %>
+					</select>
             	</li>
             </ul>
             
             <ul class="formrow clearfix">
-            	<li class="grid_2 formlabel">Module Name</li>
+            	<li class="grid_2 formlabel">Field Name</li>
             	<li class="grid_3 formcontrol">
-            		<input class="textbox" name="<%= ParameterNames.PN_MODULE_NAME %>" type="password" value="<%= parModuleName %>" />
-            	</li>
-            </ul>
-            
-            <ul class="formrow clearfix">
-            	<li class="grid_2 formlabel">Study Order</li>
-            	<li class="grid_3 formcontrol">
-            		<input class="textbox" name="<%= ParameterNames.PN_STUDY_ORDER %>" type="password" value="<%= parStudyOrder %>" />
+            		<input class="textbox" name="<%= ParameterNames.PN_AREA_FIELD_NAME %>" value="<%= parModuleName %>" />
             	</li>
             </ul>
             
             <ul class="formrow clearfix">
             	<li class="grid_2 formlabel">Description</li>
             	<li class="grid_3 formcontrol">
-            		<input class="textbox" name="<%= ParameterNames.PN_MODULE_DESCRIPTION %>" type="password" value="<%= parDescription %>" />
-            	</li>
-            </ul>
-            
-            <ul class="formrow clearfix">
-            	<li class="grid_2 formlabel">Module Content</li>
-            	<li class="grid_3 formcontrol">
-            		<input class="textbox" name="<%= ParameterNames.PN_MODULE_CONTENT %>" type="password" value="<%= parModuleContent %>" />
+            		<input class="textbox" name="<%= ParameterNames.PN_DESCRIPTION %>" value="<%= parDescription %>" />
             	</li>
             </ul>
             

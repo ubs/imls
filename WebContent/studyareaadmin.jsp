@@ -26,7 +26,7 @@
 	
 	boolean studyAreasExist = false;
 	
-	Info.sout("Context Path: " + request.getContextPath() +  "  viewPage: " + viewPage);
+	Info.sout("\nContext Path: " + request.getContextPath() +  "  viewPage: " + viewPage);
 	
 	studyAreasExist = StudyArea.studyAreasExist();
 	if ( !studyAreasExist ){
@@ -44,29 +44,13 @@
 		parDescription = request.getParameter(ParameterNames.PN_DESCRIPTION);
 		
 		StudyArea studyArea = StudyArea.AddStudyArea(parStudyAreaName, parDescription);
+		
 		if (studyArea != null){
-			String flashInfo = "Study area (" + parStudyAreaName +") successfully created";
+			String flashInfo = "Study area (" + parStudyAreaName + ") has been successfully created.";
 			SessionManager.setFlashInfo(session, flashInfo, FlashInfoType.INFO);
-			response. sendRedirect(LinksManager.STUDY_AREAS_ADMIN);
+			response.sendRedirect(LinksManager.STUDY_AREAS_ADMIN);
+			return;
 		}
-		
-		/****************************************************************************************
-		WSIGStore wsigStore = (WSIGStore)application.getAttribute("WSIGStore");
-		WSIGConfiguration wsigConfig = (WSIGConfiguration)application.getAttribute("WSIGConfiguration");
-		String strServiceName = IMLSYellowPages.findService(wsigStore, WebServiceNames.WS_ADD_STUDY_AREA);
-		
-		String xmlRequest = XMLRequestTemplater.getAddStudyAreaRequestXML(strServiceName, parStudyAreaName, parDescription);
-		String SOAPUrl = IMLSYellowPages.getWSIGServiceURL(wsigConfig);
-		Info.sout("Service Name = " + strServiceName + " Web Service URL = " + SOAPUrl);
-		
-		if (xmlRequest != null && !"".equals(xmlRequest)) {
-			Info.sout(xmlRequest);
-			SOAPResponse = SoapClient.sendStringMessage(SOAPUrl, xmlRequest);
-			
-			addStudyAreaResponse = new AddStudyAreaResponse(XML2Hash.XML2HashTable(SOAPResponse));
-			Info.sout("See It there::: " + addStudyAreaResponse);
-		}
-		****************************************************************************************/
 	}
 	
 	ViewParameters viewParams = new ViewParameters();

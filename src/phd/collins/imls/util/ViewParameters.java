@@ -2,11 +2,12 @@ package phd.collins.imls.util;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ViewParameters implements Serializable {
 	private static final long serialVersionUID = 9014342727689084678L;
 	
-	private HashMap<String, Object> _viewParameters = new HashMap<String, Object>();
+	private Map<String, Object> _viewParameters = new HashMap<String, Object>();
 	
 	public ViewParameters(){
 		//

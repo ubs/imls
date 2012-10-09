@@ -53,13 +53,20 @@
             <% } %>
             
             <%
-            	if (SessionManager.flashInfoExist(session)){
+				if (SessionManager.flashInfoExist(session)){
             		String[] arrFlashInfo = (String[])SessionManager.getFlashInfo(session);
+            		
+            		String strInfoX = "Session Info Gotten is: " + arrFlashInfo;
+            		if (arrFlashInfo != null){
+            			strInfoX += " " + arrFlashInfo[1] + ", " + arrFlashInfo[0];
+            		}
+            		
+            		Info.sout("Session Info Gotten is: " + strInfoX);
             %>
             <div id="flashInfo" class="grid_16">
             	<div class="<%= arrFlashInfo[1] %>"><%= arrFlashInfo[0] %></div>
             </div>
-            <% } %>
+            <%	} %>
             
             <div class="grid_16 clearfix">
            	  <jsp:include page="<%= viewPagePath %>" ></jsp:include>

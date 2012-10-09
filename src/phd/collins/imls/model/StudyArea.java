@@ -1,6 +1,11 @@
 package phd.collins.imls.model;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import phd.collins.imls.exceptions.DataAccessException;
+import phd.collins.imls.util.Info;
 
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -38,6 +43,33 @@ public class StudyArea extends StudyAreaBase implements IModelToOtherFormats {
 			e.printStackTrace();
 		}
 		return studyArea;
+	}
+	
+	public static List<StudyArea> getAll() throws DataAccessException{
+		List<StudyArea> allStudyAreas = new ArrayList<StudyArea>();
+		
+		try {
+			allStudyAreas = DAOManager.STUDY_AREA_DAO.queryForAll();
+		} catch (SQLException e) {
+			Info.serr(e.getMessage());
+			throw new DataAccessException("Error retrieving study areas");
+		}
+		
+		return allStudyAreas;
+	}
+	
+	public static String getAllAsListOptions() throws DataAccessException{
+		List<StudyArea> allStudyAreas = getAll();
+		StringBuilder sb = new StringBuilder();
+		
+		for (StudyArea studyArea : allStudyAreas){
+			sb.append("<option value=\"")
+				.append(studyArea.getId()).append("\">")
+				.append(studyArea.getArea_name())
+				.append("</option>");
+		}
+		
+		return sb.toString();
 	}
 	
 	public static long create(String studyAreaName, String description){

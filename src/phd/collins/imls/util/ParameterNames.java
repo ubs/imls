@@ -20,6 +20,7 @@ public interface ParameterNames {
 	public static final String PN_MODULE_CONTENT 	= "modulecontent";
 	
 	public static final String PN_STUDY_AREA_NAME = "studyareaname";
+	public static final String PN_AREA_FIELD_NAME = "areafieldname";
 	
 	public static final String PN_FIELD_COURSES_EXIST = "FieldCoursesExist";
 	public static final String PN_AREA_FIELDS_EXIST = "AreaFieldsExist";
