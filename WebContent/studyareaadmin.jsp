@@ -1,12 +1,3 @@
-<%@page import="phd.collins.imls.model.DAOManager"%>
-<%@page import="phd.collins.imls.util.XML2Hash"%>
-<%@page import="phd.collins.imls.agents.actions.StudyArea.AddStudyAreaResponse"%>
-<%@page import="com.tilab.wsig.soap.SoapClient"%>
-<%@page import="phd.collins.imls.agents.xmlrequests.XMLRequestTemplater"%>
-<%@page import="phd.collins.imls.util.WebServiceNames"%>
-<%@page import="phd.collins.imls.util.IMLSYellowPages"%>
-<%@page import="com.tilab.wsig.WSIGConfiguration"%>
-<%@page import="com.tilab.wsig.store.WSIGStore"%>
 <%@page import="phd.collins.imls.model.StudyArea"%>
 <%@page import="phd.collins.imls.util.LinksManager"%>
 <%@page import="phd.collins.imls.util.SessionManager"%>
@@ -16,17 +7,15 @@
 <%@page import="phd.collins.imls.util.Info"%>
 <%
 	//Check authentication if page is to be secured
-	if (!SessionManager.isAuthenticated(session)) response.sendRedirect(LinksManager.AUTH_PAGE);
+	if (!SessionManager.isAuthenticated(session)) {
+		response.sendRedirect(LinksManager.AUTH_PAGE);
+		return;
+	}
 
 	String viewPage = "studyareaadminView.jsp";
-	
-	String SOAPResponse = "";
 	String parID = "", parStudyAreaName = "", parDescription = "";
-	AddStudyAreaResponse addStudyAreaResponse = null;
 	
 	boolean studyAreasExist = false;
-	
-	Info.sout("\nContext Path: " + request.getContextPath() +  "  viewPage: " + viewPage);
 	
 	studyAreasExist = StudyArea.studyAreasExist();
 	if ( !studyAreasExist ){

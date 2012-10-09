@@ -12,9 +12,9 @@
 
 	ViewParameters viewParams = SessionManager.getViewParameters(request);
 
-	if (viewParams != null){
-		Info.sout("In studyareaadminView.jsp View Params Keys: " + viewParams.getAllParameterKeys());
-	}
+	//if (viewParams != null){
+		//Info.sout("In studyareaadminView.jsp View Params Keys: " + viewParams.getAllParameterKeys());
+	//}
 	
 	if (viewParams != null){
 		parID = (String)viewParams.getParameter(ParameterNames.PN_ID);
@@ -22,7 +22,6 @@
 		parDescription = (String)viewParams.getParameter(ParameterNames.PN_DESCRIPTION);
 		
 		studyAreasExist = viewParams.getBooleanParameter(ParameterNames.PN_STUDY_AREAS_EXIST);
-		Info.sout ("The parameter studyAreasExist is now: " + studyAreasExist);
 	}
 	
 	//Get study areas for listing

@@ -3,7 +3,10 @@
 <%@page import="phd.collins.imls.util.Info"%>
 <%
 	//Check authentication if page is to be secured
-	if (!SessionManager.isAuthenticated(session)) response.sendRedirect(LinksManager.AUTH_PAGE);
+	if (!SessionManager.isAuthenticated(session)) {
+		response.sendRedirect(LinksManager.AUTH_PAGE);
+		return;
+	}
 
 	Info.sout("IN INDEX.JSP NOW........");
 	String viewPage = "homeView.jsp";
