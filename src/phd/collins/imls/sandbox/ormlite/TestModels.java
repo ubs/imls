@@ -4,7 +4,9 @@ import java.io.File;
 import java.sql.SQLException;
 import java.util.Date;
 
+import phd.collins.imls.exceptions.DataAccessException;
 import phd.collins.imls.model.Admin;
+import phd.collins.imls.model.AreaField;
 import phd.collins.imls.model.ConnectionManager;
 import phd.collins.imls.model.DAOManager;
 import phd.collins.imls.model.MySQLDatabaseParams;
@@ -38,13 +40,22 @@ public class TestModels {
         //createTestAdministrator(createTestUser());
         //createTestStudent(createTestUser());
 		
-		createTestStudyArea();
-		new StudyArea().countAll();
+		//createTestStudyArea();
+		//new StudyArea().countAll();
+		
+		createTestAreaField();
+		new AreaField().countAll();
 		
 		//Test Password Digest
 		testDigestPassword("collins");
 	}
 	
+	private void createTestAreaField() throws DataAccessException {
+		AreaField areaField = AreaField.AddAreaField("10", "Test Administration", "Test Administration");
+		Info.sout("AreaField Details: " + areaField.getField_name() + ", " + 
+				areaField.getDescription()+ ", " + areaField.getId());
+	}
+
 	@SuppressWarnings("unused")
 	private StudyArea createTestStudyArea() throws SQLException {
 		StudyArea std = new StudyArea();
@@ -88,7 +99,7 @@ public class TestModels {
 		return user;
 	}
 	
-	@SuppressWarnings("unused")
+	//@SuppressWarnings("unused")
 	private String testDigestPassword(String plainPassword){
 		String digestedPassword = User.digestUserPassword(plainPassword);
 		Info.sout("In testDigestPassword: [plainPassword, digestedPassword] == [" + 

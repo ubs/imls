@@ -12,14 +12,19 @@ public class AreaFieldBase extends ModelBase {
 	@DatabaseField
 	private String description;
 	
-	@DatabaseField(canBeNull=true, foreign=true) //Column_Name: study_area_id//Just incase
+	@DatabaseField(canBeNull=true, foreign=true, columnName="study_area_id")
 	private StudyArea studyArea;
 
 	public AreaFieldBase() { /*ORMLite needs a no-arg constructor*/ }
 
 	public AreaFieldBase(String _fieldname, String _description) {
+		this(_fieldname, _description, null);
+	}
+	
+	public AreaFieldBase(String _fieldname, String _description, StudyArea _studyArea) {
 		this.setField_name(_fieldname);
 		this.setDescription(_description);
+		this.setStudyArea(_studyArea);
 	}
 
 	public void setId(long id) {

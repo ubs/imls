@@ -12,6 +12,7 @@ public interface ParameterNames {
 	public static final String PN_AUTH_PASSWORD = "password";
 	public static final String PN_AUTH_LOGOUT 	= "logout";
 	public static final String PN_AUTH_RESPONSE = "AuthenticateResponse";
+	public static final String PN_AUTH_NO_AGENT = "NonAgentAuthentication";
 	
 	public static final String PN_COURSE_ID 	= "courseid";
 	public static final String PN_MODULE_NAME 	= "modulename";
@@ -19,6 +20,7 @@ public interface ParameterNames {
 	public static final String PN_MODULE_DESCRIPTION = "description";
 	public static final String PN_MODULE_CONTENT 	= "modulecontent";
 	
+	public static final String PN_STUDY_AREA_ID = "studyareaid";
 	public static final String PN_STUDY_AREA_NAME = "studyareaname";
 	public static final String PN_AREA_FIELD_NAME = "areafieldname";
 	//public static final String PN_AREA_FIELD_NAME = "areafieldname";

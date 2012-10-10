@@ -34,10 +34,10 @@ public class StudyArea extends StudyAreaBase implements IModelToOtherFormats {
 		return (new StudyArea().countAll() != 0);
 	}
 	
-	public static StudyArea get(long studyAreaID){
+	public static StudyArea get(long ID){
 		StudyArea studyArea = null;
 		try {
-			studyArea = DAOManager.STUDY_AREA_DAO.queryForId(studyAreaID);
+			studyArea = DAOManager.STUDY_AREA_DAO.queryForId(ID);
 		} catch (SQLException e) {
 			studyArea = null;
 			e.printStackTrace();

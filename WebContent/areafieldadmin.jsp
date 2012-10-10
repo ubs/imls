@@ -1,3 +1,4 @@
+<%@page import="phd.collins.imls.model.AreaField"%>
 <%@page import="phd.collins.imls.model.StudyArea"%>
 <%@page import="phd.collins.imls.util.LinksManager"%>
 <%@page import="phd.collins.imls.util.SessionManager"%>
@@ -9,45 +10,48 @@
 	//Check authentication if page is to be secured
 	if (!SessionManager.isAuthenticated(session)) response.sendRedirect(LinksManager.AUTH_PAGE);
 
-	String viewPage = "fieldadminView.jsp";
+	String viewPage = "areafieldadminView.jsp";
+	String parStudyAreaID = "", parFieldName = "", parDescription = "";
 	
-	String SOAPResponse = "";
-	String parCourseID = "", parModuleName = "", parStudyOrder = "", parDescription = "", parModuleContent = "";
-	//AuthenticateResponse authResponse = null;
 	boolean studyAreasExist = false;
-	
-	Info.sout("Context Path: " + request.getContextPath() +  "  viewPage: " + viewPage);
 	
 	if ( !StudyArea.studyAreasExist() ){
 		studyAreasExist = false;
 		String flashInfo = "Sorry, you must first create Study Areas before you can manage Fields. " +
 			"&nbsp;&laquo<a href=\"" + LinksManager.STUDY_AREAS_ADMIN +
 			"\" title=\"Click to manage study areas\">Manage Study Areas</a>&raquo ";
+			
 		SessionManager.setFlashInfo(session, flashInfo, FlashInfoType.WARNING);
+		return;
 	}
 	else {
 		studyAreasExist = true;
-		Object parTestParam = request.getParameter(ParameterNames.PN_COURSE_ID);
+		
+		Object parTestParam = request.getParameter(ParameterNames.PN_STUDY_AREA_ID);
 		if (parTestParam == null){
-			parCourseID = parModuleName = parStudyOrder = parDescription = parModuleContent = "";
+			parStudyAreaID = parFieldName = parDescription = "";
 		}
 		else{
-			parCourseID = request.getParameter(ParameterNames.PN_COURSE_ID);
-			parModuleName = request.getParameter(ParameterNames.PN_MODULE_NAME);
-			parStudyOrder = request.getParameter(ParameterNames.PN_STUDY_ORDER);
-			parDescription = request.getParameter(ParameterNames.PN_MODULE_DESCRIPTION);
-			parModuleContent = request.getParameter(ParameterNames.PN_MODULE_CONTENT);
+			parStudyAreaID = request.getParameter(ParameterNames.PN_STUDY_AREA_ID);
+			parFieldName = request.getParameter(ParameterNames.PN_AREA_FIELD_NAME);
+			parDescription = request.getParameter(ParameterNames.PN_DESCRIPTION);
+			
+			AreaField areaField = AreaField.AddAreaField(parStudyAreaID, parFieldName, parDescription);
+			
+			if (areaField != null){
+				String flashInfo = "Area Field (" + parFieldName + ") has been successfully created.";
+				SessionManager.setFlashInfo(session, flashInfo, FlashInfoType.INFO);
+				response.sendRedirect(LinksManager.AREA_FIELDS_ADMIN);
+				return;
+			}
 		}
-		//
 	}
 	
 	ViewParameters viewParams = new ViewParameters();
+	viewParams.setParameter(ParameterNames.PN_STUDY_AREA_ID, parStudyAreaID);
+	viewParams.setParameter(ParameterNames.PN_AREA_FIELD_NAME, parFieldName);
+	viewParams.setParameter(ParameterNames.PN_DESCRIPTION, parDescription);
 	viewParams.setParameter(ParameterNames.PN_STUDY_AREAS_EXIST, studyAreasExist);
-	viewParams.setParameter(ParameterNames.PN_COURSE_ID, parCourseID);
-	viewParams.setParameter(ParameterNames.PN_MODULE_NAME, parModuleName);
-	viewParams.setParameter(ParameterNames.PN_STUDY_ORDER, parStudyOrder);
-	viewParams.setParameter(ParameterNames.PN_MODULE_DESCRIPTION, parDescription);
-	viewParams.setParameter(ParameterNames.PN_MODULE_CONTENT, parModuleContent);
 	SessionManager.setViewParameters(request, viewParams);
 %>
 <jsp:include page="<%= LinksManager.LAYOUT_PAGE %>" flush="true">

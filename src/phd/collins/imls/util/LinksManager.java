@@ -10,6 +10,7 @@ public class LinksManager {
 	public static String LAYOUT_PAGE = "views/layout/layout.default.jsp";
 	
 	public static String AUTH_PAGE = "auth.jsp";
+	public static String AUTH_PAGE_NO_AGENT = "authnoagent.jsp";
 	public static String AUTH_CHECK_PAGE = "authcheck.jsp";
 	public static String AUTH_LOGOUT_PAGE = AUTH_PAGE + QMARK + "logout=1";
 	
@@ -21,7 +22,7 @@ public class LinksManager {
 	
 	public static String COURSE_ADMIN = "courseadminall.jsp";
 	public static String STUDY_AREAS_ADMIN = "studyareaadmin.jsp";
-	public static String AREA_FIELDS_ADMIN = "fieldadmin.jsp";
+	public static String AREA_FIELDS_ADMIN = "areafieldadmin.jsp";
 	public static String FIELD_COURSES_ADMIN = "courseadmin.jsp";
 	public static String COURSE_MODULES_ADMIN = "moduleadmin.jsp";
 	

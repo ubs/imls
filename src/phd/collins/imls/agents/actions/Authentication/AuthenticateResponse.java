@@ -4,6 +4,7 @@ import jade.content.Concept;
 import jade.content.onto.annotations.Slot;
 
 import java.util.Hashtable;
+import phd.collins.imls.model.User;
 
 public class AuthenticateResponse implements Concept {
 	
@@ -26,6 +27,19 @@ public class AuthenticateResponse implements Concept {
 		//setLastLoginDate( DateTime.getDateFromISO8601String(strDate) );
 		setLastLoginDate( strDate );
 		setAuthenticated(Boolean.valueOf(attrHash.get("authenticated")));
+	}
+	
+	public AuthenticateResponse(User user){
+		this(user, true);
+	}
+	
+	public AuthenticateResponse(User user, boolean isAuthenticated){
+		this();
+		setUsername(user.getUserName());
+		setUserType(user.getUser_type());
+		setIsActive(user.getIs_active());
+		setLastLoginDate(user.getLast_login_date().toString());
+		setAuthenticated(isAuthenticated);
 	}
 	
 	public boolean isAuthenticated() {

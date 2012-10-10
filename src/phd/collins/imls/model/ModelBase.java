@@ -25,7 +25,7 @@ public abstract class ModelBase {
 			objModel = null;
 			e.printStackTrace();
 		}
-		System.out.println("Interestingly, the type of ObjModel Retrived is: " + objModel.getClass() + " as " + objModel);
+		//System.out.println("Interestingly, the type of ObjModel Retrieved is: " + objModel.getClass() + " as " + objModel);
 		return objModel;
 	}
 	
