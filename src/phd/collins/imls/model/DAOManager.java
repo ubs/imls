@@ -20,6 +20,7 @@ public class DAOManager {
 	
 	public static final Dao<StudyArea, Long> STUDY_AREA_DAO = getDAO(StudyArea.class); 
 	public static final Dao<AreaField, Long> AREA_FIELD_DAO = getDAO(AreaField.class);
+	public static final Dao<FieldCourse, Long> FIELD_COURSE_DAO = getDAO(FieldCourse.class);
 	//public static final Dao<StudyArea, Long> STUDY_AREA_DAO = getDAO(StudyArea.class); 
 	
 	

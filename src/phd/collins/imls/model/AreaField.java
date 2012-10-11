@@ -72,6 +72,20 @@ public class AreaField extends AreaFieldBase implements IModelToOtherFormats {
 		return allAreaFields;
 	}
 	
+	public static String getAllAsListOptions() throws DataAccessException{
+		List<AreaField> allItems = getAll();
+		StringBuilder sb = new StringBuilder();
+		
+		for (AreaField areaField : allItems){
+			sb.append("<option value=\"")
+				.append(areaField.getId()).append("\">")
+				.append(areaField.getField_name())
+				.append("</option>");
+		}
+		
+		return sb.toString();
+	}
+	
 	public static AreaField AddAreaField(String studyAreaID, String areaFieldName, String description) throws DataAccessException {
 		AreaField obj; 
 		

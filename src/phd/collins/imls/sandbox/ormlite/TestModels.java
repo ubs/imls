@@ -9,6 +9,7 @@ import phd.collins.imls.model.Admin;
 import phd.collins.imls.model.AreaField;
 import phd.collins.imls.model.ConnectionManager;
 import phd.collins.imls.model.DAOManager;
+import phd.collins.imls.model.FieldCourse;
 import phd.collins.imls.model.MySQLDatabaseParams;
 import phd.collins.imls.model.Student;
 import phd.collins.imls.model.StudyArea;
@@ -43,13 +44,25 @@ public class TestModels {
 		//createTestStudyArea();
 		//new StudyArea().countAll();
 		
-		createTestAreaField();
-		new AreaField().countAll();
+		//createTestAreaField();
+		//new AreaField().countAll();
+		
+		createTestFieldCourse();
+		new FieldCourse().countAll();
 		
 		//Test Password Digest
 		testDigestPassword("collins");
 	}
 	
+	private void createTestFieldCourse() throws DataAccessException {
+		FieldCourse fieldCourse = FieldCourse.AddFieldCourse(
+				"7", "Introduction to Broadcasting", "Introductory course to broadcasting and media",
+				"1", "75");
+		Info.sout("FieldCourse Details: " + fieldCourse.getCourse_name() + ", " + 
+				fieldCourse.getDescription()+ ", " + fieldCourse.getId());
+	}
+
+	@SuppressWarnings("unused")
 	private void createTestAreaField() throws DataAccessException {
 		AreaField areaField = AreaField.AddAreaField("10", "Test Administration", "Test Administration");
 		Info.sout("AreaField Details: " + areaField.getField_name() + ", " + 

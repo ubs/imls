@@ -6,7 +6,7 @@ public class FieldCourseBase extends ModelBase {
 	@DatabaseField(generatedId = true)
 	private long id;
 	
-	@DatabaseField(canBeNull=true, foreign=true) //Column_Name: field_id//Just incase
+	@DatabaseField(canBeNull=true, foreign=true, columnName="field_id")
 	private AreaField areaField;
 	
 	@DatabaseField
@@ -23,13 +23,11 @@ public class FieldCourseBase extends ModelBase {
 	
 	public FieldCourseBase() { /*ORMLite needs a no-arg constructor*/ }
 	
-	public FieldCourseBase(String _coursename){
-		this(_coursename, "");
-	}
-	
-	public FieldCourseBase(String _coursename, String _description){
+	public FieldCourseBase(String _coursename, String _description, int _studyOrder, int _passPercentage){
 		this.setCourse_name(_coursename);
 		this.setDescription(_description);
+		this.setStudy_order(_studyOrder);
+		this.setPass_percentage(_passPercentage);
 	}
 
 	public void setId(long id) {
