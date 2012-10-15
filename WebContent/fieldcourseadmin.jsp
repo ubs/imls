@@ -11,18 +11,18 @@
 	//Check authentication if page is to be secured
 	if (!SessionManager.isAuthenticated(session)) response.sendRedirect(LinksManager.AUTH_PAGE);
 
+	String flashInfo = "";
 	String viewPage = "fieldcourseadminView.jsp";
 	String parFieldID = "", parCourseName = "", parDescription = "", parStudyOrder = "", parPassPercentage = "";
 	
 	boolean areaFieldsExist = AreaField.areaFieldsExist();
 	
 	if ( !areaFieldsExist ){
-		String flashInfo = "Sorry, you must first create area fields before you can manage courses. " +
+		flashInfo = "Sorry, you must first create area fields before you can manage courses. " +
 		"&nbsp;&laquo<a href=\"" + LinksManager.AREA_FIELDS_ADMIN +
 		"\" title=\"Click to manage area fields\">Manage Area Fields</a>&raquo ";
 		
 		SessionManager.setFlashInfo(session, flashInfo, FlashInfoType.WARNING);
-		return;
 	}
 	else {
 		Object parTestParam = request.getParameter(ParameterNames.PN_AREA_FIELD_ID);
@@ -36,15 +36,11 @@
 			parStudyOrder = request.getParameter(ParameterNames.PN_STUDY_ORDER);
 			parPassPercentage = request.getParameter(ParameterNames.PN_PASS_PERCENTAGE);
 			
-			Info.sout("About to add Field Course. Parameters: " +
-					parFieldID + ", " + parCourseName + ", " + parDescription + ", " +
-					parStudyOrder + ", " + parPassPercentage );
-			
 			FieldCourse fieldCourse = FieldCourse.AddFieldCourse(
 					parFieldID, parCourseName, parDescription, parStudyOrder, parPassPercentage);
 			
 			if (fieldCourse != null){
-				String flashInfo = "Field Course (" + parCourseName + ") has been successfully created.";
+				flashInfo = "Field Course (" + parCourseName + ") has been successfully created.";
 				SessionManager.setFlashInfo(session, flashInfo, FlashInfoType.INFO);
 				response.sendRedirect(LinksManager.FIELD_COURSES_ADMIN);
 				return;

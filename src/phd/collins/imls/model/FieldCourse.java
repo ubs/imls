@@ -60,6 +60,20 @@ public class FieldCourse extends FieldCourseBase implements IModelToOtherFormats
 		return allItems;
 	}
 	
+	public static String getAllAsListOptions() throws DataAccessException{
+		List<FieldCourse> allItems = getAll();
+		StringBuilder sb = new StringBuilder();
+		
+		for (FieldCourse fieldCourse : allItems){
+			sb.append("<option value=\"")
+				.append(fieldCourse.getId()).append("\">")
+				.append(fieldCourse.getCourse_name())
+				.append("</option>");
+		}
+		
+		return sb.toString();
+	}
+	
 	public static FieldCourse AddFieldCourse(String fieldID, String courseName, String description, String studyOrder, String passPercentage) throws DataAccessException {
 		FieldCourse obj;
 		

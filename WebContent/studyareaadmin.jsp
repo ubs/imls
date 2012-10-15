@@ -12,6 +12,7 @@
 		return;
 	}
 
+	String flashInfo = "";
 	String viewPage = "studyareaadminView.jsp";
 	String parID = "", parStudyAreaName = "", parDescription = "";
 	
@@ -19,8 +20,8 @@
 	
 	studyAreasExist = StudyArea.studyAreasExist();
 	if ( !studyAreasExist ){
-		String flashInfo = "There are no Study Areas on record, use the tools below to create Study Areas";
-		SessionManager.setFlashInfo(session, flashInfo, FlashInfoType.INFO);
+		flashInfo = "There are no Study Areas on record, use the tools below to create Study Areas";
+		SessionManager.setFlashInfo(session, flashInfo, FlashInfoType.WARNING);
 	}
 	
 	Object parTestParam = request.getParameter(ParameterNames.PN_STUDY_AREA_NAME);
@@ -35,7 +36,7 @@
 		StudyArea studyArea = StudyArea.AddStudyArea(parStudyAreaName, parDescription);
 		
 		if (studyArea != null){
-			String flashInfo = "Study area (" + parStudyAreaName + ") has been successfully created.";
+			flashInfo = "Study area (" + parStudyAreaName + ") has been successfully created.";
 			SessionManager.setFlashInfo(session, flashInfo, FlashInfoType.INFO);
 			response.sendRedirect(LinksManager.STUDY_AREAS_ADMIN);
 			return;

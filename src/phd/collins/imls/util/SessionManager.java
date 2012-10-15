@@ -23,7 +23,7 @@ public class SessionManager {
 	public static boolean isAuthenticated(HttpSession _httpsession){
 		boolean isAuthenticated = false;
 		Object ssItem = getSessionItem(_httpsession, IS_AUTHENTICATED);
-		Info.sout("Item " + IS_AUTHENTICATED + " from Session[" + _httpsession.getId() + "]: " + ssItem);
+		//Info.sout("Item " + IS_AUTHENTICATED + " from Session[" + _httpsession.getId() + "]: " + ssItem);
 		if (ssItem != null){ isAuthenticated = (Boolean)ssItem; }
 		return isAuthenticated;
 	}

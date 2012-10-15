@@ -10,6 +10,7 @@
 	//Check authentication if page is to be secured
 	if (!SessionManager.isAuthenticated(session)) response.sendRedirect(LinksManager.AUTH_PAGE);
 
+	String flashInfo = "";
 	String viewPage = "areafieldadminView.jsp";
 	String parStudyAreaID = "", parFieldName = "", parDescription = "";
 	
@@ -17,12 +18,11 @@
 	
 	if ( !StudyArea.studyAreasExist() ){
 		studyAreasExist = false;
-		String flashInfo = "Sorry, you must first create Study Areas before you can manage Fields. " +
+		flashInfo = "Sorry, you must first create Study Areas before you can manage Fields. " +
 			"&nbsp;&laquo<a href=\"" + LinksManager.STUDY_AREAS_ADMIN +
 			"\" title=\"Click to manage study areas\">Manage Study Areas</a>&raquo ";
 			
 		SessionManager.setFlashInfo(session, flashInfo, FlashInfoType.WARNING);
-		return;
 	}
 	else {
 		studyAreasExist = true;
@@ -39,7 +39,7 @@
 			AreaField areaField = AreaField.AddAreaField(parStudyAreaID, parFieldName, parDescription);
 			
 			if (areaField != null){
-				String flashInfo = "Area Field (" + parFieldName + ") has been successfully created.";
+				flashInfo = "Area Field (" + parFieldName + ") has been successfully created.";
 				SessionManager.setFlashInfo(session, flashInfo, FlashInfoType.INFO);
 				response.sendRedirect(LinksManager.AREA_FIELDS_ADMIN);
 				return;

@@ -14,24 +14,19 @@ public interface ParameterNames {
 	public static final String PN_AUTH_RESPONSE = "AuthenticateResponse";
 	public static final String PN_AUTH_NO_AGENT = "NonAgentAuthentication";
 	
-//	public static final String PN_COURSE_ID 	= "courseid";
-//	public static final String PN_MODULE_NAME 	= "modulename";
-//	public static final String PN_STUDY_ORDER 	= "studyorder";
-//	public static final String PN_MODULE_CONTENT = "modulecontent";
-	
 	public static final String PN_STUDY_AREA_ID = "studyareaid";
 	public static final String PN_STUDY_AREA_NAME = "studyareaname";
 	
 	public static final String PN_AREA_FIELD_ID = "areafieldid";
 	public static final String PN_AREA_FIELD_NAME = "areafieldname";
 	
+	public static final String PN_FIELD_COURSE_ID 	= "fieldcourseid";
 	public static final String PN_COURSE_NAME 	= "fieldcoursename";
 	public static final String PN_STUDY_ORDER 	= "studyorder";
 	public static final String PN_PASS_PERCENTAGE = "passpercentage";
 	
-	
-	//public static final String PN_AREA_FIELD_NAME = "areafieldname";
-	//public static final String PN_AREA_FIELD_NAME = "areafieldname";
+	public static final String PN_MODULE_NAME = "modulename";
+	public static final String PN_MODULE_CONTENT = "modulecontent";
 	
 	public static final String PN_FIELD_COURSES_EXIST = "FieldCoursesExist";
 	public static final String PN_AREA_FIELDS_EXIST = "AreaFieldsExist";
