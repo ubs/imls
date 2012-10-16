@@ -54,7 +54,7 @@
 	
 	<% if (existingStudyAreas.size() > 0) { %>
 	<div id="addeditsection listsection" style="margin:20px 10px;">
-		<table border="1">
+		<table class="datagrid">
 			<thead>
 				<tr><th>Sn</th><th>Study Area</th><th>Description</th></tr>
 			</thead>

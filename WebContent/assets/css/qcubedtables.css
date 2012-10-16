@@ -1,0 +1,39 @@
+/** QCubed Style Tables CSS **/
+table.datagrid { border: 1px solid #AAA; }
+table.datagrid caption, table.datagrid tfoot { padding-bottom: 4px; overflow: auto; }
+table.datagrid span.left { float: left; font-size: 10px; display: block; }
+table.datagrid span.right { float: right; font-size: 10px; display: block; }
+table.datagrid tr { background-color: #fff; }
+table.datagrid tr.alternate { background-color: #DDDDF2; }
+table.datagrid th { background-color: #001685; color: #FFF; padding: 7px 5px; text-align: left; }
+table.datagrid th a { color: #FFF; text-decoration: none; }
+table.datagrid th a:hover { color: #FFF; text-decoration: underline;}
+table.datagrid td { padding: 5px; }
+table.datagrid td a { color: #000; }
+table.datagrid td a:hover { color: #000; text-decoration: none; }
+table.datagrid tfoot { border-top: 1px solid #aaf;}
+table.datagrid tr.paginator { background:#EEF; }
+table.datagrid tr.paginator a { color: #000; text-decoration: none; }
+table.datagrid tr.paginator a:hover { color: #000; text-decoration: underline; }
+table.datagrid tr:hover td { background: #D0D0D0; /*d0dafd;*/ color: #339; }
+
+table.heritagegrid { border: 1px solid #000; }
+table.heritagegrid caption, table.heritagegrid tfoot { padding-bottom: 4px; overflow: auto; }
+table.heritagegrid span.left { float: left; font-size: 10px; display: block; }
+table.heritagegrid span.right { float: right; font-size: 10px; display: block; }
+table.heritagegrid tr { background-color: #fff; }
+table.heritagegrid tr.alternate { background-color: #EBDDC9; }
+table.heritagegrid th { background-color: #B98843; padding: 7px 5px; text-align: left; }
+table.heritagegrid th a { color: #000; text-decoration: none; }
+table.heritagegrid th a:hover { color: #000; text-decoration: underline;}
+table.heritagegrid td { padding: 5px; }
+table.heritagegrid td a { color: #000; }
+table.heritagegrid td a:hover { color: #000; text-decoration: none; }
+table.heritagegrid tfoot { border-top: 1px solid #aaf;} 
+
+table.tdgrid{}
+table.tdgrid td { border:1px solid #AAA; border-left:none; }
+
+table.borderless{ border:none; }
+
+table.softborder{ border:1px solid #CCC; }

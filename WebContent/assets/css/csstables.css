@@ -1,0 +1,47 @@
+/* ------------------
+ styling for the tables 
+   ------------------   */
+
+#box-table-a
+{
+	/*font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;*/
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 12px;
+	margin: 10px 0;
+	width: auto;
+	text-align: left;
+	border-collapse: collapse;
+}
+#box-table-a th
+{
+	font-size: 13px;
+	font-weight: normal;
+	text-align: left;
+	padding: 8px;
+	background: #001685; /*b9c9fe;*/
+	border-top: 4px solid #A61C00; /*aabcfe;*/
+	border-bottom: 1px solid #FFF;
+	color: #FFF; /*039;*/
+}
+#box-table-a td
+{
+	padding: 8px;
+	background: #E9E9E9; /*e8edff; */
+	border-bottom: 1px solid #FFF;
+	color: #333;
+	border-top: 1px solid transparent;
+}
+#box-table-a td img {
+	display: inline;
+}
+#box-table-a td.pagination {
+	background:none;
+	text-align:right;
+	border-left:1px solid #FFF;
+	border-right:1px solid #FFF;
+}
+#box-table-a tr:hover td
+{
+	background: #D0D0D0; /*d0dafd;*/
+	color: #339;
+}

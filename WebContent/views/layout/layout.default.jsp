@@ -23,6 +23,8 @@
 	<link href="<%=assetsBase %>/css/960gs.css" rel="stylesheet" type="text/css" />
 	<link href="<%=assetsBase %>/css/master.css" rel="stylesheet" type="text/css" />
 	<link href="<%=assetsBase %>/css/formcontrols.css" rel="stylesheet" type="text/css" />
+	<link href="<%=assetsBase %>/css/csstables.css" rel="stylesheet" type="text/css" />
+	<link href="<%=assetsBase %>/css/qcubedtables.css" rel="stylesheet" type="text/css" />
 	
 	<link href="<%=assetsBase %>/superfishmenu/superfish.css" rel="stylesheet" type="text/css" media="screen" />
 	

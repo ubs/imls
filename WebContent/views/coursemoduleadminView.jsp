@@ -83,7 +83,7 @@
 	
 	<% if (existingCourseModules.size() > 0) { %>
 	<div id="addeditsection listsection" style="margin:20px 10px;">
-		<table border="1">
+		<table class="datagrid">
 			<thead>
 				<tr><th>Sn</th><th>Course Module</th><th>Study Order</th><th>Description</th></tr>
 			</thead>
