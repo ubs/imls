@@ -2,6 +2,7 @@ package phd.collins.imls.model;
 
 import java.util.Date;
 
+import phd.collins.imls.model.User.UserTypes;
 import phd.collins.imls.util.Info;
 import phd.collins.imls.util.UtilGeneral;
 
@@ -34,13 +35,15 @@ public class UserBase extends ModelBase {
 
 	public UserBase() { /*ORMLite needs a no-arg constructor*/ }
 
-	public UserBase(String _username, String _password) {
+	public UserBase(String _username, String _password, UserTypes _userType, boolean _isActive) {
 		this.setUsername(_username);
 		this.setPassword(_password);
+		this.setUser_type(_userType.getDescription());
+		this.setIs_active(_isActive);
 	}
 	
 	public String toString(){
-		return username + password + is_active + last_login_date;
+		return getUserName();
 	}
 
 	public void setId(long id) {

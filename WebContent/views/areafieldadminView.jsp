@@ -79,7 +79,7 @@
 				<tr>
 					<td><%= ++sn %></td>
 					<td><%= areaField.getField_name() %></td>
-					<td><%= areaField.getStudyAreaName() %></td>
+					<td><%= StudyArea.getStudyAreaName(areaField.getStudyArea()) %></td>
 					<td><%= areaField.getDescription() %></td>
 				</tr>
 			<% } %>

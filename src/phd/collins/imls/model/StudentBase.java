@@ -6,7 +6,6 @@ import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 
 public class StudentBase extends ModelBase {
-	public static final String FIELDNAME_FIELD_OF_STUDY = "field_of_study";
 	
 	@DatabaseField(generatedId = true)
 	private long id;
@@ -20,13 +19,13 @@ public class StudentBase extends ModelBase {
 	@DatabaseField
 	private String address;
 	
-	@DatabaseField(canBeNull=true, foreign=true, columnName=FIELDNAME_FIELD_OF_STUDY)
+	@DatabaseField(canBeNull=true, foreign=true, columnName="field_of_study")
 	private AreaField field_of_study;
 	
 	@DatabaseField(dataType=DataType.DATE_STRING)
 	private Date date_registered;
 	
-	@DatabaseField(canBeNull=false, foreign=true)
+	@DatabaseField(canBeNull=false, foreign=true, columnName="user_id")
 	private User user;
 
 	public StudentBase() { /*ORMLite needs a no-arg constructor*/ }
@@ -34,6 +33,12 @@ public class StudentBase extends ModelBase {
 	public StudentBase(String _regno, String _fullname) {
 		this.setRegno(_regno);
 		this.setFullname(_fullname);
+	}
+
+	public StudentBase(String _regno, String _fullname, String _address) {
+		this.setRegno(_regno);
+		this.setFullname(_fullname);
+		this.setAddress(_address);
 	}
 
 	public void setId(long id) {

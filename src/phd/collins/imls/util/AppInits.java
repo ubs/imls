@@ -5,6 +5,7 @@ import java.util.Hashtable;
 import phd.collins.imls.model.Admin;
 import phd.collins.imls.model.ModelTypes.UserType;
 import phd.collins.imls.model.User;
+import phd.collins.imls.model.User.UserTypes;
 
 
 public class AppInits {
@@ -81,7 +82,7 @@ public class AppInits {
 	}
 	
 	private User getDefaultAdminUser(){
-		User defaultUser = new User("admin", User.DEFAULT_PASSWORD);
+		User defaultUser = new User("admin", User.DEFAULT_PASSWORD, UserTypes.ADMIN, true);
 		defaultUser.setUser_type(UserType.USER_TYPE_ADMIN);
 		defaultUser.setIs_active(true);
 		return defaultUser;

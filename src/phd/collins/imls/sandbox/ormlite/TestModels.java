@@ -40,6 +40,7 @@ public class TestModels {
         //createTestAdministrator(user1);
         //createTestAdministrator(createTestUser());
         //createTestStudent(createTestUser());
+		createTestStudent2();
 		
 		//createTestStudyArea();
 		//new StudyArea().countAll();
@@ -47,13 +48,17 @@ public class TestModels {
 		//createTestAreaField();
 		//new AreaField().countAll();
 		
-		createTestFieldCourse();
-		new FieldCourse().countAll();
+		//createTestFieldCourse();
+		//new FieldCourse().countAll();
+		
+		//createTest();
+		//new FieldCourse().countAll();
 		
 		//Test Password Digest
 		testDigestPassword("collins");
 	}
 	
+	@SuppressWarnings("unused")
 	private void createTestFieldCourse() throws DataAccessException {
 		FieldCourse fieldCourse = FieldCourse.AddFieldCourse(
 				"7", "Introduction to Broadcasting", "Introductory course to broadcasting and media",
@@ -80,12 +85,18 @@ public class TestModels {
 	}
 
 	@SuppressWarnings("unused")
-	private Student createTestStudent(User user) throws SQLException {
-		Student student = new Student(UtilGeneral.getRandomString(), UtilGeneral.getRandomString());
+	private Student createTestStudent(User user) throws SQLException, DataAccessException {
+		Student student = new Student("SN111", UtilGeneral.getRandomString(), UtilGeneral.getRandomString());
 		student.setDate_registered(new Date());
 		student.setField_of_study(null);
 		student.setUser(user);
 		DAOManager.STUDENT_DAO.create(student);
+		return student;
+	}
+	
+	@SuppressWarnings("unused")
+	private Student createTestStudent2() throws SQLException, DataAccessException {
+		Student student = Student.AddStudent("SN991", UtilGeneral.getRandomString(), UtilGeneral.getRandomString(), "5");
 		return student;
 	}
 	

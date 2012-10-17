@@ -2,16 +2,33 @@ package phd.collins.imls.model;
 
 import java.sql.SQLException;
 
+import phd.collins.imls.exceptions.DataAccessException;
 import phd.collins.imls.util.Info;
 
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "users")
 public class User extends UserBase implements IModelToOtherFormats {
+	public enum UserTypes {
+		STUDENT("STUDENT"),
+		ADMIN("ADMIN");
+		
+		private String description;
+		
+		private UserTypes(String desc){
+			description = desc;
+		}
+		
+		@Override
+		public String toString(){ return description; }
+		
+		public String getDescription() { return description; }
+	}
+	
 	public User(){ super(); }
 	
-	public User(String _username, String _password){
-		super(_username, _password);
+	public User(String _username, String _password, UserTypes _userType, boolean _isActive){
+		super(_username, _password, _userType, _isActive);
 	}
 	
 	public boolean updateUser(){
@@ -40,7 +57,7 @@ public class User extends UserBase implements IModelToOtherFormats {
 	}
 	
 	//Static Field and Methods
-	public static final String DEFAULT_PASSWORD = "p@$$w0rd";
+	public static final String DEFAULT_PASSWORD = "password";
 	
 	public static User get(long userID){
 		User user = null;
@@ -64,6 +81,17 @@ public class User extends UserBase implements IModelToOtherFormats {
 		}
 		
 		return userID;
+	}
+	
+	public static User AddUser(String username, String plainPassword, boolean digestPassword, UserTypes userType, boolean isActive) throws DataAccessException {
+		Info.sout("Username: " + username + " Password: " + plainPassword + " digestPassword: " + digestPassword +
+				" UserType: " + userType + " isActive: " + isActive);
+		
+		String digestedPassword = (digestPassword) ? User.digestUserPassword(plainPassword) : plainPassword;
+		User user = new User(username, digestedPassword, userType, isActive);
+        user.setLast_login_date(null);
+		create(user);
+		return user;
 	}
 	
 	public static User authenticateUser(String username, String password){

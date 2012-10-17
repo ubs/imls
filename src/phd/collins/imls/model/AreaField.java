@@ -29,20 +29,6 @@ public class AreaField extends AreaFieldBase implements IModelToOtherFormats {
 		return null;
 	}
 	
-	public String getStudyAreaName() {
-		String studyAreaName = "";
-		
-		try {
-			DAOManager.STUDY_AREA_DAO.refresh(this.getStudyArea()); //Refresh Foreign Field
-		} catch (SQLException e) { }
-		
-		StudyArea studyArea = this.getStudyArea();
-		if (studyArea != null){ studyAreaName = studyArea.getArea_name(); }
-		if (studyAreaName == null) { studyAreaName = "---"; }
-		
-		return studyAreaName;
-	}
-	
 	//Static Field and Methods
 	public static boolean areaFieldsExist(){
 		return (new AreaField().countAll() != 0);
@@ -99,5 +85,17 @@ public class AreaField extends AreaFieldBase implements IModelToOtherFormats {
 		}
 		
 		return obj;
+	}
+	
+	public static String getAreaFieldName(AreaField areaField) {
+		String areaFieldName = "";
+		
+		try {
+			DAOManager.AREA_FIELD_DAO.refresh(areaField); //Refresh Foreign Field
+		} catch (SQLException e) { }
+		
+		if (areaField != null) { areaFieldName = areaField.getField_name(); }
+		if (areaFieldName == "null") { areaFieldName = ""; }
+		return areaFieldName;
 	}
 }
