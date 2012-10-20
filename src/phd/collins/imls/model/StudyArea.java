@@ -98,8 +98,11 @@ public class StudyArea extends StudyAreaBase implements IModelToOtherFormats {
 			DAOManager.STUDY_AREA_DAO.refresh(studyArea); //Refresh Foreign Field
 		} catch (SQLException e) { }
 		
-		if (studyArea != null){ studyAreaName = studyArea.getArea_name(); }
-		if (studyAreaName == "null") { studyAreaName = ""; }
+		if (studyArea != null){
+			studyAreaName = studyArea.getArea_name();
+			if (studyAreaName == null) { studyAreaName = ""; }
+		}
+
 		return studyAreaName;
 	}
 }

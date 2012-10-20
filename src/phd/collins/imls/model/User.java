@@ -83,6 +83,21 @@ public class User extends UserBase implements IModelToOtherFormats {
 		return userID;
 	}
 	
+	public static String getUsername(User user) {
+		String username = "";
+		
+		try {
+			DAOManager.USER_DAO.refresh(user); //Refresh Foreign Field
+		} catch (SQLException e) { }
+		
+		if (user != null){
+			username = user.getUserName();
+			if (username == null) { username = ""; }
+		}
+
+		return username;
+	}
+	
 	public static User AddUser(String username, String plainPassword, boolean digestPassword, UserTypes userType, boolean isActive) throws DataAccessException {
 		Info.sout("Username: " + username + " Password: " + plainPassword + " digestPassword: " + digestPassword +
 				" UserType: " + userType + " isActive: " + isActive);
@@ -104,7 +119,10 @@ public class User extends UserBase implements IModelToOtherFormats {
 					.prepare()
 			);
 			
-			Info.sout("User.java: authenticateUser, user object from Query Result[queryForFirst] = " + user);
+			Info.sout("User.java: authenticateUser (" + username + ", " + 
+					User.digestUserPassword(password) + "), " +
+					"user object from Query Result[queryForFirst] = " + user);
+
 		} catch (Exception e){
 			user = null;
 			e.printStackTrace();

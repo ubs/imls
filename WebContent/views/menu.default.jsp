@@ -13,7 +13,7 @@
                 <a href="<%= LinksManager.STUDENTS_ADMIN %>">Students</a>
 			</li>
             <li>
-                <a href="<%= LinksManager.USERS_ADMINS %>">Administrators</a>
+                <a href="<%= LinksManager.MANAGE_ADMINS %>">Administrators</a>
 			</li>
         </ul>
     </li>

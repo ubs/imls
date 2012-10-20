@@ -94,8 +94,12 @@ public class AreaField extends AreaFieldBase implements IModelToOtherFormats {
 			DAOManager.AREA_FIELD_DAO.refresh(areaField); //Refresh Foreign Field
 		} catch (SQLException e) { }
 		
-		if (areaField != null) { areaFieldName = areaField.getField_name(); }
-		if (areaFieldName == "null") { areaFieldName = ""; }
+		if (areaField != null) {
+			areaFieldName = areaField.getField_name();
+			if (areaFieldName == null) { areaFieldName = ""; } 
+		}
+		
+		Info.sout("AREA FIELD NAME IS NOW: >>>" + areaFieldName + ">>> Type Is: " + areaFieldName.getClass().getName());
 		return areaFieldName;
 	}
 }

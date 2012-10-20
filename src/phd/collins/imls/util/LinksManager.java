@@ -18,7 +18,7 @@ public class LinksManager {
 	public static String DASHBOARD = "index.jsp";
 	public static String USERS = "users.jsp";
 	public static String STUDENTS_ADMIN = "studentadmin.jsp";
-	public static String USERS_ADMINS = "useradmin.jsp";
+	public static String MANAGE_ADMINS = "manageadmin.jsp";
 	
 	public static String COURSE_ADMIN = "courseadminall.jsp";
 	public static String STUDY_AREAS_ADMIN = "studyareaadmin.jsp";

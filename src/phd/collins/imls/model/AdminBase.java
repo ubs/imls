@@ -12,7 +12,7 @@ public class AdminBase extends ModelBase {
 	@DatabaseField
 	private String contact;
 	
-	@DatabaseField(canBeNull=false, foreign=true)
+	@DatabaseField(canBeNull=false, foreign=true, columnName="user_id")
 	private User user;
 	
 	public static final String FIELD_FULLNAME 	= "fullname";
