@@ -85,7 +85,7 @@ public class Student extends StudentBase implements IModelToOtherFormats {
 		Student obj;
 		
 		try {		
-			User user = User.AddUser(regNo, User.DEFAULT_PASSWORD, true, UserTypes.STUDENT, true);
+			User user = User.AddUser(regNo, User.DEFAULT_PASSWORD, UserTypes.STUDENT, true);
 			
 			obj = new Student(regNo, studentName, address);
 			obj.setDate_registered(new Date());

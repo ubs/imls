@@ -101,7 +101,7 @@ public class Admin extends AdminBase implements IModelToOtherFormats {
 		Admin obj;
 		
 		try {		
-			User user = User.AddUser(username, User.DEFAULT_PASSWORD, true, UserTypes.ADMIN, true);
+			User user = User.AddUser(username, User.DEFAULT_PASSWORD, UserTypes.ADMIN, true);
 			
 			obj = new Admin(fullName, contact);
 			obj.setUser(user);

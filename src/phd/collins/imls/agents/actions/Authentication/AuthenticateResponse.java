@@ -3,6 +3,7 @@ package phd.collins.imls.agents.actions.Authentication;
 import jade.content.Concept;
 import jade.content.onto.annotations.Slot;
 
+import java.util.Date;
 import java.util.Hashtable;
 import phd.collins.imls.model.User;
 
@@ -38,7 +39,10 @@ public class AuthenticateResponse implements Concept {
 		setUsername(user.getUserName());
 		setUserType(user.getUser_type());
 		setIsActive(user.getIs_active());
-		setLastLoginDate(user.getLast_login_date().toString());
+		
+		Date dttLastLoginDate = user.getLast_login_date();
+		String strLastLoginDate = (dttLastLoginDate == null) ? "" : dttLastLoginDate.toString(); 
+		setLastLoginDate(strLastLoginDate);
 		setAuthenticated(isAuthenticated);
 	}
 	

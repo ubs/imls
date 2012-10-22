@@ -98,12 +98,11 @@ public class User extends UserBase implements IModelToOtherFormats {
 		return username;
 	}
 	
-	public static User AddUser(String username, String plainPassword, boolean digestPassword, UserTypes userType, boolean isActive) throws DataAccessException {
-		Info.sout("Username: " + username + " Password: " + plainPassword + " digestPassword: " + digestPassword +
+	public static User AddUser(String username, String plainPassword, UserTypes userType, boolean isActive) throws DataAccessException {
+		Info.sout("Username: " + username + " Password: " + plainPassword +
 				" UserType: " + userType + " isActive: " + isActive);
 		
-		String digestedPassword = (digestPassword) ? User.digestUserPassword(plainPassword) : plainPassword;
-		User user = new User(username, digestedPassword, userType, isActive);
+		User user = new User(username, plainPassword, userType, isActive);
         user.setLast_login_date(null);
 		create(user);
 		return user;

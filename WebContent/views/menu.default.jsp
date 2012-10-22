@@ -7,13 +7,23 @@
     </li>
         
     <li>
-        <a href="<%= LinksManager.USERS %>">Users</a>
+        <a href="<%= LinksManager.HASH %>">Users</a>
         <ul>
+        	<li>
+                <a href="<%= LinksManager.HASH %>">My Profile</a>
+			</li>
+			
+        	<% if (SessionManager.userIsADMIN(session)){ %>
             <li>
                 <a href="<%= LinksManager.STUDENTS_ADMIN %>">Students</a>
 			</li>
             <li>
                 <a href="<%= LinksManager.MANAGE_ADMINS %>">Administrators</a>
+			</li>
+			<% } %>
+			
+			<li>
+                <a href="<%= LinksManager.AUTH_LOGOUT_PAGE %>">Logout</a>
 			</li>
         </ul>
     </li>
