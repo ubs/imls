@@ -113,3 +113,5 @@ body{
 .borderedgray { border:1px solid #CCC; }
 .bold{font-weight:bold;}
 p.br{ margin:0; padding:0; }
+
+.caption{ font-weight: bold; border-bottom: 1px dashed #DDD; }

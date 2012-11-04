@@ -7,7 +7,7 @@ public class CourseModuleBase extends ModelBase {
 	@DatabaseField(generatedId = true)
 	private long id;
 	
-	@DatabaseField(canBeNull=true, foreign=true, columnName="course_id")
+	@DatabaseField(canBeNull=true, foreign=true, columnName=FIELD_COURSE_ID)
 	private FieldCourse fieldCourse;
 	
 	@DatabaseField
@@ -22,6 +22,9 @@ public class CourseModuleBase extends ModelBase {
 	@DatabaseField(dataType=DataType.LONG_STRING)
 	private String module_content;
 
+	public static final String FIELD_COURSE_ID 	= "course_id";
+	public static final String FIELD_STUDY_ORDER = "study_order";
+	
 	public CourseModuleBase() { /*ORMLite needs a no-arg constructor*/ }
 
 	public CourseModuleBase(String _moduleName, String _description, String _moduleContent, int _studyOrder) {

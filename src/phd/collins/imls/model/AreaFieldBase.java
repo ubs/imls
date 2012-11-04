@@ -1,6 +1,8 @@
 package phd.collins.imls.model;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 
 public class AreaFieldBase extends ModelBase {
 	@DatabaseField(generatedId = true)
@@ -12,8 +14,13 @@ public class AreaFieldBase extends ModelBase {
 	@DatabaseField
 	private String description;
 	
-	@DatabaseField(canBeNull=true, foreign=true, columnName="study_area_id")
+	@DatabaseField(canBeNull=true, foreign=true, columnName=FIELD_STUDY_AREA_ID)
 	private StudyArea studyArea;
+	
+	@ForeignCollectionField(eager = false, orderColumnName=FieldCourse.FIELD_STUDY_ORDER)
+	private ForeignCollection<FieldCourse> colFieldCourses;
+	
+	public static final String FIELD_STUDY_AREA_ID 	= "study_area_id";
 
 	public AreaFieldBase() { /*ORMLite needs a no-arg constructor*/ }
 
@@ -57,5 +64,9 @@ public class AreaFieldBase extends ModelBase {
 
 	public StudyArea getStudyArea() {
 		return studyArea;
+	}
+
+	public ForeignCollection<FieldCourse> getColFieldCourses() {
+		return colFieldCourses;
 	}
 }

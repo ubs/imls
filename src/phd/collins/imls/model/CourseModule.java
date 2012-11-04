@@ -58,6 +58,20 @@ public class CourseModule extends CourseModuleBase implements IModelToOtherForma
 		return allItems;
 	}
 	
+	public static List<CourseModule> getMyFieldCourses(AreaField areaField) throws DataAccessException{
+		List<CourseModule> allItems = new ArrayList<CourseModule>();
+		
+		try {
+			allItems = DAOManager.COURSE_MODULE_DAO.queryBuilder()
+						.where().eq(CourseModule.FIELD_COURSE_ID, areaField.getId()).query();
+		} catch (SQLException e) {
+			Info.serr(e.getMessage());
+			throw new DataAccessException("Error retrieving field courses");
+		}
+		
+		return allItems;
+	}
+	
 	public static CourseModule AddCourseModule(String courseID, String moduleName, String studyOrder, String description, String moduleContent) throws DataAccessException {
 		CourseModule obj;
 		

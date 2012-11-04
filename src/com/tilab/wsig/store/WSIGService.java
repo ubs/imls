@@ -42,7 +42,7 @@ public class WSIGService {
 	private Ontology onto;
 	private Definition wsdlDefinition;
 	private ServiceKey uddiServiceKey;
-	private Class mapperClass;
+	private Class<?> mapperClass;
 	private Map<String,ActionBuilder> actionsBuilder = new HashMap<String,ActionBuilder>();
 	
 	public AID getAid() {
@@ -78,10 +78,10 @@ public class WSIGService {
 	public Collection<String> getOperations() {
 		return actionsBuilder.keySet();
 	}
-	public Class getMapperClass() {
+	public Class<?> getMapperClass() {
 		return mapperClass;
 	}
-	public void setMapperClass(Class mapperClass) {
+	public void setMapperClass(Class<?> mapperClass) {
 		this.mapperClass = mapperClass; 
 	}
 	public Map<String, ActionBuilder> getActionsBuilder() {

@@ -60,20 +60,6 @@ public class FieldCourse extends FieldCourseBase implements IModelToOtherFormats
 		return allItems;
 	}
 	
-	public static List<FieldCourse> getMyFieldCourses(AreaField areaField) throws DataAccessException{
-		List<FieldCourse> allItems = new ArrayList<FieldCourse>();
-		
-		try {
-			allItems = DAOManager.FIELD_COURSE_DAO.queryBuilder()
-						.where().eq(FieldCourse.FIELD_AREA_FIELD_ID, areaField.getId()).query();
-		} catch (SQLException e) {
-			Info.serr(e.getMessage());
-			throw new DataAccessException("Error retrieving field courses");
-		}
-		
-		return allItems;
-	}
-	
 	public static String getAllAsListOptions() throws DataAccessException{
 		List<FieldCourse> allItems = getAll();
 		StringBuilder sb = new StringBuilder();

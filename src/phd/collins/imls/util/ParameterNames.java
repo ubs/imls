@@ -25,6 +25,7 @@ public interface ParameterNames {
 	public static final String PN_STUDY_ORDER 	= "studyorder";
 	public static final String PN_PASS_PERCENTAGE = "passpercentage";
 	
+	public static final String PN_MODULE_ID = "moduleid";
 	public static final String PN_MODULE_NAME = "modulename";
 	public static final String PN_MODULE_CONTENT = "modulecontent";
 	

@@ -33,7 +33,7 @@
     
     <% if (SessionManager.userIsADMIN(session)){ %>
     <li>
-        <a href="<%= LinksManager.COURSE_ADMIN %>">Course Admin</a>
+        <a href="<%= LinksManager.HASH %>">Course Admin</a>
         <ul>
             <li>
                 <a href="<%= LinksManager.STUDY_AREAS_ADMIN %>">Study Areas</a>

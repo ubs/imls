@@ -1,6 +1,8 @@
 package phd.collins.imls.model;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 
 public class FieldCourseBase extends ModelBase {
 	@DatabaseField(generatedId = true)
@@ -21,7 +23,11 @@ public class FieldCourseBase extends ModelBase {
 	@DatabaseField
 	private int pass_percentage;
 	
+	@ForeignCollectionField(eager = false, orderColumnName=CourseModule.FIELD_STUDY_ORDER)
+	private ForeignCollection<CourseModule> colCourseModules;
+	
 	public static final String FIELD_AREA_FIELD_ID 	= "field_id";
+	public static final String FIELD_STUDY_ORDER = "study_order";
 	
 	public FieldCourseBase() { /*ORMLite needs a no-arg constructor*/ }
 	
@@ -78,5 +84,9 @@ public class FieldCourseBase extends ModelBase {
 
 	public int getPass_percentage() {
 		return pass_percentage;
+	}
+
+	public ForeignCollection<CourseModule> getColCourseModules() {
+		return colCourseModules;
 	}
 }

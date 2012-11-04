@@ -1,19 +1,21 @@
-<%@page import="java.util.ArrayList"%>
+<%@page import="com.j256.ormlite.dao.ForeignCollection"%>
+<%@page import="phd.collins.imls.model.AreaField"%>
 <%@page import="phd.collins.imls.model.FieldCourse"%>
 <%@page import="phd.collins.imls.model.Student"%>
 <%@page import="phd.collins.imls.util.SessionManager"%>
 <%@page import="phd.collins.imls.model.User"%>
-<%@page import="java.util.List"%>
 <%
 	//Get my field courses
-	List<FieldCourse> myFieldCourses = new ArrayList<FieldCourse>();
+	ForeignCollection<FieldCourse> myFieldCourses = null;
 	User currentUser = SessionManager.getCurrentUser(session);
 	
-	//Student student = null;
+	Student student = null;
 	if (currentUser != null) {
-		Student student = Student.getByRegNumber(currentUser.getUserName());
+		student = Student.getByRegNumber(currentUser.getUserName());
 		if (student != null){
-			myFieldCourses = FieldCourse.getMyFieldCourses(student.getField_of_study());
+			AreaField areaField = student.getField_of_study();
+			AreaField.RefreshAreaField(areaField);
+			myFieldCourses = areaField.getColFieldCourses();
 		}
 	}
 %>
