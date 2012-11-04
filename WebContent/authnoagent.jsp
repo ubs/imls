@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@page import="phd.collins.imls.model.User"%>
 <%@page import="phd.collins.imls.agents.actions.Authentication.AuthenticateResponse"%>
 <%@page import="phd.collins.imls.util.SessionManager.FlashInfoType"%>
@@ -46,6 +47,13 @@
 			Info.sout("Authentication successful, now redirecting...");
 			SessionManager.setIsAuthenticated(session);
 			SessionManager.setUserAuthResponse(session, authResponse);
+			
+			try{
+				user.setLast_login_date(new Date());
+				user.updateUser();
+			}
+			catch(Exception ex) { Info.sout("Exception in  updating authenticated user details: " + ex.getMessage()); }
+			
 			response.sendRedirect(LinksManager.HOME_PAGE);
 			return;
 		} else {

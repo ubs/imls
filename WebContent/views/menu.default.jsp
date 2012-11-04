@@ -1,6 +1,9 @@
 <%@page import="phd.collins.imls.util.SessionManager"%>
 <%@page import="phd.collins.imls.util.LinksManager"%>
 <%@ page contentType="text/html; charset=ISO-8859-1" %>
+<%
+	boolean currentUserIsAdmin = SessionManager.userIsADMIN(session);
+%>
 <ul class="sf-menu">
     <li class="current">
         <a href="<%= LinksManager.DASHBOARD %>">Dashboard</a>
@@ -10,10 +13,10 @@
         <a href="<%= LinksManager.HASH %>">Users</a>
         <ul>
         	<li>
-                <a href="<%= LinksManager.HASH %>">My Profile</a>
+                <a href="<%= LinksManager.USER_PROFILE %>">My Profile</a>
 			</li>
 			
-        	<% if (SessionManager.userIsADMIN(session)){ %>
+        	<% if (currentUserIsAdmin){ %>
             <li>
                 <a href="<%= LinksManager.STUDENTS_ADMIN %>">Students</a>
 			</li>
@@ -46,8 +49,21 @@
 			</li>
         </ul>
     </li>
+    <% } else { %>
+    <li>
+        <a href="<%= LinksManager.HASH %>">Course Modules</a>
+        <ul> 
+            <li>
+                <a href="<%= LinksManager.FIELD_COURSES %>">My Courses</a>
+			</li>
+            <li>
+                <a href="<%= LinksManager.COURSE_MODULES %>">My Course Modules</a>
+			</li>
+        </ul>
+    </li>
     <% } %>
     
+    <% if (currentUserIsAdmin) { %>
     <li>
         <a href="<%= LinksManager.WSIG_ADMIN_HOME %>">WSIG Admin</a>
         <ul>
@@ -59,6 +75,7 @@
 			</li>
         </ul>
     </li>
+    <% } %>
     
     <% if (SessionManager.isAuthenticated(session)){ %>
     <li>

@@ -6,7 +6,7 @@ public class FieldCourseBase extends ModelBase {
 	@DatabaseField(generatedId = true)
 	private long id;
 	
-	@DatabaseField(canBeNull=true, foreign=true, columnName="field_id")
+	@DatabaseField(canBeNull=true, foreign=true, columnName=FIELD_AREA_FIELD_ID)
 	private AreaField areaField;
 	
 	@DatabaseField
@@ -20,6 +20,8 @@ public class FieldCourseBase extends ModelBase {
 	
 	@DatabaseField
 	private int pass_percentage;
+	
+	public static final String FIELD_AREA_FIELD_ID 	= "field_id";
 	
 	public FieldCourseBase() { /*ORMLite needs a no-arg constructor*/ }
 	

@@ -3,7 +3,6 @@ package phd.collins.imls.model;
 import java.util.Date;
 
 import phd.collins.imls.model.User.UserTypes;
-import phd.collins.imls.util.Info;
 import phd.collins.imls.util.UtilGeneral;
 
 import com.j256.ormlite.field.DataType;
@@ -83,7 +82,6 @@ public class UserBase extends ModelBase {
 	}
 
 	public Date getLast_login_date() {
-		Info.sout("Hello: " + last_login_date);
 		return last_login_date;
 	}
 
@@ -93,6 +91,14 @@ public class UserBase extends ModelBase {
 
 	public boolean getIs_active() {
 		return is_active;
+	}
+	
+	public boolean isStudent(){
+		return (this.getUser_type().trim().equalsIgnoreCase(UserTypes.STUDENT.toString()));
+	}
+	
+	public boolean isAdmin(){
+		return (this.getUser_type().trim().equalsIgnoreCase(UserTypes.ADMIN.toString()));
 	}
 	
 	public String digestPassword(String plainPassword){

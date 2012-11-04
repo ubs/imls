@@ -27,6 +27,8 @@ public class StudentBase extends ModelBase {
 	
 	@DatabaseField(canBeNull=false, foreign=true, columnName="user_id")
 	private User user;
+	
+	public static final String FIELD_REGNUMBER 	= "regno";
 
 	public StudentBase() { /*ORMLite needs a no-arg constructor*/ }
 

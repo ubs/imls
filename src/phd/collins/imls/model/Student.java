@@ -51,6 +51,21 @@ public class Student extends StudentBase implements IModelToOtherFormats {
 		return obj;
 	}
 	
+	public static Student getByRegNumber(String regNumber) {
+		Student obj = null;
+		try{
+			obj = DAOManager.STUDENT_DAO.queryForFirst(
+					DAOManager.STUDENT_DAO.queryBuilder()
+					.where().eq(Student.FIELD_REGNUMBER, regNumber)
+					.prepare()
+			);
+		} catch (Exception e){
+			obj = null;
+			e.printStackTrace();
+		}
+		return obj;
+	}
+	
 	public static List<Student> getAll() throws DataAccessException{
 		List<Student> allItems = new ArrayList<Student>();
 		

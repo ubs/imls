@@ -3,7 +3,6 @@ package phd.collins.imls.util;
 import java.util.Hashtable;
 
 import phd.collins.imls.model.Admin;
-import phd.collins.imls.model.ModelTypes.UserType;
 import phd.collins.imls.model.User;
 import phd.collins.imls.model.User.UserTypes;
 
@@ -83,7 +82,7 @@ public class AppInits {
 	
 	private User getDefaultAdminUser(){
 		User defaultUser = new User("admin", User.DEFAULT_PASSWORD, UserTypes.ADMIN, true);
-		defaultUser.setUser_type(UserType.USER_TYPE_ADMIN);
+		defaultUser.setUser_type(UserTypes.ADMIN.toString());
 		defaultUser.setIs_active(true);
 		return defaultUser;
 	}

@@ -23,8 +23,12 @@ public class LinksManager {
 	public static String COURSE_ADMIN = "courseadminall.jsp";
 	public static String STUDY_AREAS_ADMIN = "studyareaadmin.jsp";
 	public static String AREA_FIELDS_ADMIN = "areafieldadmin.jsp";
+	public static String FIELD_COURSES = "fieldcourses.jsp";
 	public static String FIELD_COURSES_ADMIN = "fieldcourseadmin.jsp";
+	public static String COURSE_MODULES = "coursemodules.jsp";
 	public static String COURSE_MODULES_ADMIN = "coursemoduleadmin.jsp";
+	
+	public static String USER_PROFILE = "userprofile.jsp";
 	
 	public static String WSIG_ADMIN_HOME = "wsig-index.jsp";
 	public static String WSIG_ADMIN_TEST = "wsig-test.jsp";

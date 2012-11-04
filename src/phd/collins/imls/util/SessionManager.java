@@ -4,7 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import phd.collins.imls.agents.actions.Authentication.AuthenticateResponse;
-import phd.collins.imls.model.ModelTypes.UserType;
+import phd.collins.imls.model.User;
+import phd.collins.imls.model.User.UserTypes;
 
 public class SessionManager {
 	public static final String IS_AUTHENTICATED = "_isAuthenticated";
@@ -36,6 +37,19 @@ public class SessionManager {
 		return getSessionItem(_httpsession, CUSER_AUTHRESPONSE);
 	}
 	
+	public static User getCurrentUser(HttpSession _httpsession){
+		User currentUser = null;
+		Object objAuthResponse = getUserAuthResponse(_httpsession);
+		
+		if (objAuthResponse != null){
+			AuthenticateResponse authResponse = (AuthenticateResponse)objAuthResponse;
+			String username = "" + authResponse.getUsername();
+			currentUser = User.getByUsername(username);
+		}
+		
+		return currentUser;
+	}
+	
 	public static void setUserAuthResponse(HttpSession _httpsession, Object authResponse){
 		setSessionItem(_httpsession, CUSER_AUTHRESPONSE, authResponse);
 	}
@@ -54,7 +68,7 @@ public class SessionManager {
 		Object objAuthResponse = getUserAuthResponse(_httpsession);
 		if (objAuthResponse != null){
 			AuthenticateResponse authResponse = (AuthenticateResponse)objAuthResponse;
-			userIsAdmin = (authResponse.getUserType().trim().equalsIgnoreCase(UserType.USER_TYPE_ADMIN));
+			userIsAdmin = (authResponse.getUserType().trim().equalsIgnoreCase(UserTypes.ADMIN.toString()));
 		}
 		return userIsAdmin;
 	}

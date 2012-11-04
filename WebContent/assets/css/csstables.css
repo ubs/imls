@@ -19,14 +19,14 @@
 	text-align: left;
 	padding: 8px;
 	background: #001685; /*b9c9fe;*/
-	border-top: 4px solid #A61C00; /*aabcfe;*/
+	border-top: 4px solid #FF6805; /*A61C00; aabcfe;*/
 	border-bottom: 1px solid #FFF;
 	color: #FFF; /*039;*/
 }
 #box-table-a td
 {
 	padding: 8px;
-	background: #E9E9E9; /*e8edff; */
+	background: #FFF; /*E9E9E9; e8edff; */
 	border-bottom: 1px solid #FFF;
 	color: #333;
 	border-top: 1px solid transparent;

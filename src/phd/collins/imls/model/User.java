@@ -70,6 +70,21 @@ public class User extends UserBase implements IModelToOtherFormats {
 		return user;
 	}
 	
+	public static User getByUsername(String username) {
+		User user = null;
+		try{
+			user = DAOManager.USER_DAO.queryForFirst(
+					DAOManager.USER_DAO.queryBuilder()
+					.where().eq(User.FIELD_USERNAME, username)
+					.prepare()
+			);
+		} catch (Exception e){
+			user = null;
+			e.printStackTrace();
+		}
+		return user;
+	}
+	
 	public static long create(User user){
 		long userID = 0;
 		try {
@@ -128,8 +143,7 @@ public class User extends UserBase implements IModelToOtherFormats {
 		}
 		return user;
 	}
+
 }
-
-
 
 
