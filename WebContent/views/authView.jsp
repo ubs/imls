@@ -63,6 +63,14 @@
 					</div>
 				</li>
             </ul>
+            
+            <ul>
+            	<li>
+            		<div style="text-align:center;margin:20px 0 10px;">
+						<a href="<%= LinksManager.STUDENT_REGISTRATION %>">&raquo;Register as a new student</a>
+					</div>
+				</li>
+            </ul>
 		</form>
 	</div>
 

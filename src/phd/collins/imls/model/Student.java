@@ -8,6 +8,7 @@ import java.util.List;
 import phd.collins.imls.exceptions.DataAccessException;
 import phd.collins.imls.model.User.UserTypes;
 import phd.collins.imls.util.Info;
+import phd.collins.imls.util.UtilGeneral;
 
 import com.j256.ormlite.table.DatabaseTable;
 
@@ -118,4 +119,23 @@ public class Student extends StudentBase implements IModelToOtherFormats {
 		
 		return obj;
 	}
+	
+	public static boolean regNumberAlreadyExists(String regNumber){
+		Student obj = getByRegNumber(regNumber);
+		return (obj != null);
+	}
+	
+	public static String getRandomRegNumber(){
+		String strRandRegNumber = "SN";
+		boolean blnAlreadyExists = false;
+		
+		do{
+			strRandRegNumber += UtilGeneral.getRandomNumericString(3);
+			blnAlreadyExists = regNumberAlreadyExists(strRandRegNumber);
+			if (blnAlreadyExists) strRandRegNumber = strRandRegNumber.substring(0, 3);
+		} while (blnAlreadyExists);
+		
+		return strRandRegNumber;
+	}
+
 }

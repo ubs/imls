@@ -31,6 +31,7 @@ public class LinksManager {
 	public static String VIEW_MODULE_CONTENT = "viewmodulecontent.jsp";
 	
 	public static String USER_PROFILE = "userprofile.jsp";
+	public static String STUDENT_REGISTRATION = "studentregister.jsp";
 	
 	public static String WSIG_ADMIN_HOME = "wsig-index.jsp";
 	public static String WSIG_ADMIN_TEST = "wsig-test.jsp";

@@ -40,7 +40,7 @@ public class TestModels {
         //createTestAdministrator(user1);
         //createTestAdministrator(createTestUser());
         //createTestStudent(createTestUser());
-		createTestStudent2();
+		//createTestStudent2();
 		
 		//createTestStudyArea();
 		//new StudyArea().countAll();
@@ -56,6 +56,20 @@ public class TestModels {
 		
 		//Test Password Digest
 		testDigestPassword("collins");
+		
+		//testGenerateRegNumbers();
+	}
+
+	@SuppressWarnings("unused")
+	private void testGenerateRegNumbers() {
+		String randRegNumber = "";
+		
+		for (int ctr=0; ctr<777; ctr++){
+			randRegNumber = Student.getRandomRegNumber();
+			Info.sout("Random Generated Student Reg Number: " + randRegNumber + 
+					", Already Exist: " + Student.regNumberAlreadyExists(randRegNumber) +
+					", Length of Reg: " + randRegNumber.length());
+		}
 	}
 	
 	@SuppressWarnings("unused")

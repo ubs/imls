@@ -8,11 +8,16 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 public class UtilGeneral {
 	
+	private static final String validNumbers = "0123456789";
 	private static final String validCharacters = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	private static Random random = new Random();
 
 	public static String getRandomString(){
 		return getRandomString(7);
+	}
+	
+	public static String getRandomString(int length){
+		return getRandomCharacters(length, UtilGeneral.validCharacters);
 	}
 	
 	public static String getRandomStringLowerCase(){
@@ -23,10 +28,14 @@ public class UtilGeneral {
 		return getRandomString(length).toLowerCase();
 	}
 	
-	public static String getRandomString(int length){
+	public static String getRandomNumericString(int length){
+		return getRandomCharacters(length, UtilGeneral.validNumbers);
+	}
+	
+	private static String getRandomCharacters(int length, String strCharacterSet){
 		StringBuilder sb = new StringBuilder(length);
 		for( int i = 0; i < length; i++ )
-			sb.append(UtilGeneral.validCharacters.charAt(random.nextInt(UtilGeneral.validCharacters.length())));
+			sb.append(strCharacterSet.charAt(random.nextInt(strCharacterSet.length())));
 		return sb.toString();
 	}
 	
