@@ -22,4 +22,14 @@ public interface IMLSAgentsVocabulary {
 	public static final String IMLS_GENERAL_AGENT = "IMLSGeneralAgent";
 	public static final String IMLS_GENERAL_AGENT_OWNER = "IMLSGeneralAgentOwner";
 	public static final String IMLS_GENERAL_AGENT_BASENAME = "IMLS_General_Agent";
+	
+	//AssessmentAgent Agent
+	public static final String ASSESSMENT_AGENT = "AssessmentAgent";
+	public static final String ASSESSMENT_AGENT_OWNER = "AssessmentAgentOwner";
+	public static final String ASSESSMENT_AGENT_BASENAME = "IMLS_Assessment_Agent";
+	
+	//TutorialAgent Agent
+	public static final String TUTORIAL_AGENT = "TutorialAgent";
+	public static final String TUTORIAL_AGENT_OWNER = "TutorialAgentOwner";
+	public static final String TUTORIAL_AGENT_BASENAME = "IMLS_Tutorial_Agent";
 }
