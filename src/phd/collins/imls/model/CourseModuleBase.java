@@ -16,6 +16,9 @@ public class CourseModuleBase extends ModelBase {
 	@DatabaseField
 	private int study_order;
 	
+	@DatabaseField(canBeNull=true, foreign=true, columnName=FIELD_COMPETENCY_LEVEL_ID)
+	private CompetencyLevels competencyLevel;
+	
 	@DatabaseField
 	private String description;
 	
@@ -24,6 +27,7 @@ public class CourseModuleBase extends ModelBase {
 
 	public static final String FIELD_COURSE_ID 	= "course_id";
 	public static final String FIELD_STUDY_ORDER = "study_order";
+	public static final String FIELD_COMPETENCY_LEVEL_ID = "competency_level_id";
 	
 	public CourseModuleBase() { /*ORMLite needs a no-arg constructor*/ }
 
@@ -65,6 +69,14 @@ public class CourseModuleBase extends ModelBase {
 	public int getStudy_order() {
 		return study_order;
 	}
+	
+	public void setCompetencyLevel(CompetencyLevels competencyLevel) {
+		this.competencyLevel = competencyLevel;
+	}
+
+	public CompetencyLevels getCompetencyLevel() {
+		return competencyLevel;
+	}
 
 	public void setDescription(String description) {
 		this.description = description;
@@ -81,4 +93,5 @@ public class CourseModuleBase extends ModelBase {
 	public String getModule_content() {
 		return module_content;
 	}
+
 }

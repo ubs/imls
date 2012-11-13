@@ -9,6 +9,7 @@ public class CompetencyLevelsBase extends ModelBase {
 	@DatabaseField
 	private String level;
 	
+	public static final String FIELD_ID 	= "id";
 	public static final String FIELD_LEVEL 	= "level";
 
 	public CompetencyLevelsBase() { /*ORMLite needs a no-arg constructor*/ }

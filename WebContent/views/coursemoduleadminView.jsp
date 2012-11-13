@@ -1,3 +1,4 @@
+<%@page import="phd.collins.imls.model.CompetencyLevels"%>
 <%@page import="phd.collins.imls.model.CourseModule"%>
 <%@page import="phd.collins.imls.model.FieldCourse"%>
 <%@page import="phd.collins.imls.util.LinksManager"%>
@@ -7,7 +8,7 @@
 <%@page import="phd.collins.imls.util.Info"%>
 <%@page import="java.util.List"%>
 <%
-	String parCourseID = "", parModuleName = "", parStudyOrder = "", parDescription = "", parModuleContent = "";
+	String parCourseID = "", parModuleName = "", parStudyOrder = "", parCompetencyLevelID = "", parDescription = "", parModuleContent = "";
 	boolean fieldCoursesExist = false;
 
 	ViewParameters viewParams = SessionManager.getViewParameters(request);
@@ -16,6 +17,7 @@
 		parCourseID = (String)viewParams.getParameter(ParameterNames.PN_FIELD_COURSE_ID);
 		parModuleName = (String)viewParams.getParameter(ParameterNames.PN_MODULE_NAME);
 		parStudyOrder = (String)viewParams.getParameter(ParameterNames.PN_STUDY_ORDER);
+		parCompetencyLevelID = (String)viewParams.getParameter(ParameterNames.PN_COMPETENCY_LEVEL_ID);
 		parDescription = (String)viewParams.getParameter(ParameterNames.PN_DESCRIPTION);
 		parModuleContent  = (String)viewParams.getParameter(ParameterNames.PN_MODULE_CONTENT);
 		fieldCoursesExist = viewParams.getBooleanParameter(ParameterNames.PN_FIELD_COURSES_EXIST);
@@ -57,6 +59,15 @@
             </ul>
             
             <ul class="formrow clearfix">
+            	<li class="grid_3 formlabel">Competency Level</li>
+            	<li class="grid_3 formcontrol">
+            		<select class="select" name="<%= ParameterNames.PN_COMPETENCY_LEVEL_ID %>">
+            			<%= CompetencyLevels.getAllAsListOptions() %>
+					</select>
+            	</li>
+            </ul>
+            
+            <ul class="formrow clearfix">
             	<li class="grid_3 formlabel">Description</li>
             	<li class="grid_3 formcontrol">
             		<textarea name="<%= ParameterNames.PN_DESCRIPTION %>" class="textbox" rows="2"><%= parDescription %></textarea>
@@ -85,7 +96,9 @@
 	<div id="addeditsection listsection" style="margin:20px 10px;">
 		<table class="datagrid">
 			<thead>
-				<tr><th>Sn</th><th>Course Module</th><th>Study Order</th><th>Description</th></tr>
+				<tr>
+					<th>Sn</th><th>Course Module</th><th>Study Order</th><th>C. Level</th><th>Description</th>
+				</tr>
 			</thead>
 			<tbody>
 			<% 
@@ -96,6 +109,7 @@
 					<td><%= ++sn %></td>
 					<td><%= courseModule.getModule_name() %></td>
 					<td><%= courseModule.getStudy_order() %></td>
+					<td><%= CompetencyLevels.getCompetencyLevel(courseModule.getCompetencyLevel()) %></td>
 					<td><%= courseModule.getDescription() %></td>
 				</tr>
 			<% } %>

@@ -35,6 +35,8 @@ public interface ParameterNames {
 	
 	public static final String PN_USER_ID = "userid";
 	
+	public static final String PN_COMPETENCY_LEVEL_ID = "competency_level_id";
+	
 	public static final String PN_FULLNAME = "fullname";
 	public static final String PN_CONTACT = "contact";
 	

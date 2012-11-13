@@ -1,3 +1,4 @@
+<%@page import="phd.collins.imls.model.CompetencyLevels"%>
 <%@page import="phd.collins.imls.util.LinksManager"%>
 <%@page import="phd.collins.imls.model.AreaField"%>
 <%@page import="phd.collins.imls.model.FieldCourse"%>
@@ -42,7 +43,7 @@
 			<thead>
 				<tr>
 					<th>Sn</th><th>Course Module</th><th>Study Order</th>
-					<th>Description</th><th>Actions</th>
+					<th>C. Level</th><th>Description</th><th>Actions</th>
 				</tr>
 			</thead>
 			
@@ -58,6 +59,7 @@
 					<td><%= ++sn %></td>
 					<td><%= courseModule.getModule_name() %></td>
 					<td><%= courseModule.getStudy_order() %></td>
+					<td><%= CompetencyLevels.getCompetencyLevel(courseModule.getCompetencyLevel()) %></td>
 					<td><%= courseModule.getDescription() %></td>
 					<td><%= viewContentLink %></td>
 				</tr>

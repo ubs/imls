@@ -1,3 +1,4 @@
+<%@page import="phd.collins.imls.model.CompetencyLevels"%>
 <%@page import="phd.collins.imls.util.LinksManager"%>
 <%@page import="phd.collins.imls.util.ParameterNames"%>
 <%@page import="phd.collins.imls.util.SessionManager"%>
@@ -24,6 +25,9 @@
 	<% } else { %>
 		<p><span class="caption">Course Module Name</span></p>
 		<p><%= courseModule.getModule_name() %></p>
+		
+		<p><span class="caption">Competency Level</span></p>
+		<p><%= CompetencyLevels.getCompetencyLevel(courseModule.getCompetencyLevel()) %></p>
 		
 		<p><span class="caption">Course Module Content</span></p>
 		<p style="line-height: 15px;">

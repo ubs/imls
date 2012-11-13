@@ -72,7 +72,7 @@ public class CourseModule extends CourseModuleBase implements IModelToOtherForma
 		return allItems;
 	}
 	
-	public static CourseModule AddCourseModule(String courseID, String moduleName, String studyOrder, String description, String moduleContent) throws DataAccessException {
+	public static CourseModule AddCourseModule(String courseID, String moduleName, String studyOrder, String competencyLevelID, String description, String moduleContent) throws DataAccessException {
 		CourseModule obj;
 		
 		try {
@@ -80,6 +80,13 @@ public class CourseModule extends CourseModuleBase implements IModelToOtherForma
 			
 			obj = new CourseModule(moduleName, description, moduleContent, intStudyOrder);
 			obj.setFieldCourse(FieldCourse.get(Long.parseLong(courseID)));
+			
+			CompetencyLevels cLevel = null; Long cLevelID = -1L;
+			try{ cLevelID = Long.parseLong(competencyLevelID); } catch (Exception e) { cLevelID = null; }
+			
+			if (cLevelID != null) { cLevel = CompetencyLevels.get(cLevelID); }
+			obj.setCompetencyLevel(cLevel);
+			
 			DAOManager.COURSE_MODULE_DAO.create(obj);
 		} catch (Exception e){
 			Info.serr(e.getMessage());
