@@ -95,4 +95,19 @@ public class FieldCourse extends FieldCourseBase implements IModelToOtherFormats
 		
 		return obj;
 	}
+	
+	public static String getFieldCourseName(FieldCourse fieldCourse) {
+		String fieldCourseName = "";
+		
+		try {
+			DAOManager.FIELD_COURSE_DAO.refresh(fieldCourse); //Refresh Foreign Field
+		} catch (SQLException e) { }
+		
+		if (fieldCourse != null){
+			fieldCourseName = fieldCourse.getCourse_name();
+			if (fieldCourseName == null) { fieldCourseName = ""; }
+		}
+
+		return fieldCourseName;
+	}
 }

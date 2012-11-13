@@ -35,7 +35,7 @@ public interface ParameterNames {
 	
 	public static final String PN_USER_ID = "userid";
 	
-	public static final String PN_COMPETENCY_LEVEL_ID = "competency_level_id";
+	public static final String PN_COMPETENCY_LEVEL_ID = "competencylevelid";
 	
 	public static final String PN_FULLNAME = "fullname";
 	public static final String PN_CONTACT = "contact";
@@ -43,4 +43,12 @@ public interface ParameterNames {
 	public static final String PN_FIELD_COURSES_EXIST = "FieldCoursesExist";
 	public static final String PN_AREA_FIELDS_EXIST = "AreaFieldsExist";
 	public static final String PN_STUDY_AREAS_EXIST = "StudyAreasExist";
+	
+	public static final String PN_QUESTION = "question";
+	public static final String PN_OPTION_1 = "option1";
+	public static final String PN_OPTION_2 = "option2";
+	public static final String PN_OPTION_3 = "option3";
+	public static final String PN_OPTION_4 = "option4";
+	public static final String PN_CORRECT_OPTION = "correctoption";
+	public static final String PN_QUESTION_POINT = "questionpoint";
 }

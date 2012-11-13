@@ -65,6 +65,15 @@
     
     <% if (currentUserIsAdmin) { %>
     <li>
+        <a href="<%= LinksManager.HASH %>">Assessment</a>
+        <ul>
+            <li>
+                <a href="<%= LinksManager.MANAGE_ASSESSMENT_ADMIN %>">Manage Assessment</a>
+			</li>
+        </ul>
+    </li>
+    
+    <li>
         <a href="<%= LinksManager.WSIG_ADMIN_HOME %>">WSIG Admin</a>
         <ul>
             <li>

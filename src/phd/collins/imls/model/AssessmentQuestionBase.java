@@ -9,10 +9,13 @@ public class AssessmentQuestionBase extends ModelBase {
 	public static final String FIELDNAME_OPTION4 = "option4";
 	public static final String FIELDNAME_CORRECT_OPTION = "correct_option";
 	
+	public static final String FIELD_COURSE_ID 	= "course_id";
+	public static final String FIELD_COMPETENCY_LEVEL_ID = "competency_level_id";
+	
 	@DatabaseField(generatedId = true)
 	private long id;
 	
-	@DatabaseField(canBeNull=false, foreign=true)
+	@DatabaseField(canBeNull=false, foreign=true, columnName=FIELD_COURSE_ID)
 	private FieldCourse fieldCourse;
 	
 	@DatabaseField
@@ -35,12 +38,21 @@ public class AssessmentQuestionBase extends ModelBase {
 	
 	@DatabaseField
 	private int point;
+	
+	@DatabaseField(canBeNull=true, foreign=true, columnName=FIELD_COMPETENCY_LEVEL_ID)
+	private CompetencyLevels competencyLevel;
 
 	public AssessmentQuestionBase() { /*ORMLite needs a no-arg constructor*/ }
 
-	public AssessmentQuestionBase(FieldCourse _fieldCourse, String _question) {
+	public AssessmentQuestionBase(FieldCourse _fieldCourse, String _question, String _option1, String _option2, String _option3, String _option4, String _correctOption, CompetencyLevels _cLevel) {
 		this.setFieldCourse(_fieldCourse);
 		this.setQuestion(_question);
+		this.setOption1(_option1);
+		this.setOption2(_option2);
+		this.setOption3(_option3);
+		this.setOption4(_option4);
+		this.setCorrect_option(_correctOption);
+		this.setCompetencyLevel(_cLevel);
 	}
 
 	public void setId(long id) {
@@ -113,5 +125,13 @@ public class AssessmentQuestionBase extends ModelBase {
 
 	public int getPoint() {
 		return point;
+	}
+
+	public void setCompetencyLevel(CompetencyLevels competencyLevel) {
+		this.competencyLevel = competencyLevel;
+	}
+
+	public CompetencyLevels getCompetencyLevel() {
+		return competencyLevel;
 	}
 }
