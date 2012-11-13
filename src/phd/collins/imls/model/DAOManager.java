@@ -24,6 +24,7 @@ public class DAOManager {
 	public static final Dao<CourseModule, Long> COURSE_MODULE_DAO = getDAO(CourseModule.class);
 	
 	public static final Dao<CompetencyLevels, Long> COMPETENCY_LEVELS_DAO = getDAO(CompetencyLevels.class);
+	public static final Dao<AssessmentQuestion, Long> ASSESSMENT_QUESTION_DAO = getDAO(AssessmentQuestion.class);
 	
 	
 	private static ConnectionSource getConnectionSource() throws ConnectionSourceNotInitalizedException, Exception {

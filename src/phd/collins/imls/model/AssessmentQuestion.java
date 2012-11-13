@@ -1,6 +1,12 @@
 package phd.collins.imls.model;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
+import phd.collins.imls.exceptions.DataAccessException;
+import phd.collins.imls.util.Info;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -75,7 +81,7 @@ public class AssessmentQuestion extends AssessmentQuestionBase implements IModel
 	public static String getPossibleOptionsAsSelectList() {
 		StringBuilder sb = new StringBuilder();
 		
-		for (int k = 1; k < totalOptionsAvailable ; k++){
+		for (int k = 1; k <= totalOptionsAvailable ; k++){
 			sb.append("<option value=\"")
 				.append(k).append("\">").append(k).append("</option>");
 		}
@@ -86,5 +92,18 @@ public class AssessmentQuestion extends AssessmentQuestionBase implements IModel
 	public static AssessmentQuestion AddAssessmentQuestion(String parCourseID, String parQuestion, String parCompetencyLevelID, 
 			String parOption1, String parOption2, String parOption3, String parOption4, String parCorrectOption, String parPoint){
 		return null;
+	}
+	
+	public static List<AssessmentQuestion> getAll() throws DataAccessException{
+		List<AssessmentQuestion> allItems = new ArrayList<AssessmentQuestion>();
+		
+		try {
+			allItems = DAOManager.ASSESSMENT_QUESTION_DAO.queryForAll();
+		} catch (SQLException e) {
+			Info.serr(e.getMessage());
+			throw new DataAccessException("Error retrieving assessment questions");
+		}
+		
+		return allItems;
 	}
 }

@@ -70,6 +70,7 @@
 	viewParams.setParameter(ParameterNames.PN_OPTION_4, parOption4);
 	viewParams.setParameter(ParameterNames.PN_CORRECT_OPTION, parCorrectOption);
 	viewParams.setParameter(ParameterNames.PN_QUESTION_POINT, parPoint);
+	viewParams.setParameter(ParameterNames.PN_FIELD_COURSES_EXIST, fieldCoursesExist);
 	SessionManager.setViewParameters(request, viewParams);
 %>
 <jsp:include page="<%= LinksManager.LAYOUT_PAGE %>" flush="true">
