@@ -54,7 +54,7 @@
 			if (assessmentQuestion != null){
 				flashInfo = "Assessment Question has been successfully created.";
 				SessionManager.setFlashInfo(session, flashInfo, FlashInfoType.INFO);
-				response.sendRedirect(LinksManager.COURSE_MODULES_ADMIN);
+				response.sendRedirect(LinksManager.MANAGE_ASSESSMENT_ADMIN);
 				return;
 			}
 		}

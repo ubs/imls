@@ -4,6 +4,7 @@ import java.io.File;
 import java.sql.SQLException;
 import java.util.Date;
 
+import phd.collins.imls.appsetup.SetupRandomAssessmentQuestions;
 import phd.collins.imls.exceptions.DataAccessException;
 import phd.collins.imls.model.Admin;
 import phd.collins.imls.model.AreaField;
@@ -58,6 +59,15 @@ public class TestModels {
 		testDigestPassword("collins");
 		
 		//testGenerateRegNumbers();
+		testTemp();
+	}
+
+	private void testTemp() {
+		try {
+			new SetupRandomAssessmentQuestions().setUp();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@SuppressWarnings("unused")

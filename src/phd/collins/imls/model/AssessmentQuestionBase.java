@@ -44,7 +44,9 @@ public class AssessmentQuestionBase extends ModelBase {
 
 	public AssessmentQuestionBase() { /*ORMLite needs a no-arg constructor*/ }
 
-	public AssessmentQuestionBase(FieldCourse _fieldCourse, String _question, String _option1, String _option2, String _option3, String _option4, String _correctOption, CompetencyLevels _cLevel) {
+	public AssessmentQuestionBase(
+			FieldCourse _fieldCourse, String _question, String _option1, String _option2, String _option3, String _option4,
+			String _correctOption, String _point, CompetencyLevels _cLevel) {
 		this.setFieldCourse(_fieldCourse);
 		this.setQuestion(_question);
 		this.setOption1(_option1);
@@ -52,6 +54,7 @@ public class AssessmentQuestionBase extends ModelBase {
 		this.setOption3(_option3);
 		this.setOption4(_option4);
 		this.setCorrect_option(_correctOption);
+		this.setPoint(Integer.parseInt(_point));
 		this.setCompetencyLevel(_cLevel);
 	}
 

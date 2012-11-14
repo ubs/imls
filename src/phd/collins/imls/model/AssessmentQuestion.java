@@ -19,8 +19,11 @@ public class AssessmentQuestion extends AssessmentQuestionBase implements IModel
 
 	public AssessmentQuestion(){ super(); }
 	
-	public AssessmentQuestion(FieldCourse _fieldCourse, String _question, String _option1, String _option2, String _option3, String _option4, String _correctOption, CompetencyLevels _cLevel) {
-		super(_fieldCourse, _question, _option1, _option2, _option3, _option4, _correctOption, _cLevel);
+	public AssessmentQuestion(
+			FieldCourse _fieldCourse, String _question, 
+			String _option1, String _option2, String _option3, String _option4, 
+			String _correctOption, String _Point, CompetencyLevels _cLevel) {
+		super(_fieldCourse, _question, _option1, _option2, _option3, _option4, _correctOption, _Point, _cLevel);
 	}
 	
 	public HashMap<String, String> getAllOptions(){
@@ -89,9 +92,35 @@ public class AssessmentQuestion extends AssessmentQuestionBase implements IModel
 		return sb.toString();
 	}
 	
-	public static AssessmentQuestion AddAssessmentQuestion(String parCourseID, String parQuestion, String parCompetencyLevelID, 
-			String parOption1, String parOption2, String parOption3, String parOption4, String parCorrectOption, String parPoint){
-		return null;
+	public static AssessmentQuestion AddAssessmentQuestion(String parCourseID, String parQuestion,
+			String parCompetencyLevelID, String parOption1, String parOption2, String parOption3, String parOption4,
+			String parCorrectOption, String parPoint) throws DataAccessException {
+		
+			FieldCourse fc = FieldCourse.get(Long.parseLong(parCourseID));
+			CompetencyLevels cLevel = CompetencyLevels.get(Long.parseLong(parCompetencyLevelID));
+			
+			return AddAssessmentQuestion(
+					fc, parQuestion, cLevel, parOption1, parOption2, parOption3, parOption4,
+					parCorrectOption, parPoint);
+	}
+	
+	public static AssessmentQuestion AddAssessmentQuestion(FieldCourse parFieldCourse, String parQuestion,
+			CompetencyLevels parCompetencyLevel, String parOption1, String parOption2, String parOption3, String parOption4,
+			String parCorrectOption, String parPoint) throws DataAccessException{
+		AssessmentQuestion obj;
+		
+		try {
+			obj = new AssessmentQuestion(
+					parFieldCourse, parQuestion, parOption1, parOption2, parOption3, parOption4,
+					parCorrectOption, parPoint, parCompetencyLevel);
+			
+			DAOManager.ASSESSMENT_QUESTION_DAO.create(obj);
+		} catch (Exception e){
+			Info.serr(e.getMessage());
+			throw new DataAccessException("Error saving assessment question");
+		}
+		
+		return obj;
 	}
 	
 	public static List<AssessmentQuestion> getAll() throws DataAccessException{
