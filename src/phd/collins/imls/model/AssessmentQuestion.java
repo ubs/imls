@@ -7,9 +7,11 @@ import java.util.List;
 
 import phd.collins.imls.exceptions.DataAccessException;
 import phd.collins.imls.util.Info;
+import phd.collins.imls.util.UtilGeneral;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "assessment_questions")
@@ -81,6 +83,10 @@ public class AssessmentQuestion extends AssessmentQuestionBase implements IModel
 		return null;
 	}
 	
+	public static boolean assessmentQuestionsExist(){
+		return (new AssessmentQuestion().countAll() != 0);
+	}
+	
 	public static String getPossibleOptionsAsSelectList() {
 		StringBuilder sb = new StringBuilder();
 		
@@ -131,6 +137,53 @@ public class AssessmentQuestion extends AssessmentQuestionBase implements IModel
 		} catch (SQLException e) {
 			Info.serr(e.getMessage());
 			throw new DataAccessException("Error retrieving assessment questions");
+		}
+		
+		return allItems;
+	}
+	
+	public static ForeignCollection<AssessmentQuestion> getAllForSpecifiedCourse(String parCourseID) throws DataAccessException{
+		ForeignCollection<AssessmentQuestion> allItems = null;
+		
+		try {
+			Long courseID = -1L;
+			try{ courseID = Long.parseLong(parCourseID); } catch (Exception e) { courseID = null; }
+			
+			if (courseID != null) {
+				FieldCourse fc = FieldCourse.get(courseID);
+				allItems = fc.getColAssessmentQuestions();
+			}
+		} catch (Exception e) {
+			Info.serr(e.getMessage());
+			throw new DataAccessException("Error retrieving assessment questions for specified course");
+		}
+		
+		return allItems;
+	}
+	
+	public static List<AssessmentQuestion> getRandomAssessmentQuestions(String parCourseID) throws DataAccessException {
+		return getRandomAssessmentQuestions(parCourseID, 10);
+	}
+	public static List<AssessmentQuestion> getRandomAssessmentQuestions(String parCourseID, int numQuestions) throws DataAccessException{
+		List<AssessmentQuestion> allItems = new ArrayList<AssessmentQuestion>();
+		ForeignCollection<AssessmentQuestion> randomItems = null;
+		
+		try {
+			randomItems = getAllForSpecifiedCourse(parCourseID);
+			
+			if (randomItems != null) {
+				List<Integer> randomIndices = UtilGeneral.getRandomIndices(numQuestions, randomItems.size(), 1);
+				int currentIndex = 0;
+				
+				for (AssessmentQuestion assQ : randomItems){
+					if (randomIndices.contains(++currentIndex)) {
+						allItems.add(assQ);
+					}
+				}
+			}
+		} catch (Exception e) {
+			Info.serr(e.getMessage());
+			throw new DataAccessException("Error retrieving random assessment questions");
 		}
 		
 		return allItems;

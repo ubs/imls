@@ -2,6 +2,7 @@ package phd.collins.imls.util;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ViewParameters implements Serializable {
@@ -21,6 +22,11 @@ public class ViewParameters implements Serializable {
 	
 	public Object getParameter(String pKey){
 		return (_viewParameters.containsKey(pKey)) ? _viewParameters.get(pKey) : null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public <T extends Object> List<T> getParameterAsList(String pKey){
+		return (_viewParameters.containsKey(pKey)) ? (List<T>)_viewParameters.get(pKey) : null;
 	}
 	
 	public void setParameter(String pKey, Object pVal){

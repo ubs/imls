@@ -59,9 +59,22 @@ public class TestModels {
 		testDigestPassword("collins");
 		
 		//testGenerateRegNumbers();
-		testTemp();
+		//testTemp();
+		testGetRandomIndices();
 	}
 
+	private void testGetRandomIndices() {
+		String str = "";
+		for (int k=1; k<=10; k++){
+			str = UtilGeneral.displayListAsString( UtilGeneral.getRandomIndices(k, 10, 0) );
+			Info.sout("Random Indices from zero = " + str);
+			
+			str = UtilGeneral.displayListAsString( UtilGeneral.getRandomIndices(k, 10, 1) );
+			Info.sout("Random Indices from one = " + str);
+		}
+	}
+
+	@SuppressWarnings("unused")
 	private void testTemp() {
 		try {
 			new SetupRandomAssessmentQuestions().setUp();

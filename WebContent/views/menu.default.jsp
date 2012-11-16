@@ -70,6 +70,9 @@
             <li>
                 <a href="<%= LinksManager.MANAGE_ASSESSMENT_ADMIN %>">Manage Assessment</a>
 			</li>
+			<li>
+                <a href="<%= LinksManager.SIMULATE_ASSESSMENT_ADMIN %>">Simulate Assessment</a>
+			</li>
         </ul>
     </li>
     

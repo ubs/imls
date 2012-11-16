@@ -1,7 +1,9 @@
 package phd.collins.imls.util;
 
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Random;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -57,6 +59,37 @@ public class UtilGeneral {
 		  Object hValue = hashTable.get(hKey);
 		  Info.sout("Key [Value] : " + hKey + " [" + hValue + "]");
 		}
+	}
+
+	public static List<Integer> getRandomIndices(int numIndices, int sourceSize, int startPosition) {
+		List<Integer> randIndices = new ArrayList<Integer>();
+		
+		for (int n = startPosition; n <= sourceSize; n++){
+			randIndices.add(n);
+		}
+		
+		int indices2Remove = sourceSize - numIndices;
+		
+		if (indices2Remove > 0) {
+			int randomMaxNumber = 1;
+			for (int n = 1; n <= indices2Remove; n++){
+				randomMaxNumber = randIndices.size();
+				randIndices.remove(random.nextInt(randomMaxNumber));
+			}
+		}
+		
+		return randIndices;
+	}
+	
+	public static String displayListAsString(List<?> lst2Display) {
+		StringBuilder sb = new StringBuilder();
+		String temp = "";
+		
+		for (Object obj : lst2Display){
+			temp = obj + "";
+			sb.append(temp).append(" ");
+		}
+		return sb.toString();
 	}
 	
 }

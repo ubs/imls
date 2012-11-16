@@ -43,6 +43,7 @@ public interface ParameterNames {
 	public static final String PN_FIELD_COURSES_EXIST = "FieldCoursesExist";
 	public static final String PN_AREA_FIELDS_EXIST = "AreaFieldsExist";
 	public static final String PN_STUDY_AREAS_EXIST = "StudyAreasExist";
+	public static final String PN_ASSESSMENT_QUESTIONS_EXIST = "AssessmentQuestionsExist";
 	
 	public static final String PN_QUESTION = "question";
 	public static final String PN_OPTION_1 = "option1";
@@ -51,4 +52,11 @@ public interface ParameterNames {
 	public static final String PN_OPTION_4 = "option4";
 	public static final String PN_CORRECT_OPTION = "correctoption";
 	public static final String PN_QUESTION_POINT = "questionpoint";
+	
+	public static final String PN_SHOW_OPTIONS = "showoptions";
+	public static final String PN_SHOW_QUESTIONS = "showquestions";
+	public static final String PN_SHOW_RESULTS = "showresults";
+	public static final String PN_ASSESSMENT_QUESTIONS = "AssessmentQuestions";
+	
+	public static final String PN_FLOW_CONTROL_PARAM = "flowcontrolparam";
 }

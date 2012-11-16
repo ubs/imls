@@ -29,6 +29,7 @@ public class LinksManager {
 	public static String COURSE_MODULES_ADMIN = "coursemoduleadmin.jsp";
 	
 	public static String MANAGE_ASSESSMENT_ADMIN = "manageassessmentadmin.jsp";
+	public static String SIMULATE_ASSESSMENT_ADMIN = "simulateassessmentadmin.jsp";
 	
 	public static String VIEW_MODULE_CONTENT = "viewmodulecontent.jsp";
 	
