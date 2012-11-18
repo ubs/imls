@@ -25,8 +25,6 @@
 	else{
 		adminUser = Admin.getFirstObject();
 	}
-	
-	if (adminUser != null){ adminUser.refreshUserObject(); }
 
 	String viewPage = "initView.jsp";
 	

@@ -2,12 +2,16 @@ package phd.collins.imls.sandbox.ormlite;
 
 import java.io.File;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import phd.collins.imls.appsetup.SetupRandomAssessmentQuestions;
 import phd.collins.imls.exceptions.DataAccessException;
 import phd.collins.imls.model.Admin;
 import phd.collins.imls.model.AreaField;
+import phd.collins.imls.model.AssessmentAnswer;
+import phd.collins.imls.model.AssessmentQuestion;
 import phd.collins.imls.model.ConnectionManager;
 import phd.collins.imls.model.DAOManager;
 import phd.collins.imls.model.FieldCourse;
@@ -60,9 +64,36 @@ public class TestModels {
 		
 		//testGenerateRegNumbers();
 		//testTemp();
-		testGetRandomIndices();
+		//testGetRandomIndices();
+		for (int h=0; h < 50; h++){
+		testScoringAssessment();
+		Info.sout("\n\n");
+		}
 	}
 
+	private void testScoringAssessment() {
+		List<AssessmentQuestion> lstAssQs;
+		List<AssessmentAnswer> lstAssAns = new ArrayList<AssessmentAnswer>();
+		
+		try {
+			lstAssQs = AssessmentQuestion.getRandomAssessmentQuestions("" + UtilGeneral.getRandomNumber(7, 8));
+		
+			for (AssessmentQuestion aq : lstAssQs){
+				lstAssAns.add(new AssessmentAnswer(
+						aq.getId() + "", aq.getOption(UtilGeneral.getRandomNumber(1, 4))));
+			}
+			
+			int intPScore = AssessmentQuestion.scoreAssessmentAnswers(lstAssAns);
+			String strAssessedLevel = AssessmentQuestion.determineAssessedCompetencyLevel(intPScore);
+			Info.sout("After your beautiful score of " + intPScore + 
+					", here is your assessed level: " + strAssessedLevel);
+			
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@SuppressWarnings("unused")
 	private void testGetRandomIndices() {
 		String str = "";
 		for (int k=1; k<=10; k++){
@@ -176,7 +207,6 @@ public class TestModels {
 	@SuppressWarnings("unused")
 	private void runIMLSConfig(){
 		IMLSConfiguration.init(null);
-		//IMLSConfiguration.init(new File("WebContent\\conf\\imls.properties").getAbsolutePath());
 		IMLSConfiguration.dumpConfiguration();
 	}
 

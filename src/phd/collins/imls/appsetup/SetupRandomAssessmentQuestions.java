@@ -5,9 +5,9 @@ import java.util.List;
 import java.util.Random;
 
 import phd.collins.imls.exceptions.DataAccessException;
+import phd.collins.imls.model.AreaField;
 import phd.collins.imls.model.AssessmentQuestion;
 import phd.collins.imls.model.CompetencyLevels;
-import phd.collins.imls.model.FieldCourse;
 import phd.collins.imls.util.Info;
 
 public class SetupRandomAssessmentQuestions implements IAppSetup {
@@ -24,16 +24,17 @@ public class SetupRandomAssessmentQuestions implements IAppSetup {
 	
 	private void setUpRandomAssessmentQuestions() {
 		try {
-			List<FieldCourse> allFieldCourses = FieldCourse.getAll();
+			List<AreaField> allAreaFields = AreaField.getAll();
 	
-			if (allFieldCourses.size() > 0){
+			if (allAreaFields.size() > 0){
 				List<CompetencyLevels> allCLevels = CompetencyLevels.getAll();
 				
 				if (allCLevels.size() > 0){
-					for (FieldCourse fc : allFieldCourses){
+					for (AreaField areaField : allAreaFields){
 						for (CompetencyLevels cl : allCLevels){
-							Info.sout("Generating " + cl.getLevel() + " level random assessment questions for " + fc.getCourse_name());
-							addRandomAssessmentQuestions(fc, cl, 5);
+							Info.sout("Generating " + cl.getLevel() + 
+									" level random assessment questions for " + areaField.getField_name());
+							addRandomAssessmentQuestions(areaField, cl, 5);
 						}
 					}
 				}
@@ -43,7 +44,7 @@ public class SetupRandomAssessmentQuestions implements IAppSetup {
 		}
 	}
 
-	private void addRandomAssessmentQuestions(FieldCourse fc, CompetencyLevels cl, int numOfQs) {
+	private void addRandomAssessmentQuestions(AreaField areaField, CompetencyLevels cl, int numOfQs) {
 		String randomQuestionBase = "Random Assessment Question ";
 		String randomQuestion = "";
 		String parOption1 = "Random Option 1", parOption2 = "Random Option 2", 
@@ -62,7 +63,7 @@ public class SetupRandomAssessmentQuestions implements IAppSetup {
 				Info.sout(" Adding Question: " + randomQuestion + ", Correct Option: " + parCorrectOption + ", Point: " + parPoint);
 				
 				AssessmentQuestion.AddAssessmentQuestion(
-						fc, randomQuestion, cl, parOption1, parOption2, parOption3, parOption4, parCorrectOption, parPoint);
+						areaField, randomQuestion, cl, parOption1, parOption2, parOption3, parOption4, parCorrectOption, parPoint);
 			}
 		} catch (Exception e) {
 			Info.serr("Error while adding random assessment questions: " + e.getMessage());

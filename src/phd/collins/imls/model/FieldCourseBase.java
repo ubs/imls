@@ -26,9 +26,6 @@ public class FieldCourseBase extends ModelBase {
 	@ForeignCollectionField(eager = false, orderColumnName=CourseModule.FIELD_STUDY_ORDER)
 	private ForeignCollection<CourseModule> colCourseModules;
 	
-	@ForeignCollectionField(eager = false, orderColumnName=AssessmentQuestion.FIELD_ID)
-	private ForeignCollection<AssessmentQuestion> colAssessmentQuestions;
-	
 	public static final String FIELD_AREA_FIELD_ID 	= "field_id";
 	public static final String FIELD_STUDY_ORDER = "study_order";
 	
@@ -91,9 +88,5 @@ public class FieldCourseBase extends ModelBase {
 
 	public ForeignCollection<CourseModule> getColCourseModules() {
 		return colCourseModules;
-	}
-
-	public ForeignCollection<AssessmentQuestion> getColAssessmentQuestions() {
-		return colAssessmentQuestions;
 	}
 }

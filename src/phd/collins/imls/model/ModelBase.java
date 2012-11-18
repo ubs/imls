@@ -14,7 +14,8 @@ public abstract class ModelBase {
 			count = 0;
 			e.printStackTrace();
 		}
-		System.out.println("Do Count of : " + this.getClass() + " " + count);
+		
+		//System.out.println("Do Count of : " + this.getClass() + " " + count);
 		return count;
 	}
 	

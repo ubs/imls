@@ -1,7 +1,10 @@
+<%@page import="phd.collins.imls.model.AssessmentAnswer"%>
+<%@page import="phd.collins.imls.util.UtilGeneral"%>
+<%@page import="java.util.Enumeration"%>
+<%@page import="phd.collins.imls.model.AreaField"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="phd.collins.imls.model.AssessmentQuestion"%>
-<%@page import="phd.collins.imls.model.FieldCourse"%>
 <%@page import="phd.collins.imls.util.LinksManager"%>
 <%@page import="phd.collins.imls.util.SessionManager"%>
 <%@page import="phd.collins.imls.util.SessionManager.FlashInfoType"%>
@@ -9,17 +12,16 @@
 <%@page import="phd.collins.imls.util.ViewParameters"%>
 <%@page import="phd.collins.imls.util.Info"%>
 <%
-//If parameter show assessment, show results, keep choice displayed during test, keep cancel button on test
-// Keep choice during result
 	//Check authentication if page is to be secured
 	if (!SessionManager.isAuthenticated(session)) response.sendRedirect(LinksManager.AUTH_PAGE);
 
 	String flashInfo = "";
 	String viewPage = "simulateassessmentadminView.jsp";
-	String parCourseID = "";
+	String parAreaFieldID = "", parAreaFieldName = "";
 	boolean parShowOptions = true, parShowQuestions = false, parShowResults = false;
 	
 	List<AssessmentQuestion> assessmentQuestions = new ArrayList<AssessmentQuestion>();
+	String parAssessmentQuestionIDs = ""; String parPercentageScore = ""; String parAssessedCompetencyLevel = "";
 	
 	boolean assessmentQuestionsExist = AssessmentQuestion.assessmentQuestionsExist();
 	
@@ -34,30 +36,50 @@
 		Info.sout("ParFlowControlParam : " + parFlowControlParam);
 		
 		if (parFlowControlParam == null){
-			parCourseID = "";
+			parAreaFieldID = "";
 		}
 		else{
 			String strParFlowControlParam = (String)parFlowControlParam;
-			Info.sout("Okay, strParFlowControlParam : " + parFlowControlParam
-					+ " Equal showQuestions? "
-					+ (strParFlowControlParam.equalsIgnoreCase(ParameterNames.PN_SHOW_QUESTIONS))
-					+ " Equal showResults? "
-					+ (strParFlowControlParam.equalsIgnoreCase(ParameterNames.PN_SHOW_RESULTS))
-					);
+			parAreaFieldID = (String)request.getParameter(ParameterNames.PN_AREA_FIELD_ID);
+			
+			if (parAreaFieldID != null){
+				AreaField areaField = AreaField.get(Long.parseLong(parAreaFieldID));
+				parAreaFieldName = (areaField == null) ? "chosen field" : areaField.getField_name();
+			}
 			
 			if (strParFlowControlParam.equalsIgnoreCase(ParameterNames.PN_SHOW_QUESTIONS)){
-				//Show Questions
-				parShowQuestions = true;
-				parShowOptions = parShowResults = false;
-				parCourseID = request.getParameter(ParameterNames.PN_FIELD_COURSE_ID);
+				//Show Questions, if any
+				assessmentQuestions = AssessmentQuestion.getRandomAssessmentQuestions(parAreaFieldID);
 				
-				assessmentQuestions = AssessmentQuestion.getRandomAssessmentQuestions(parCourseID);
+				if (assessmentQuestions.size() > 0) {
+					parShowQuestions = true;
+					parShowOptions = parShowResults = false;
+					parAssessmentQuestionIDs = AssessmentQuestion.getAssessmentQuestionIDs(assessmentQuestions);
+				}
+				else {
+					flashInfo = "Sorry, Simulation cannot be done. No assessment questions found for " + parAreaFieldName;
+					SessionManager.setFlashInfo(session, flashInfo, FlashInfoType.WARNING);
+				}
 			}
 			else if (strParFlowControlParam.equalsIgnoreCase(ParameterNames.PN_SHOW_RESULTS)){
 				//Show Results
+				parAssessmentQuestionIDs = (String)request.getParameter(ParameterNames.PN_ASSESSMENT_QUESTION_IDS);
+				List<String> lstAssQIDs = AssessmentQuestion.getAssessmentQuestionIDsFromString(parAssessmentQuestionIDs);
+				List<AssessmentAnswer> lstAssAnswer = new ArrayList<AssessmentAnswer>();
+				String strChosenOption = "";
+				
+				for (String strAssQID : lstAssQIDs){
+					strChosenOption = (String)request.getParameter(ParameterNames.PN_OPTION_PREFIX + strAssQID);
+					lstAssAnswer.add(new AssessmentAnswer(strAssQID, strChosenOption));
+				}
+				
+				int assScore = AssessmentQuestion.scoreAssessmentAnswers(lstAssAnswer);
+				parPercentageScore = "" + assScore;
+				parAssessedCompetencyLevel = AssessmentQuestion.determineAssessedCompetencyLevel(assScore);
+				
 				parShowResults = parShowOptions = true;
 				parShowQuestions = false;
-				parCourseID = request.getParameter(ParameterNames.PN_FIELD_COURSE_ID);
+				
 			}
 			else {
 				response.sendRedirect(LinksManager.HOME_PAGE);
@@ -67,12 +89,16 @@
 	}
 	
 	ViewParameters viewParams = new ViewParameters();
-	viewParams.setParameter(ParameterNames.PN_FIELD_COURSE_ID, parCourseID);
+	viewParams.setParameter(ParameterNames.PN_AREA_FIELD_ID, parAreaFieldID);
+	viewParams.setParameter(ParameterNames.PN_AREA_FIELD_NAME, parAreaFieldName);
 	viewParams.setParameter(ParameterNames.PN_ASSESSMENT_QUESTIONS_EXIST, assessmentQuestionsExist);
 	viewParams.setParameter(ParameterNames.PN_SHOW_OPTIONS, parShowOptions);
 	viewParams.setParameter(ParameterNames.PN_SHOW_QUESTIONS, parShowQuestions);
 	viewParams.setParameter(ParameterNames.PN_SHOW_RESULTS, parShowResults);
 	viewParams.setParameter(ParameterNames.PN_ASSESSMENT_QUESTIONS, assessmentQuestions);
+	viewParams.setParameter(ParameterNames.PN_ASSESSMENT_QUESTION_IDS, parAssessmentQuestionIDs);
+	viewParams.setParameter(ParameterNames.PN_ASSESSMENT_RESULT_PSCORE, parPercentageScore);
+	viewParams.setParameter(ParameterNames.PN_ASSESSMENT_RESULT_LEVEL, parAssessedCompetencyLevel);
 	
 	SessionManager.setViewParameters(request, viewParams);
 %>

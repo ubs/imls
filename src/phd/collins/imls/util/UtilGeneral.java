@@ -81,6 +81,23 @@ public class UtilGeneral {
 		return randIndices;
 	}
 	
+	public static <T> List<T> getRandomItemsFromList(List<T> lstSource, int numOfItems){
+		List<T> lstRandomItems = new ArrayList<T>();
+		
+		if (lstSource != null) {
+			List<Integer> randomIndices = UtilGeneral.getRandomIndices(numOfItems, lstSource.size(), 1);
+			int currentIndex = 0;
+			
+			for (T item : lstSource){
+				if (randomIndices.contains(++currentIndex)) {
+					lstRandomItems.add(item);
+				}
+			}
+		}
+		
+		return lstRandomItems;
+	}
+	
 	public static String displayListAsString(List<?> lst2Display) {
 		StringBuilder sb = new StringBuilder();
 		String temp = "";
@@ -90,6 +107,12 @@ public class UtilGeneral {
 			sb.append(temp).append(" ");
 		}
 		return sb.toString();
+	}
+
+	public static int getRandomNumber(int start, int stop) {
+		int randomNum = random.nextInt(stop + 1);
+		if (randomNum < start) { randomNum = start; }
+		return randomNum;
 	}
 	
 }

@@ -25,7 +25,7 @@ public class ViewParameters implements Serializable {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <T extends Object> List<T> getParameterAsList(String pKey){
+	public <T> List<T> getParameterAsList(String pKey){
 		return (_viewParameters.containsKey(pKey)) ? (List<T>)_viewParameters.get(pKey) : null;
 	}
 	

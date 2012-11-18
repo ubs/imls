@@ -2,14 +2,12 @@ package phd.collins.imls.model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.List;
 
 import phd.collins.imls.exceptions.DataAccessException;
 import phd.collins.imls.util.Info;
 import phd.collins.imls.util.UtilGeneral;
-
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.table.DatabaseTable;
@@ -22,19 +20,10 @@ public class AssessmentQuestion extends AssessmentQuestionBase implements IModel
 	public AssessmentQuestion(){ super(); }
 	
 	public AssessmentQuestion(
-			FieldCourse _fieldCourse, String _question, 
+			AreaField _areaField, String _question, 
 			String _option1, String _option2, String _option3, String _option4, 
 			String _correctOption, String _Point, CompetencyLevels _cLevel) {
-		super(_fieldCourse, _question, _option1, _option2, _option3, _option4, _correctOption, _Point, _cLevel);
-	}
-	
-	public HashMap<String, String> getAllOptions(){
-		//Store the option titles as final statics in base
-		throw new NotImplementedException();
-	}
-	
-	public HashMap<String, String> getAllOptionsWithCorrectOption(){
-		throw new NotImplementedException();
+		super(_areaField, _question, _option1, _option2, _option3, _option4, _correctOption, _Point, _cLevel);
 	}
 	
 	public String getQuestionSummarised(){
@@ -98,26 +87,26 @@ public class AssessmentQuestion extends AssessmentQuestionBase implements IModel
 		return sb.toString();
 	}
 	
-	public static AssessmentQuestion AddAssessmentQuestion(String parCourseID, String parQuestion,
+	public static AssessmentQuestion AddAssessmentQuestion(String parAreaFieldID, String parQuestion,
 			String parCompetencyLevelID, String parOption1, String parOption2, String parOption3, String parOption4,
 			String parCorrectOption, String parPoint) throws DataAccessException {
 		
-			FieldCourse fc = FieldCourse.get(Long.parseLong(parCourseID));
+			AreaField areaField = AreaField.get(Long.parseLong(parAreaFieldID));
 			CompetencyLevels cLevel = CompetencyLevels.get(Long.parseLong(parCompetencyLevelID));
 			
 			return AddAssessmentQuestion(
-					fc, parQuestion, cLevel, parOption1, parOption2, parOption3, parOption4,
+					areaField, parQuestion, cLevel, parOption1, parOption2, parOption3, parOption4,
 					parCorrectOption, parPoint);
 	}
 	
-	public static AssessmentQuestion AddAssessmentQuestion(FieldCourse parFieldCourse, String parQuestion,
+	public static AssessmentQuestion AddAssessmentQuestion(AreaField parAreaField, String parQuestion,
 			CompetencyLevels parCompetencyLevel, String parOption1, String parOption2, String parOption3, String parOption4,
 			String parCorrectOption, String parPoint) throws DataAccessException{
 		AssessmentQuestion obj;
 		
 		try {
 			obj = new AssessmentQuestion(
-					parFieldCourse, parQuestion, parOption1, parOption2, parOption3, parOption4,
+					parAreaField, parQuestion, parOption1, parOption2, parOption3, parOption4,
 					parCorrectOption, parPoint, parCompetencyLevel);
 			
 			DAOManager.ASSESSMENT_QUESTION_DAO.create(obj);
@@ -127,6 +116,17 @@ public class AssessmentQuestion extends AssessmentQuestionBase implements IModel
 		}
 		
 		return obj;
+	}
+	
+	public static AssessmentQuestion get(long assQID){
+		AssessmentQuestion assQ = null;
+		try {
+			assQ = DAOManager.ASSESSMENT_QUESTION_DAO.queryForId(assQID);
+		} catch (SQLException e) {
+			assQ = null;
+			e.printStackTrace();
+		}
+		return assQ;
 	}
 	
 	public static List<AssessmentQuestion> getAll() throws DataAccessException{
@@ -142,16 +142,16 @@ public class AssessmentQuestion extends AssessmentQuestionBase implements IModel
 		return allItems;
 	}
 	
-	public static ForeignCollection<AssessmentQuestion> getAllForSpecifiedCourse(String parCourseID) throws DataAccessException{
+	public static ForeignCollection<AssessmentQuestion> getAllForSpecifiedAreaField(String parAreaFieldID) throws DataAccessException{
 		ForeignCollection<AssessmentQuestion> allItems = null;
 		
 		try {
-			Long courseID = -1L;
-			try{ courseID = Long.parseLong(parCourseID); } catch (Exception e) { courseID = null; }
+			Long areaFieldID = -1L;
+			try{ areaFieldID = Long.parseLong(parAreaFieldID); } catch (Exception e) { areaFieldID = null; }
 			
-			if (courseID != null) {
-				FieldCourse fc = FieldCourse.get(courseID);
-				allItems = fc.getColAssessmentQuestions();
+			if (areaFieldID != null) {
+				AreaField areaField = AreaField.get(areaFieldID);
+				allItems = areaField.getColAssessmentQuestions();
 			}
 		} catch (Exception e) {
 			Info.serr(e.getMessage());
@@ -161,15 +161,16 @@ public class AssessmentQuestion extends AssessmentQuestionBase implements IModel
 		return allItems;
 	}
 	
-	public static List<AssessmentQuestion> getRandomAssessmentQuestions(String parCourseID) throws DataAccessException {
-		return getRandomAssessmentQuestions(parCourseID, 10);
+	public static List<AssessmentQuestion> getRandomAssessmentQuestions(String parAreaFieldID) throws DataAccessException {
+		return getRandomAssessmentQuestions(parAreaFieldID, 10);
 	}
-	public static List<AssessmentQuestion> getRandomAssessmentQuestions(String parCourseID, int numQuestions) throws DataAccessException{
+	
+	public static List<AssessmentQuestion> getRandomAssessmentQuestions(String parAreaFieldID, int numQuestions) throws DataAccessException{
 		List<AssessmentQuestion> allItems = new ArrayList<AssessmentQuestion>();
 		ForeignCollection<AssessmentQuestion> randomItems = null;
 		
 		try {
-			randomItems = getAllForSpecifiedCourse(parCourseID);
+			randomItems = getAllForSpecifiedAreaField(parAreaFieldID);
 			
 			if (randomItems != null) {
 				List<Integer> randomIndices = UtilGeneral.getRandomIndices(numQuestions, randomItems.size(), 1);
@@ -187,5 +188,56 @@ public class AssessmentQuestion extends AssessmentQuestionBase implements IModel
 		}
 		
 		return allItems;
+	}
+	
+	public static String getAssessmentQuestionIDs(List<AssessmentQuestion> lstAssQ) {
+		StringBuilder sb = new StringBuilder();
+		for (AssessmentQuestion assQ : lstAssQ){
+			sb.append(assQ.getId()).append(",");
+		}
+		return sb.toString();
+	}
+	
+	public static List<String> getAssessmentQuestionIDsFromString(String strAssQIDs) {
+		List<String> lstAssQIDs = new ArrayList<String>();
+		lstAssQIDs = Arrays.asList(strAssQIDs.split(","));
+		return lstAssQIDs;
+	}
+	
+	public static int scoreAssessmentAnswers(List<AssessmentAnswer> lstAnswers){
+		int possibleScore = 0, totalScore = 0, percentageScore = 0;
+		
+		AssessmentQuestion assQ = null;
+		
+		for (AssessmentAnswer aa : lstAnswers){
+			assQ = AssessmentQuestion.get(Long.parseLong(aa.getStrAssessmentQID()));
+			
+			if (assQ != null){
+				possibleScore += assQ.getPoint();
+				Info.sout("Correct Option: " + assQ.getCorrect_option() + ", Chosen Option: " + aa.getStrChosenOption());
+				String correctOption = assQ.getOption(Integer.parseInt(assQ.getCorrect_option()));
+				
+				if (correctOption.equalsIgnoreCase(aa.getStrChosenOption())) {
+					totalScore += assQ.getPoint();
+					Info.sout("Correct! Total Score: " + totalScore);
+				}
+			}
+		}
+		
+		percentageScore = (int)((float)totalScore * 100.0 / (float)possibleScore);
+		Info.sout("totalScore : " + totalScore + ", possibleScore : " + possibleScore + 
+				", percentageScore : " + percentageScore);
+		
+		return percentageScore;
+	}
+	
+	public static String determineAssessedCompetencyLevel(int score){
+		String cLevel = "BASIC";
+		
+		if (score > 70) { cLevel = "ADVANCED"; }
+		else if (score > 50) { cLevel = "INTERMEDIATE"; }
+		else { cLevel = "BASIC"; }
+		
+		return cLevel;
 	}
 }

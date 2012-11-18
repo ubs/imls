@@ -94,11 +94,20 @@ public class UserBase extends ModelBase {
 	}
 	
 	public boolean isStudent(){
-		return (this.getUser_type().trim().equalsIgnoreCase(UserTypes.STUDENT.toString()));
+		return isUserType(UserTypes.STUDENT);
 	}
 	
 	public boolean isAdmin(){
-		return (this.getUser_type().trim().equalsIgnoreCase(UserTypes.ADMIN.toString()));
+		return isUserType(UserTypes.ADMIN);
+	}
+	
+	private boolean isUserType(UserTypes userType){
+		boolean userIsUType = false;
+		String utype = this.getUser_type();
+		if (utype != null) {
+			userIsUType = utype.trim().equalsIgnoreCase(userType.toString());
+		}
+		return userIsUType;
 	}
 	
 	public String digestPassword(String plainPassword){

@@ -20,6 +20,9 @@ public class AreaFieldBase extends ModelBase {
 	@ForeignCollectionField(eager = false, orderColumnName=FieldCourse.FIELD_STUDY_ORDER)
 	private ForeignCollection<FieldCourse> colFieldCourses;
 	
+	@ForeignCollectionField(eager = false, orderColumnName=AssessmentQuestion.FIELD_ID)
+	private ForeignCollection<AssessmentQuestion> colAssessmentQuestions;
+	
 	public static final String FIELD_STUDY_AREA_ID 	= "study_area_id";
 
 	public AreaFieldBase() { /*ORMLite needs a no-arg constructor*/ }
@@ -68,5 +71,9 @@ public class AreaFieldBase extends ModelBase {
 
 	public ForeignCollection<FieldCourse> getColFieldCourses() {
 		return colFieldCourses;
+	}
+	
+	public ForeignCollection<AssessmentQuestion> getColAssessmentQuestions() {
+		return colAssessmentQuestions;
 	}
 }

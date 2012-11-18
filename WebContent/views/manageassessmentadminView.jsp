@@ -1,3 +1,4 @@
+<%@page import="phd.collins.imls.model.AreaField"%>
 <%@page import="phd.collins.imls.model.AssessmentQuestion"%>
 <%@page import="phd.collins.imls.model.CompetencyLevels"%>
 <%@page import="phd.collins.imls.model.FieldCourse"%>
@@ -8,14 +9,14 @@
 <%@page import="phd.collins.imls.util.Info"%>
 <%@page import="java.util.List"%>
 <%
-	String parCourseID = "", parQuestion = "", parCompetencyLevelID = "";
+	String parAreaFieldID = "", parQuestion = "", parCompetencyLevelID = "";
 	String parOption1 = "", parOption2 = "", parOption3 = "", parOption4 = "", parCorrectOption = "", parPoint = "";
-	boolean fieldCoursesExist = false;
+	boolean areaFieldExist = false;
 
 	ViewParameters viewParams = SessionManager.getViewParameters(request);
 
 	if (viewParams != null){
-		parCourseID = (String)viewParams.getParameter(ParameterNames.PN_FIELD_COURSE_ID);
+		parAreaFieldID = (String)viewParams.getParameter(ParameterNames.PN_AREA_FIELD_ID);
 		parQuestion = (String)viewParams.getParameter(ParameterNames.PN_QUESTION);
 		parCompetencyLevelID = (String)viewParams.getParameter(ParameterNames.PN_COMPETENCY_LEVEL_ID);
 		parOption1 = (String)viewParams.getParameter(ParameterNames.PN_OPTION_1);
@@ -25,14 +26,14 @@
 		parCorrectOption  = (String)viewParams.getParameter(ParameterNames.PN_CORRECT_OPTION);
 		parPoint  = (String)viewParams.getParameter(ParameterNames.PN_QUESTION_POINT);
 		
-		fieldCoursesExist = viewParams.getBooleanParameter(ParameterNames.PN_FIELD_COURSES_EXIST);
+		areaFieldExist = viewParams.getBooleanParameter(ParameterNames.PN_AREA_FIELDS_EXIST);
 	}
 	
 	//Get existing ones for listing
 	List<AssessmentQuestion> existingAssessmentQuestions = AssessmentQuestion.getAll();
 %>
 <div>
-	<% if ( !fieldCoursesExist ){ %>
+	<% if ( !areaFieldExist ){ %>
 	
 	<div>&nbsp;</div>
 	
@@ -41,10 +42,10 @@
 	<div style="margin-bottom: 10px;">
 		<form name="frmAuth" id="frmAuth" method="post" action="">
             <ul class="formrow clearfix">
-            	<li class="grid_3 formlabel">Field Course</li>
+            	<li class="grid_3 formlabel">Area Field</li>
             	<li class="grid_3 formcontrol">
-            		<select class="select" name="<%= ParameterNames.PN_FIELD_COURSE_ID %>">
-            			<%= FieldCourse.getAllAsListOptions() %>
+            		<select class="select" name="<%= ParameterNames.PN_AREA_FIELD_ID %>">
+            			<%= AreaField.getAllAsListOptions() %>
 					</select>
             	</li>
             </ul>
@@ -135,7 +136,7 @@
 			%>
 				<tr>
 					<td><%= ++sn %></td>
-					<td><%= FieldCourse.getFieldCourseName(assessmentQuestion.getFieldCourse()) %></td>
+					<td><%= AreaField.getAreaFieldName(assessmentQuestion.getAreaField()) %></td>
 					<td><%= assessmentQuestion.getQuestionSummarised() %></td>
 					<td><%= CompetencyLevels.getCompetencyLevel(assessmentQuestion.getCompetencyLevel()) %></td>
 					<td><%= assessmentQuestion.getPoint() %></td>

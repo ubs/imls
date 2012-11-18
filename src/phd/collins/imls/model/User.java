@@ -1,6 +1,8 @@
 package phd.collins.imls.model;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import phd.collins.imls.exceptions.DataAccessException;
 import phd.collins.imls.util.Info;
@@ -83,6 +85,19 @@ public class User extends UserBase implements IModelToOtherFormats {
 			e.printStackTrace();
 		}
 		return user;
+	}
+	
+	public static List<User> getAll() throws DataAccessException{
+		List<User> allItems = new ArrayList<User>();
+		
+		try {
+			allItems = DAOManager.USER_DAO.queryForAll();
+		} catch (SQLException e) {
+			Info.serr(e.getMessage());
+			throw new DataAccessException("Error retrieving users");
+		}
+		
+		return allItems;
 	}
 	
 	public static long create(User user){

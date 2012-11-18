@@ -56,7 +56,11 @@ public interface ParameterNames {
 	public static final String PN_SHOW_OPTIONS = "showoptions";
 	public static final String PN_SHOW_QUESTIONS = "showquestions";
 	public static final String PN_SHOW_RESULTS = "showresults";
-	public static final String PN_ASSESSMENT_QUESTIONS = "AssessmentQuestions";
+	public static final String PN_OPTION_PREFIX = "option";
+	public static final String PN_ASSESSMENT_QUESTIONS = "assessmentauestions";
+	public static final String PN_ASSESSMENT_QUESTION_IDS = "assessmentquestionids";
+	public static final String PN_ASSESSMENT_RESULT_PSCORE = "assessmentresultpscore";
+	public static final String PN_ASSESSMENT_RESULT_LEVEL = "assessmentresultlevel";
 	
 	public static final String PN_FLOW_CONTROL_PARAM = "flowcontrolparam";
 }
