@@ -63,4 +63,6 @@ public interface ParameterNames {
 	public static final String PN_ASSESSMENT_RESULT_LEVEL = "assessmentresultlevel";
 	
 	public static final String PN_FLOW_CONTROL_PARAM = "flowcontrolparam";
+	
+	public static final String PN_ACCEPT_DEFAULT_COURSE_MODULES = "acceptdefaultcoursemodules";
 }

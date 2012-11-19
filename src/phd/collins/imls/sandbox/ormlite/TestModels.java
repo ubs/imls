@@ -65,12 +65,30 @@ public class TestModels {
 		//testGenerateRegNumbers();
 		//testTemp();
 		//testGetRandomIndices();
+		
+		//testArrayRand();
+		
+		//testScoringAssessment();
+	}
+
+	@SuppressWarnings("unused")
+	private void testArrayRand() {
 		for (int h=0; h < 50; h++){
-		testScoringAssessment();
-		Info.sout("\n\n");
+			
+			int numOfItems = UtilGeneral.getRandomNumber(1, h);
+			List<Integer> lstSource = UtilGeneral.getRandomIndices(h, h, 1);
+			
+			Info.sout("\nTest of getRandomItemsFromList, h = " + h + 
+				", Source List Length = " + lstSource.size() + ", numOfItems = " + numOfItems + 
+				" : { " + 
+				UtilGeneral.displayListAsString(
+						UtilGeneral.getRandomItemsFromList(lstSource, numOfItems)
+				) + "}"
+			);
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void testScoringAssessment() {
 		List<AssessmentQuestion> lstAssQs;
 		List<AssessmentAnswer> lstAssAns = new ArrayList<AssessmentAnswer>();

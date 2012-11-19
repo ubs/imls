@@ -45,6 +45,13 @@ public class CourseModule extends CourseModuleBase implements IModelToOtherForma
 		return obj;
 	}
 	
+	public static CourseModule refresh(CourseModule cm) throws DataAccessException {
+		try {
+			DAOManager.COURSE_MODULE_DAO.refresh(cm);
+			return cm;
+		} catch (SQLException e) { throw new DataAccessException(e.getMessage()); }
+	}
+	
 	public static List<CourseModule> getAll() throws DataAccessException{
 		List<CourseModule> allItems = new ArrayList<CourseModule>();
 		

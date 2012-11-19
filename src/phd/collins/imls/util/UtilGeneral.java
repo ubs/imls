@@ -8,6 +8,8 @@ import java.util.Random;
 
 import org.apache.commons.codec.digest.DigestUtils;
 
+import com.j256.ormlite.dao.ForeignCollection;
+
 public class UtilGeneral {
 	
 	private static final String validNumbers = "0123456789";
@@ -78,6 +80,7 @@ public class UtilGeneral {
 			}
 		}
 		
+		//Info.sout("Random Indices => " + displayListAsString(randIndices));
 		return randIndices;
 	}
 	
@@ -113,6 +116,16 @@ public class UtilGeneral {
 		int randomNum = random.nextInt(stop + 1);
 		if (randomNum < start) { randomNum = start; }
 		return randomNum;
+	}
+	
+	public static <T> List<T> ForeignCollectionToList(ForeignCollection<T> lstForeignCollection){
+		List<T> lst2Return = new ArrayList<T>();
+		if (lstForeignCollection != null) {
+			for (T item : lstForeignCollection){
+				lst2Return.add(item);
+			}
+		}
+		return lst2Return;
 	}
 	
 }

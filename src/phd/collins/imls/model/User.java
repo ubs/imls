@@ -128,10 +128,7 @@ public class User extends UserBase implements IModelToOtherFormats {
 		return username;
 	}
 	
-	public static User AddUser(String username, String plainPassword, UserTypes userType, boolean isActive) throws DataAccessException {
-		Info.sout("Username: " + username + " Password: " + plainPassword +
-				" UserType: " + userType + " isActive: " + isActive);
-		
+	public static User AddUser(String username, String plainPassword, UserTypes userType, boolean isActive) throws DataAccessException {		
 		User user = new User(username, plainPassword, userType, isActive);
         user.setLast_login_date(null);
 		create(user);
@@ -147,11 +144,6 @@ public class User extends UserBase implements IModelToOtherFormats {
 					.and().eq(User.FIELD_PASSWORD, User.digestUserPassword(password))
 					.prepare()
 			);
-			
-			Info.sout("User.java: authenticateUser (" + username + ", " + 
-					User.digestUserPassword(password) + "), " +
-					"user object from Query Result[queryForFirst] = " + user);
-
 		} catch (Exception e){
 			user = null;
 			e.printStackTrace();

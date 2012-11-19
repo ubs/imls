@@ -9,13 +9,13 @@ public class StudentStudyRecordBase extends ModelBase {
 	@DatabaseField(generatedId = true)
 	private long id;
 	
-	@DatabaseField(canBeNull=false, foreign=true)
+	@DatabaseField(canBeNull=false, foreign=true, columnName=FIELD_STUDENT_ID)
 	private Student student;
 	
-	@DatabaseField(canBeNull=false, foreign=true)
+	@DatabaseField(canBeNull=false, foreign=true, columnName=FIELD_FIELD_COURSE_ID)
 	private FieldCourse fieldCourse;
 	
-	@DatabaseField(canBeNull=false, foreign=true)
+	@DatabaseField(canBeNull=false, foreign=true, columnName=FIELD_COURSE_MODULE_ID)
 	private CourseModule courseModule;
 	
 	@DatabaseField(dataType=DataType.DATE_STRING)
@@ -23,6 +23,11 @@ public class StudentStudyRecordBase extends ModelBase {
 	
 	@DatabaseField(dataType=DataType.DATE_STRING)
 	private Date date_completed;
+	
+	public static final String FIELD_STUDENT_ID = "student_id";
+	public static final String FIELD_FIELD_COURSE_ID = "course_id";
+	public static final String FIELD_COURSE_MODULE_ID = "module_id";
+	public static final String FIELD_DATE_COMPLETED = "date_completed";
 
 	public StudentStudyRecordBase() { /*ORMLite needs a no-arg constructor*/ }
 

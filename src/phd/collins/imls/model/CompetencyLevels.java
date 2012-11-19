@@ -2,6 +2,7 @@ package phd.collins.imls.model;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import phd.collins.imls.exceptions.DataAccessException;
@@ -12,6 +13,32 @@ import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "competency_levels")
 public class CompetencyLevels extends CompetencyLevelsBase implements IModelToOtherFormats {
+	public enum CLevelTypes {
+		BASIC("BASIC"),
+		INTERMEDIATE("INTERMEDIATE"),
+		ADVANCED("ADVANCED");
+		
+		private String description;
+		
+		private CLevelTypes(String desc){
+			description = desc;
+		}
+		
+		@Override
+		public String toString(){ return description; }
+		
+		public String getDescription() { return description; }
+		
+		public List<String> getAllCLevelTypes(){
+			List<String> lstAllItems = Arrays.asList(
+				CLevelTypes.BASIC.toString(),
+				CLevelTypes.INTERMEDIATE.toString(), 
+				CLevelTypes.ADVANCED.toString()
+			);
+			
+			return lstAllItems;
+		}
+	}
 
 	public CompetencyLevels(){ super(); }
 	
@@ -64,6 +91,21 @@ public class CompetencyLevels extends CompetencyLevelsBase implements IModelToOt
 		return obj;
 	}
 	
+	public static CompetencyLevels getByCLevel(String strCLevel){
+		CompetencyLevels obj = null;
+		try {
+			obj = DAOManager.COMPETENCY_LEVELS_DAO.queryForFirst(
+					DAOManager.COMPETENCY_LEVELS_DAO.queryBuilder()
+					.where().like(CompetencyLevels.FIELD_LEVEL, strCLevel)
+					.prepare()
+			);
+		} catch (SQLException e) {
+			obj = null;
+			e.printStackTrace();
+		}
+		return obj;
+	}
+	
 	public static List<CompetencyLevels> getAll() throws DataAccessException{
 		List<CompetencyLevels> allItems = new ArrayList<CompetencyLevels>();
 		
@@ -105,5 +147,9 @@ public class CompetencyLevels extends CompetencyLevelsBase implements IModelToOt
 		}
 
 		return competencyLevel;
+	}
+
+	public static CompetencyLevels getDefaultCompetencyLevel() {
+		return getByCLevel(CLevelTypes.BASIC.toString());
 	}
 }

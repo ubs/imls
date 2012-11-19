@@ -45,6 +45,13 @@ public class AreaField extends AreaFieldBase implements IModelToOtherFormats {
 		return areaField;
 	}
 	
+	public static AreaField refresh(AreaField areaField) throws DataAccessException {
+		try {
+			DAOManager.AREA_FIELD_DAO.refresh(areaField);
+			return areaField;
+		} catch (SQLException e) { throw new DataAccessException(e.getMessage()); }
+	}
+	
 	public static List<AreaField> getAll() throws DataAccessException{
 		List<AreaField> allAreaFields = new ArrayList<AreaField>();
 		
@@ -89,7 +96,12 @@ public class AreaField extends AreaFieldBase implements IModelToOtherFormats {
 	
 	public static String getAreaFieldName(AreaField areaField) {
 		String areaFieldName = "";
-		RefreshAreaField(areaField);
+		
+		try {
+			refresh(areaField);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+		}
 		
 		if (areaField != null) {
 			areaFieldName = areaField.getField_name();
@@ -97,11 +109,5 @@ public class AreaField extends AreaFieldBase implements IModelToOtherFormats {
 		}
 
 		return areaFieldName;
-	}
-	
-	public static void RefreshAreaField(AreaField areaField){
-		try {
-			DAOManager.AREA_FIELD_DAO.refresh(areaField); //Refresh Foreign Field
-		} catch (SQLException e) { }
 	}
 }

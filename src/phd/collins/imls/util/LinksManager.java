@@ -32,9 +32,13 @@ public class LinksManager {
 	public static String SIMULATE_ASSESSMENT_ADMIN = "simulateassessmentadmin.jsp";
 	
 	public static String VIEW_MODULE_CONTENT = "viewmodulecontent.jsp";
+	public static String MARK_MODULE_CONTENT_COMPLETED = "markmodulecompleted.jsp";
 	
 	public static String USER_PROFILE = "userprofile.jsp";
 	public static String STUDENT_REGISTRATION = "studentregister.jsp";
+	public static String STUDENT_PROMPT_FOR_INITIAL_TEST = "studentpromptfortest.jsp";
+	public static String STUDENT_TAKE_INITIAL_ASSESSMENT_TEST = "studentinitialtest.jsp";
+	public static String STUDENT_TAKE_FINAL_ASSESSMENT_TEST = "studentfinaltest.jsp";
 	
 	public static String WSIG_ADMIN_HOME = "wsig-index.jsp";
 	public static String WSIG_ADMIN_TEST = "wsig-test.jsp";

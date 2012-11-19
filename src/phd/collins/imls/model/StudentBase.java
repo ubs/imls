@@ -2,8 +2,10 @@ package phd.collins.imls.model;
 
 import java.util.Date;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 
 public class StudentBase extends ModelBase {
 	
@@ -27,6 +29,9 @@ public class StudentBase extends ModelBase {
 	
 	@DatabaseField(canBeNull=false, foreign=true, columnName="user_id")
 	private User user;
+	
+	@ForeignCollectionField(eager = false, orderColumnName=StudentStudyRecord.FIELD_FIELD_COURSE_ID)
+	private ForeignCollection<StudentStudyRecord> colMyStudyRecords;
 	
 	public static final String FIELD_REGNUMBER 	= "regno";
 
@@ -98,4 +103,9 @@ public class StudentBase extends ModelBase {
 	public Date getDate_registered() {
 		return date_registered;
 	}
+	
+	public ForeignCollection<StudentStudyRecord> getColMyStudyRecords() {
+		return colMyStudyRecords;
+	}
+
 }

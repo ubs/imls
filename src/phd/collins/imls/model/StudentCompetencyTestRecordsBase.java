@@ -18,8 +18,8 @@ public class StudentCompetencyTestRecordsBase extends ModelBase {
 	@DatabaseField(dataType=DataType.DATE_STRING)
 	private Date date_completed;
 	
-	public static final String FIELD_STUDENT_ID 			= "student_id";
-	public static final String FIELD_COMPETENCY_LEVEL_ID 	= "competency_level_id";
+	public static final String FIELD_STUDENT_ID 		 = "student_id";
+	public static final String FIELD_COMPETENCY_LEVEL_ID = "competency_level_id";
 
 	public StudentCompetencyTestRecordsBase() { /*ORMLite needs a no-arg constructor*/ }
 

@@ -14,7 +14,7 @@
 		student = Student.getByRegNumber(currentUser.getUserName());
 		if (student != null){
 			AreaField areaField = student.getField_of_study();
-			AreaField.RefreshAreaField(areaField);
+			AreaField.refresh(areaField);
 			myFieldCourses = areaField.getColFieldCourses();
 		}
 	}

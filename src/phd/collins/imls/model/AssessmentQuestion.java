@@ -142,7 +142,7 @@ public class AssessmentQuestion extends AssessmentQuestionBase implements IModel
 		return allItems;
 	}
 	
-	public static ForeignCollection<AssessmentQuestion> getAllForSpecifiedAreaField(String parAreaFieldID) throws DataAccessException{
+	public static List<AssessmentQuestion> getAllForSpecifiedAreaField(String parAreaFieldID) throws DataAccessException{
 		ForeignCollection<AssessmentQuestion> allItems = null;
 		
 		try {
@@ -158,7 +158,7 @@ public class AssessmentQuestion extends AssessmentQuestionBase implements IModel
 			throw new DataAccessException("Error retrieving assessment questions for specified course");
 		}
 		
-		return allItems;
+		return UtilGeneral.ForeignCollectionToList(allItems);
 	}
 	
 	public static List<AssessmentQuestion> getRandomAssessmentQuestions(String parAreaFieldID) throws DataAccessException {
@@ -166,28 +166,21 @@ public class AssessmentQuestion extends AssessmentQuestionBase implements IModel
 	}
 	
 	public static List<AssessmentQuestion> getRandomAssessmentQuestions(String parAreaFieldID, int numQuestions) throws DataAccessException{
-		List<AssessmentQuestion> allItems = new ArrayList<AssessmentQuestion>();
-		ForeignCollection<AssessmentQuestion> randomItems = null;
+		List<AssessmentQuestion> lstRandomAssQs = new ArrayList<AssessmentQuestion>();
+		List<AssessmentQuestion> lstAllQs = null;
 		
 		try {
-			randomItems = getAllForSpecifiedAreaField(parAreaFieldID);
+			lstAllQs = getAllForSpecifiedAreaField(parAreaFieldID);
 			
-			if (randomItems != null) {
-				List<Integer> randomIndices = UtilGeneral.getRandomIndices(numQuestions, randomItems.size(), 1);
-				int currentIndex = 0;
-				
-				for (AssessmentQuestion assQ : randomItems){
-					if (randomIndices.contains(++currentIndex)) {
-						allItems.add(assQ);
-					}
-				}
+			if (lstAllQs != null) {
+				lstRandomAssQs = UtilGeneral.getRandomItemsFromList(lstAllQs, numQuestions);
 			}
 		} catch (Exception e) {
 			Info.serr(e.getMessage());
 			throw new DataAccessException("Error retrieving random assessment questions");
 		}
 		
-		return allItems;
+		return lstRandomAssQs;
 	}
 	
 	public static String getAssessmentQuestionIDs(List<AssessmentQuestion> lstAssQ) {
@@ -214,12 +207,12 @@ public class AssessmentQuestion extends AssessmentQuestionBase implements IModel
 			
 			if (assQ != null){
 				possibleScore += assQ.getPoint();
-				Info.sout("Correct Option: " + assQ.getCorrect_option() + ", Chosen Option: " + aa.getStrChosenOption());
 				String correctOption = assQ.getOption(Integer.parseInt(assQ.getCorrect_option()));
+				Info.sout("Correct Option: " + correctOption + ", Chosen Option: " + aa.getStrChosenOption());
 				
 				if (correctOption.equalsIgnoreCase(aa.getStrChosenOption())) {
 					totalScore += assQ.getPoint();
-					Info.sout("Correct! Total Score: " + totalScore);
+					Info.sout("Correct! Total Score: " + totalScore + " out of " + possibleScore);
 				}
 			}
 		}
